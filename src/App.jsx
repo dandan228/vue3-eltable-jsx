@@ -1,19 +1,25 @@
-import { defineComponent, reactive } from "vue";
+import { defineComponent, reactive, onMounted } from "vue";
 import { ElButton, ElInput } from "element-plus";
 import { Table } from "./components/table";
 import { FilterTable } from "./components/filterTable";
 import { Pagination } from "./components/paginate";
 import { _columns, _data, _filterForm } from "./components/config.js";
-import mockData from "./components/mockData"; // 导入Mock数据
+import axiox from "axios";
 
 export default defineComponent({
   name: "App",
   setup() {
-    // table数据源
-    let tableData = reactive([]);
-
-    // table每一列
-    const columns = _columns;
+    let state = reactive({
+      // table数据源
+      tableData: [],
+      // 当前页码
+      page: 1,
+      // 当前页容量
+      pageSize: 5,
+      total: 0,
+      // table每一列
+      columns: _columns,
+    });
 
     // 处理按钮点击事件
     const handleButtonClick = (scope, colIdx, btnIdx) => {
@@ -52,22 +58,31 @@ export default defineComponent({
 
     const handleSizeChange = (pageSize) => {
       console.log("当前页容量", pageSize);
+      state.pageSize = pageSize
+      initData({ page: state.page, pageSize: state.pageSize });
     };
 
-    const handlePageChange = (currentPage) => {
-      console.log("当前页码", currentPage);
+    const handlePageChange = (page) => {
+      console.log("当前页码", page);
+      state.page = page
+      initData({ page: state.page, pageSize: state.pageSize });
     };
 
     const handleFilterTable = (form) => {
       console.log("筛选table的参数", form);
+      initData(form);
     };
 
-    const initData = () => {
-      const { data } = mockData;
-      tableData = data;
+    const initData = async (params) => {
+      axiox.post("/api/getList", params).then((res) => {
+        const { data } = res;
+        state.tableData = data.data.list;
+        state.total = data.data.total
+        console.log('state.total', data.data);
+      });
     };
 
-    initData();
+    initData({});
 
     return () => (
       <div>
@@ -75,7 +90,7 @@ export default defineComponent({
           filterForm={_filterForm}
           onHandleFilterTable={handleFilterTable}
         ></FilterTable>
-        <Table data={tableData} columns={columns}>
+        <Table data={state.tableData} columns={state.columns}>
           {{
             btnSlot: (scope, col, colIdx) => {
               // 处理按钮状态
@@ -101,7 +116,10 @@ export default defineComponent({
           }}
         </Table>
         <Pagination
-          data={tableData}
+          data={state.tableData}
+          page={state.page}
+          total={state.total}
+          pageSize={state.pageSize}
           onSizeChange={handleSizeChange}
           onPageChange={handlePageChange}
         />

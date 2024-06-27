@@ -1,7 +1,7 @@
 import { ElPagination } from "element-plus";
 
 export const Pagination = (props, { slots }) => {
-  const { data } = props;
+  const { data, pageSize, total } = props;
 
   const handleSizeChange = (val) => {
     props.onSizeChange(val);
@@ -15,9 +15,9 @@ export const Pagination = (props, { slots }) => {
     <div>
       <ElPagination
         layout="total, sizes, prev, pager, next, jumper"
-        total={data.length}
-        pageSizes={[1, 2, 3, 4]}
-        default-page-size={1}
+        total={total}
+        pageSizes={[5, 10, 15, 20]}
+        default-page-size={pageSize}
         onSizeChange={handleSizeChange}
         onCurrentChange={handleCurrentChange}
       />

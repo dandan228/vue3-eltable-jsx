@@ -16,6 +16,11 @@ export const _columns = [
         prop: "name",
         label: "Name",
         width: "180",
+    },
+    {
+        prop: "input",
+        label: "input",
+        width: "180",
         tableType: "input",
     },
     {
