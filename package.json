@@ -1,0 +1,21 @@
+{
+  "name": "el-table-jsx",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vitejs/plugin-vue-jsx": "^4.0.0",
+    "element-plus": "^2.7.6",
+    "vue": "^3.2.20"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.5",
+    "@vue/babel-plugin-jsx": "^1.2.2",
+    "vite": "^5.3.1"
+  }
+}
