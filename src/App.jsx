@@ -1,8 +1,9 @@
 import { defineComponent, reactive } from "vue";
 import { ElButton, ElInput } from "element-plus";
 import { Table } from "./components/table";
+import { FilterTable } from "./components/filterTable";
 import { Pagination } from "./components/paginate";
-import { _columns } from "./components/config.js";
+import { _columns, _data, _filterForm } from "./components/config.js";
 import mockData from "./components/mockData"; // 导入Mock数据
 
 export default defineComponent({
@@ -57,6 +58,10 @@ export default defineComponent({
       console.log("当前页码", currentPage);
     };
 
+    const handleFilterTable = (form) => {
+      console.log("筛选table的参数", form);
+    };
+
     const initData = () => {
       const { data } = mockData;
       tableData = data;
@@ -66,6 +71,10 @@ export default defineComponent({
 
     return () => (
       <div>
+        <FilterTable
+          filterForm={_filterForm}
+          onHandleFilterTable={handleFilterTable}
+        ></FilterTable>
         <Table data={tableData} columns={columns}>
           {{
             btnSlot: (scope, col, colIdx) => {
