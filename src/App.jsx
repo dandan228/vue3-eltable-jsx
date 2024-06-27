@@ -19,24 +19,23 @@ export default defineComponent({
       total: 0,
       // table每一列
       columns: _columns,
+      // 保存上一次的筛选参数，因为改变页容量或者页码，参数需要保存下来
+      lastFilter: {}
     });
 
     // 处理按钮点击事件
     const handleButtonClick = (scope, colIdx, btnIdx) => {
-      const { row, rowIndex } = scope;
-      /* 
-        scope: {
-          row: 每一行数据对象,
-          rowIndex: 每一行数据的索引,
-        }
-        colIdx: 当前列的索引,
-        btnIdx: 当前列按钮数组中按钮的索引,
-      */
+      const { row, $index: rowIndex } = scope;
+      console.log("scope", scope);
+      console.log("当前行数据", row);
+      console.log("当前行下标", rowIndex);
+      console.log("当前列的索引", colIdx);
+      console.log("当前按钮下标", btnIdx);
     };
 
     // 格式化按钮列
     const formatBtn = (scope, colIdx) => {
-      const { row, rowIndex } = scope;
+      const { row, $index: rowIndex } = scope;
       /* 
         scope: {
           row: 每一行数据对象,
@@ -58,18 +57,19 @@ export default defineComponent({
 
     const handleSizeChange = (pageSize) => {
       console.log("当前页容量", pageSize);
-      state.pageSize = pageSize
-      initData({ page: state.page, pageSize: state.pageSize });
+      state.pageSize = pageSize;
+      initData({ page: state.page, pageSize: state.pageSize, ...state.lastFilter });
     };
 
     const handlePageChange = (page) => {
       console.log("当前页码", page);
-      state.page = page
-      initData({ page: state.page, pageSize: state.pageSize });
+      state.page = page;
+      initData({ page: state.page, pageSize: state.pageSize, ...state.lastFilter });
     };
 
     const handleFilterTable = (form) => {
       console.log("筛选table的参数", form);
+      state.lastFilter = form; // 保存当前筛选参数
       initData(form);
     };
 
@@ -77,8 +77,8 @@ export default defineComponent({
       axiox.post("/api/getList", params).then((res) => {
         const { data } = res;
         state.tableData = data.data.list;
-        state.total = data.data.total
-        console.log('state.total', data.data);
+        state.total = data.data.total;
+        console.log("state.total", data.data);
       });
     };
 
