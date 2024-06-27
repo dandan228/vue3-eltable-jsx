@@ -1,10 +1,10 @@
-export const _data = [
-    // 0=>显示所有; 1=>通过; 2=>取消; 3=>禁用
-    { date: "date", name: "John", state: 0, btn: "按钮1" },
-    { date: "date1", name: "Jane", state: 1, btn: "按钮2" },
-    { date: "date1", name: "Jane", state: 2, btn: "按钮3" },
-    { date: "da2te1", name: "Jan23e", state: 3, btn: "按钮4" },
-]
+// export const _data = [
+//     // 0=>显示所有; 1=>通过; 2=>取消; 3=>禁用
+//     { date: "date", name: "John", state: 0, btn: "按钮1" },
+//     { date: "date1", name: "Jane", state: 1, btn: "按钮2" },
+//     { date: "date1", name: "Jane", state: 2, btn: "按钮3" },
+//     { date: "da2te1", name: "Jan23e", state: 3, btn: "按钮4" },
+// ]
 
 export const _columns = [
     { prop: "date", label: "Date", width: '180' },

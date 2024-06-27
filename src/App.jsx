@@ -1,13 +1,15 @@
-import { defineComponent } from "vue";
+import { defineComponent, reactive } from "vue";
 import { ElButton, ElInput } from "element-plus";
 import { Table } from "./components/table";
-import { _data, _columns } from "./components/config.js";
+import { Pagination } from "./components/paginate";
+import { _columns } from "./components/config.js";
+import mockData from "./components/mockData"; // 导入Mock数据
 
 export default defineComponent({
   name: "App",
   setup() {
     // table数据源
-    const data = _data;
+    let tableData = reactive([]);
 
     // table每一列
     const columns = _columns;
@@ -47,9 +49,24 @@ export default defineComponent({
       return btnArr[row.state];
     };
 
+    const handleSizeChange = (pageSize) => {
+      console.log("当前页容量", pageSize);
+    };
+
+    const handlePageChange = (currentPage) => {
+      console.log("当前页码", currentPage);
+    };
+
+    const initData = () => {
+      const { data } = mockData;
+      tableData = data;
+    };
+
+    initData();
+
     return () => (
       <div>
-        <Table data={data} columns={columns}>
+        <Table data={tableData} columns={columns}>
           {{
             btnSlot: (scope, col, colIdx) => {
               // 处理按钮状态
@@ -68,11 +85,17 @@ export default defineComponent({
                 </ElButton>
               ));
             },
+
             inputSlot: (scope, col, colIdx) => {
               return <ElInput>123</ElInput>;
             },
           }}
         </Table>
+        <Pagination
+          data={tableData}
+          onSizeChange={handleSizeChange}
+          onPageChange={handlePageChange}
+        />
       </div>
     );
   },
