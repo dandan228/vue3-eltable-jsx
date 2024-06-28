@@ -46,6 +46,7 @@ initData({});
 const handleFilterTable = (e) => {
   // search=>操作栏form, btnInfo=》操作栏按钮信息
   const { search, btnInfo } = e;
+  console.log('handleFilterTable', e);
   // 保存当前筛选参数
   state.lastFilter = search;
   initData({
@@ -65,9 +66,11 @@ const handleButtonClick = (e) => {
     colIdx,
     scope: { $index, row },
   } = e;
+  console.log('handleButtonClick', e);
 };
 
 const handleSizeChange = (pageSize) => {
+  console.log('handleSizeChange', pageSize);
   // pageSize=>页容量
   state.pageInfo.pageSize = pageSize;
   initData({
@@ -77,6 +80,7 @@ const handleSizeChange = (pageSize) => {
   });
 };
 const handlePageChange = (page) => {
+  console.log('handlePageChange', page);
   // pageSize=>当前页
   state.pageInfo.page = page;
   initData({
