@@ -1,2 +1,12 @@
-# vue3-eltable-jsx
-使用vue3, elementui-plus框架，用jsx二次封装table组件
+```
+├── src/
+│   ├── components/
+│   │   ├── config.js          # 数据
+│   │   ├── filterTable.jsx    # 表单操作栏
+│   │   ├── paginate.jsx       # 分页
+│   │   └── table.jsx          # table
+│   ├── mock.jsx               # mock数据
+│   └── App.jsx                # table 组件使用
+└── ...
+
+```
