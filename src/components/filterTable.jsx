@@ -25,8 +25,9 @@ export const FilterTable = (props, { slots }) => {
     modelForm: initForm,
   });
 
-  const handleFilterTable = () => {
-    props.onHandleFilterTable(state.modelForm);
+  const handleFilterTable = (v) => {
+    const _filterForm = v
+    props.onHandleFilterTable(state.modelForm, _filterForm);
   };
   const resetFilterTable = () => {
     state.modelForm = {};
@@ -55,14 +56,13 @@ export const FilterTable = (props, { slots }) => {
                   label={s.label}
                 ></ElOption>
               ))}
-              {console.log(v.defaultVal)}
             </ElSelect>
           )}
           {v.filterType === "switch" && (
             <ElSwitch v-model={state.modelForm[v.prop]} />
           )}
           {v.filterType === "btn" && v.label !== "重置" && (
-            <ElButton type={v.color} onClick={handleFilterTable}>
+            <ElButton type={v.color} onClick={() => handleFilterTable(v, index)}>
               {v.label}
             </ElButton>
           )}

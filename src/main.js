@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import App from './App.jsx'
+import App from './App.vue'
 import 'element-plus/dist/index.css'
 import './mock.jsx'
 
