@@ -33,7 +33,7 @@ const state = reactive({
   lastFilter: {},
 });
 
-const initData = async (params) => {
+const fetchTableData = async (params) => {
   axiox.post("/api/getList", params).then((res) => {
     const { data } = res;
     state.tableData = data.data.list;
@@ -41,19 +41,24 @@ const initData = async (params) => {
   });
 };
 
-initData({});
+// 初始化数据
+fetchTableData({});
 
-const handleFilterTable = (e) => {
-  // search=>操作栏form, btnInfo=》操作栏按钮信息
-  const { search, btnInfo } = e;
-  console.log('handleFilterTable', e);
-  // 保存当前筛选参数
-  state.lastFilter = search;
-  initData({
+const updateTableData = () => {
+  fetchTableData({
     page: state.pageInfo.page,
     pageSize: state.pageInfo.pageSize,
     ...state.lastFilter,
   });
+};
+
+const handleFilterTable = (e) => {
+  // search=>操作栏form, btnInfo=》操作栏按钮信息
+  const { search, btnInfo } = e;
+  console.log("handleFilterTable", e);
+  // 保存当前筛选参数
+  state.lastFilter = search;
+  updateTableData();
 };
 
 const handleButtonClick = (e) => {
@@ -66,36 +71,24 @@ const handleButtonClick = (e) => {
     colIdx,
     scope: { $index, row },
   } = e;
-  console.log('handleButtonClick', e);
+  console.log("handleButtonClick", e);
 };
 
 const handleSizeChange = (pageSize) => {
-  console.log('handleSizeChange', pageSize);
+  console.log("handleSizeChange", pageSize);
   // pageSize=>页容量
   state.pageInfo.pageSize = pageSize;
-  initData({
-    page: state.pageInfo.page,
-    pageSize: state.pageInfo.pageSize,
-    ...state.lastFilter,
-  });
+  updateTableData();
 };
 const handlePageChange = (page) => {
-  console.log('handlePageChange', page);
+  console.log("handlePageChange", page);
   // pageSize=>当前页
   state.pageInfo.page = page;
-  initData({
-    page: state.pageInfo.page,
-    pageSize: state.pageInfo.pageSize,
-    ...state.lastFilter,
-  });
+  updateTableData();
 };
 
 const resetFilterTable = (resetForm) => {
   state.lastFilter = resetForm;
-  initData({
-    page: state.pageInfo.page,
-    pageSize: state.pageInfo.pageSize,
-    ...state.lastFilter,
-  });
+  updateTableData();
 };
 </script>
