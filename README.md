@@ -14,5 +14,5 @@
 <!-- ├── public/
 ├── tests/
 ├── README.md
-├── package.json
-└── ... -->
+├── package.json -->
+└── ...
