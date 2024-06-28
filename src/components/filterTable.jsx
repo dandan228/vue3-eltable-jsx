@@ -15,7 +15,8 @@ export const FilterTable = (props, { slots }) => {
 
   const initForm = filterForm.reduce((acc, item) => {
     if (item.prop) {
-      acc[item.prop] = item.defaultVal;
+      // 当item.defaultVal为number 0 时， 不给赋值，所以加个判断
+      acc[item.prop] = item.defaultVal !== undefined ? item.defaultVal : '';
     }
     return acc;
   }, {});
