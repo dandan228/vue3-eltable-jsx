@@ -53,6 +53,11 @@ export const _filterForm = [
     {
         label: '查询',
         filterType: 'btn',
+        color: 'success'
+    },
+    {
+        label: '重置',
+        filterType: 'btn',
         color: 'primary'
     },
 ]

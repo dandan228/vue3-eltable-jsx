@@ -73,6 +73,11 @@ export default defineComponent({
       initData(form);
     };
 
+    const resetFilterTable = (resetForm) => {
+      state.lastFilter = resetForm
+      initData(state.lastFilter);
+    };
+
     const initData = async (params) => {
       axiox.post("/api/getList", params).then((res) => {
         const { data } = res;
@@ -89,6 +94,7 @@ export default defineComponent({
         <FilterTable
           filterForm={_filterForm}
           onHandleFilterTable={handleFilterTable}
+          resetFilterTable={resetFilterTable}
         ></FilterTable>
         <Table data={state.tableData} columns={state.columns}>
           {{
