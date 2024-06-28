@@ -1,3 +1,4 @@
+```
 ├── src/
 │   ├── components/
 │   │   ├── config.js          # 数据
@@ -7,3 +8,5 @@
 │   ├── mock.jsx
 │   └── App.jsx                # table 组件使用
 └── ...
+
+```
