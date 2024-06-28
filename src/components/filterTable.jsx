@@ -13,33 +13,53 @@ import { defineComponent, reactive } from "vue";
 export const FilterTable = (props, { slots }) => {
   const { filterForm } = props;
 
+  const initForm = filterForm.reduce((acc, item) => {
+    if (item.prop) {
+      acc[item.prop] = item.defaultVal;
+    }
+    return acc;
+  }, {});
+
   const state = reactive({
-    form: {}
+    modelForm: initForm,
   });
 
   const handleFilterTable = () => {
-    props.onHandleFilterTable(state.form);
+    props.onHandleFilterTable(state.modelForm);
   };
   const resetFilterTable = () => {
-    state.form = {}
-    props.resetFilterTable(state.form);
+    state.modelForm = {};
+    props.resetFilterTable(state.modelForm);
   };
 
   return (
-    <ElForm model={state.form} inline>
+    <ElForm model={state.modelForm} inline>
       {filterForm.map((v, index) => (
         <ElFormItem label={v.filterType === "btn" ? "" : v.label} key={index}>
-          {v.filterType === "input" && <ElInput v-model={state.form[v.prop]} />}
+          {v.filterType === "input" && <ElInput v-model={state.modelForm[v.prop]} />}
           {v.filterType === "date" && (
-            <ElDatePicker format="YYYY/MM/DD" value-format="YYYY-MM-DD" type="datetime" v-model={state.form[v.prop]} />
+            <ElDatePicker
+              format="YYYY/MM/DD"
+              value-format="YYYY-MM-DD"
+              type="datetime"
+              v-model={state.modelForm[v.prop]}
+            />
           )}
           {v.filterType === "select" && (
-            <ElSelect v-model={state.form[v.prop]}>
-              <ElOption value="1">1</ElOption>
-              <ElOption value="2">2</ElOption>
+            <ElSelect v-model={state.modelForm[v.prop]} style={{ width: "200px" }}>
+              {v.option.map((s, i) => (
+                <ElOption
+                  key={s.value}
+                  value={s.value}
+                  label={s.label}
+                ></ElOption>
+              ))}
+              {console.log(v.defaultVal)}
             </ElSelect>
           )}
-          {v.filterType === "switch" && <ElSwitch v-model={state.form[v.prop]} />}
+          {v.filterType === "switch" && (
+            <ElSwitch v-model={state.modelForm[v.prop]} />
+          )}
           {v.filterType === "btn" && v.label !== "重置" && (
             <ElButton type={v.color} onClick={handleFilterTable}>
               {v.label}

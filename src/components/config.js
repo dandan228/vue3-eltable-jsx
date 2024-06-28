@@ -49,6 +49,11 @@ export const _filterForm = [
         prop: 'city',
         label: '城市',
         filterType: 'select',
+        defaultVal: 0,
+        option: [
+            {label: '深圳', value: 0},
+            {label: '北京', value: 1},
+        ]
     },
     {
         label: '查询',

@@ -83,7 +83,7 @@ export default defineComponent({
         const { data } = res;
         state.tableData = data.data.list;
         state.total = data.data.total;
-        console.log("state.total", data.data);
+        console.log("state.data", data.data);
       });
     };
 
