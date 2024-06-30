@@ -136,8 +136,8 @@ export default defineComponent({
     const onBlur = (val, row) => {
       emit("tableBlur", val, row);
     };
-    const select = (row) => {
-      emit("select", row);
+    const selectCheckbox = (row) => {
+      emit("selectCheckbox", row);
     };
     const switchChange = (bln, row) => {
       emit("switchChange", bln, row);
@@ -177,7 +177,7 @@ export default defineComponent({
         />
         {/* 渲染表格组件 */}
         <Table
-          onSelect={select}
+          onSelectCheckbox={selectCheckbox}
           data={state.tableData}
           columns={columns}
           tableMultiple={tableMultiple}

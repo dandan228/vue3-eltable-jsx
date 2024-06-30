@@ -82,7 +82,7 @@ export default defineComponent({
     };
     const tableBlur = (val, row) => {};
 
-    const select = (row) => {};
+    const selectCheckbox = (row) => {};
 
     const switchChange = (bln, row) => {};
 
@@ -102,7 +102,7 @@ export default defineComponent({
         onResetSearch={resetSearch}
         onTableInput={tableInput}
         onTableBlur={tableBlur}
-        onSelect={select}
+        onSelectCheckbox={selectCheckbox}
         onSwitchChange={switchChange}
       />
     );
