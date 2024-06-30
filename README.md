@@ -26,7 +26,8 @@
 ![示例图片](./public/info.png)
 
 **<span style="color:blue;">5. Api</span>**
-    <span style="color:red;">searchForm表格操作栏</span>
+
+ <span style="color:red;">searchForm表格操作栏</span>
 
 `事件`
 | 事件名   | 说明 | 形参 |
@@ -39,6 +40,7 @@
 |--------|------|------|
 | `filterForm`   | filterForm   |  |
 <span style="color:red;">table</span>
+
 `事件`
 | 事件名   | 说明 | 形参 |
 |--------|------|------|
