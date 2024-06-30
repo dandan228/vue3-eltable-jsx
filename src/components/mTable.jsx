@@ -32,6 +32,10 @@ export default defineComponent({
       type: String,
       default: "",
     },
+    tableMultiple: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   setup(props, { emit }) {
@@ -43,6 +47,7 @@ export default defineComponent({
       pageInfo,
       btnByStateMap,
       btnByStateMapAt,
+      tableMultiple,
     } = props;
 
     // 当btnByStateMap传递了这个值，btnByStateMapAt这个就必须传
@@ -131,6 +136,9 @@ export default defineComponent({
     const onBlur = (val, row) => {
       emit("tableBlur", val, row);
     };
+    const select = (row) => {
+      emit("select", row);
+    };
 
     // 渲染输入框插槽
     const renderInputSlot = (scope, col, colIdx) => {
@@ -157,7 +165,12 @@ export default defineComponent({
           resetSearch={resetSearch}
         />
         {/* 渲染表格组件 */}
-        <Table data={state.tableData} columns={columns}>
+        <Table
+          onSelect={select}
+          data={state.tableData}
+          columns={columns}
+          tableMultiple={tableMultiple}
+        >
           {{
             btnSlot: renderButtons, // 渲染按钮插槽
             inputSlot: renderInputSlot, // 渲染输入框插槽

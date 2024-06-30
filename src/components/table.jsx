@@ -1,11 +1,16 @@
 import { ElTable, ElTableColumn } from "element-plus";
 
-export const Table = (props, { slots }) => {
-  const { data, columns } = props;
+export const Table = (props, { slots, emit }) => {
+  const { data, columns, tableMultiple } = props;
+
+  const select = (row) => {
+    emit("select", row); // 触发自定义事件传递选中的行数据
+  };
 
   return (
     <div>
-      <ElTable data={data}>
+      <ElTable data={data} onSelectionChange={select}>
+        {tableMultiple && <ElTableColumn type="selection" width="55" />}
         {columns.map((col, colIdx) => (
           <ElTableColumn
             key={col.prop}

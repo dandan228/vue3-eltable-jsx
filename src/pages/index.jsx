@@ -83,6 +83,8 @@ export default defineComponent({
     };
     const tableBlur = (val, row) => {};
 
+    const select = (row) => {};
+
     return () => (
       <MTable
         columns={tableColumns}
@@ -90,7 +92,8 @@ export default defineComponent({
         tableData={state.tableData}
         pageInfo={state.pageInfo}
         btnByStateMap={btnByStateMap}
-        btnByStateMapAt={'state'}
+        btnByStateMapAt={"state"}
+        tableMultiple
         onFormEvent={formEvent}
         onTableBtnEvent={tableBtnEvent}
         onPageSizeEvent={pageSizeEvent}
@@ -98,6 +101,7 @@ export default defineComponent({
         onResetSearch={resetSearch}
         onTableInput={tableInput}
         onTableBlur={tableBlur}
+        onSelect={select}
       />
     );
   },
