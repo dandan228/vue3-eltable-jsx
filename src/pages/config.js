@@ -45,7 +45,7 @@ export const tableColumns = [
     {
         prop: "date",
         label: "Date",
-        width: "180",
+        width: "280",
     },
     {
         prop: "name",

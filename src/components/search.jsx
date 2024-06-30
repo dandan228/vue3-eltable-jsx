@@ -34,6 +34,36 @@ export const Search = (props, { slots }) => {
     props.resetSearch(state.modelForm);
   };
 
+  const shortcuts = [
+    {
+      text: "Last week",
+      value: () => {
+        const end = new Date();
+        const start = new Date();
+        start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+        return [start, end];
+      },
+    },
+    {
+      text: "Last month",
+      value: () => {
+        const end = new Date();
+        const start = new Date();
+        start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+        return [start, end];
+      },
+    },
+    {
+      text: "Last 3 months",
+      value: () => {
+        const end = new Date();
+        const start = new Date();
+        start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+        return [start, end];
+      },
+    },
+  ];
+
   return (
     <ElForm model={state.modelForm} inline>
       {filterForm.map((s, index) => (
@@ -43,10 +73,15 @@ export const Search = (props, { slots }) => {
           )}
           {s.filterType === "date" && (
             <ElDatePicker
+              v-model={state.modelForm[s.prop]}
+              type="daterange"
+              unlink-panels
+              range-separator="To"
+              start-placeholder="Start date"
+              end-placeholder="End date"
+              shortcuts={shortcuts}
               format="YYYY/MM/DD"
               value-format="YYYY-MM-DD"
-              type="datetime"
-              v-model={state.modelForm[s.prop]}
             />
           )}
           {s.filterType === "select" && (
