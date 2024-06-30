@@ -57,7 +57,7 @@
 | columns   | tablecolumns   |  |
 | tableMultiple   | 多选   |  |
 | btnByStateMapAt   |  tableColumns属性key  |  |
-| btnByStateMapAt   | 根据状态tableColumns属性key，显示不同的按钮   |  |
+| btnByStateMap   | 根据状态tableColumns属性key，显示不同的按钮   |  |
 
 <span style="color:red;">分页</span>
 `事件`
