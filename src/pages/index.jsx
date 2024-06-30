@@ -17,23 +17,33 @@ export default defineComponent({
       lastFilter: {},
     });
 
-    const initData = (params) => {
-        axiox.post("/api/getList", params).then((res) => {
-          const { data } = res;
-          state.tableData = data.data.list;
-          state.pageInfo.total = data.data.total;
-        });
+    const fetchTableData = (params) => {
+      axiox.post("/api/getList", params).then((res) => {
+        const { data } = res;
+        state.tableData = data.data.list;
+        state.pageInfo.total = data.data.total;
+      });
     };
 
     onMounted(() => {
-      initData({});
+      fetchTableData({});
     });
+
+    const updateTableData = () => {
+      fetchTableData({
+        page: state.pageInfo.page,
+        pageSize: state.pageInfo.pageSize,
+        ...state.lastFilter,
+      });
+    };
 
     const handleFilterTable = (e) => {
       // search=>操作栏form, btnInfo=》操作栏按钮信息
       const { search, btnInfo } = e;
+      console.log("search-------", search);
       // 保存当前筛选参数
       state.lastFilter = search;
+      updateTableData();
     };
 
     const handleButtonClick = (e) => {
@@ -51,20 +61,17 @@ export default defineComponent({
     const handleSizeChange = (pageSize) => {
       // pageSize=>页容量
       state.pageInfo.pageSize = pageSize;
-      initData({
-        page: state.pageInfo.page,
-        pageSize: state.pageInfo.pageSize,
-        ...state.lastFilter,
-      });
+      updateTableData();
     };
     const handlePageChange = (page) => {
       // pageSize=>当前页
       state.pageInfo.page = page;
-      initData({
-        page: state.pageInfo.page,
-        pageSize: state.pageInfo.pageSize,
-        ...state.lastFilter,
-      });
+      updateTableData();
+    };
+
+    const resetFilterTable = (resetForm) => {
+      state.lastFilter = resetForm;
+      updateTableData();
     };
 
     return () => (
@@ -73,10 +80,11 @@ export default defineComponent({
         filterForm={_filterForm}
         tableData={state.tableData}
         pageInfo={state.pageInfo}
-        handleFilterTable={handleFilterTable}
-        handleButtonClick={handleButtonClick}
-        handleSizeChange={handleSizeChange}
-        handlePageChange={handlePageChange}
+        onHandleFilterTable={handleFilterTable}
+        onHandleButtonClick={handleButtonClick}
+        onHandleSizeChange={handleSizeChange}
+        onHandlePageChange={handlePageChange}
+        onResetFilterTable={resetFilterTable}
       />
     );
   },
