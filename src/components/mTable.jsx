@@ -130,9 +130,7 @@ export default defineComponent({
         {/* 渲染分页组件 */}
         <Pagination
           data={state.tableData}
-          page={pageInfo.page}
-          total={pageInfo.total}
-          pageSize={pageInfo.pageSize}
+          pageInfo={pageInfo}
           onSizeChange={handleSizeChange}
           onPageChange={handlePageChange}
         />

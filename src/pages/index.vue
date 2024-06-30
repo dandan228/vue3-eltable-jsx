@@ -55,7 +55,8 @@ const updateTableData = () => {
 const handleFilterTable = (e) => {
   // search=>操作栏form, btnInfo=》操作栏按钮信息
   const { search, btnInfo } = e;
-  console.log("handleFilterTable", e);
+  console.log("search-------", search);
+  state.pageInfo.page = 1;
   // 保存当前筛选参数
   state.lastFilter = search;
   updateTableData();
@@ -88,6 +89,8 @@ const handlePageChange = (page) => {
 };
 
 const resetFilterTable = (resetForm) => {
+  state.pageInfo.page = 1; // 重置页码为1
+  state.pageInfo.pageSize = 5; // 重置页容量为5
   state.lastFilter = resetForm;
   updateTableData();
 };

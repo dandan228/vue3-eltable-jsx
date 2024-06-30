@@ -40,6 +40,7 @@ export default defineComponent({
     const handleFilterTable = (e) => {
       // search=>操作栏form, btnInfo=》操作栏按钮信息
       const { search, btnInfo } = e;
+      state.pageInfo.page = 1
       console.log("search-------", search);
       // 保存当前筛选参数
       state.lastFilter = search;
@@ -70,6 +71,8 @@ export default defineComponent({
     };
 
     const resetFilterTable = (resetForm) => {
+      state.pageInfo.page = 1; // 重置页码为1
+      state.pageInfo.pageSize = 5; // 重置页容量为5
       state.lastFilter = resetForm;
       updateTableData();
     };
