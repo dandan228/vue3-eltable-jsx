@@ -70,6 +70,12 @@ export const tableColumns = [
         tableType: "input",
     },
     {
+        prop: "isTrue",
+        label: "开关",
+        tableType: "switch",
+        width: "180",
+    },
+    {
         label: "操作",
         tableType: "btn",
         btnArr: [

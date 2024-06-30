@@ -1,5 +1,5 @@
 import { defineComponent, reactive, watchEffect } from "vue";
-import { ElButton, ElInput } from "element-plus";
+import { ElButton, ElInput, ElSwitch } from "element-plus";
 import { Table } from "./table";
 import { Search } from "./search";
 import { Pagination } from "./paginate";
@@ -139,6 +139,9 @@ export default defineComponent({
     const select = (row) => {
       emit("select", row);
     };
+    const switchChange = (bln, row) => {
+      emit("switchChange", bln, row);
+    };
 
     // 渲染输入框插槽
     const renderInputSlot = (scope, col, colIdx) => {
@@ -152,6 +155,14 @@ export default defineComponent({
             onBlur(val, scope.row);
           }}
         ></ElInput>
+      );
+    };
+    const renderSwitchSlot = (scope, col, colIdx) => {
+      return (
+        <ElSwitch
+          onChange={(bln) => switchChange(bln, scope.row)}
+          v-model={scope.row[col.prop]}
+        />
       );
     };
 
@@ -174,6 +185,7 @@ export default defineComponent({
           {{
             btnSlot: renderButtons, // 渲染按钮插槽
             inputSlot: renderInputSlot, // 渲染输入框插槽
+            switchSlot: renderSwitchSlot, // 渲染开关插槽
           }}
         </Table>
         {/* 渲染分页组件 */}

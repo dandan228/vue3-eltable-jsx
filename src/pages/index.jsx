@@ -41,7 +41,6 @@ export default defineComponent({
       // search=>操作栏form, btnInfo=》操作栏按钮信息
       const { search, btnInfo } = e;
       state.pageInfo.page = 1;
-      console.log("search-------", search);
       // 保存当前筛选参数
       state.lastFilter = search;
       updateTableData();
@@ -85,6 +84,8 @@ export default defineComponent({
 
     const select = (row) => {};
 
+    const switchChange = (bln, row) => {};
+
     return () => (
       <MTable
         columns={tableColumns}
@@ -102,6 +103,7 @@ export default defineComponent({
         onTableInput={tableInput}
         onTableBlur={tableBlur}
         onSelect={select}
+        onSwitchChange={switchChange}
       />
     );
   },

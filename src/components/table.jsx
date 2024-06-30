@@ -30,6 +30,8 @@ export const Table = (props, { slots, emit }) => {
                   return <div>{slots.btnSlot(scope, col, colIdx)}</div>;
                 } else if (col.tableType === "input") {
                   return <div>{slots.inputSlot(scope, col, colIdx)}</div>;
+                } else if (col.tableType === "switch") {
+                  return <div>{slots.switchSlot(scope, col, colIdx)}</div>;
                 } else {
                   return scope.row[col.prop];
                 }
