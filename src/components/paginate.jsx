@@ -4,11 +4,11 @@ export const Pagination = (props, { slots }) => {
   const { pageInfo } = props;
 
 
-  const handleSizeChange = (val) => {
+  const pageSizeEvent = (val) => {
     props.onSizeChange(val);
   };
 
-  const handleCurrentChange = (val) => {
+  const curPageChange = (val) => {
     props.onPageChange(val);
   };    
 
@@ -20,8 +20,8 @@ export const Pagination = (props, { slots }) => {
         pageSizes={[5, 10, 15, 20]}
         currentPage={pageInfo.page}
         pageSize={pageInfo.pageSize}
-        onSizeChange={handleSizeChange}
-        onCurrentChange={handleCurrentChange}
+        onSizeChange={pageSizeEvent}
+        onCurrentChange={curPageChange}
       />
     </div>
   );

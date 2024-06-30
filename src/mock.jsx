@@ -13,7 +13,7 @@ Mock.mock("/api/getList", "post", (options) => {
   const data = Mock.mock({
     [`data|${pageSize}`]: [
       {
-        date: '@date("yyyy-MM-dd")',
+        date: params.date || '@date("yyyy-MM-dd")',
         name: params.name || "@name",
         state: params.state !== undefined ? params.state : "@integer(0, 3)", // 可以根据参数传递的 state 进行过滤，否则生成随机状态值
         btn: "按钮@natural(1, 4)",

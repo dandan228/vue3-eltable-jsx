@@ -1,15 +1,15 @@
 <template>
   <MTable
-    :columns="_columns"
-    :filterForm="_filterForm"
+    :columns="tableColumns"
+    :filterForm="searchForm"
     :tableData="state.tableData"
     :pageInfo="state.pageInfo"
-    :formatBtnObj="_formatBtnObj"
-    @handleFilterTable="handleFilterTable"
-    @handleButtonClick="handleButtonClick"
-    @handleSizeChange="handleSizeChange"
-    @handlePageChange="handlePageChange"
-    @resetFilterTable="resetFilterTable"
+    :btnByStateMap="btnByStateMap"
+    @formEvent="formEvent"
+    @tableBtnEvent="tableBtnEvent"
+    @pageSizeEvent="pageSizeEvent"
+    @pageEvent="pageEvent"
+    @resetSearch="resetSearch"
     @tableInput="tableInput"
     @tableBlur="tableBlur"
   />
@@ -20,7 +20,7 @@ name: "Index";
 <script setup>
 import { reactive } from "vue";
 import MTable from "../components/mTable.jsx";
-import { _columns, _data, _filterForm, _formatBtnObj } from "./config.js";
+import { tableColumns, searchForm, btnByStateMap } from "./config.js";
 import axiox from "axios";
 
 const state = reactive({
@@ -54,7 +54,7 @@ const updateTableData = () => {
   });
 };
 
-const handleFilterTable = (e) => {
+const formEvent = (e) => {
   // search=>操作栏form, btnInfo=》操作栏按钮信息
   const { search, btnInfo } = e;
   console.log("search-------", search);
@@ -64,7 +64,7 @@ const handleFilterTable = (e) => {
   updateTableData();
 };
 
-const handleButtonClick = (e) => {
+const tableBtnEvent = (e) => {
   // btnIdx=>table栏，按钮对应的下标
   // colIdx=>table栏，当前列的索引
   // $index=>table栏，当前行下标
@@ -74,23 +74,23 @@ const handleButtonClick = (e) => {
     colIdx,
     scope: { $index, row },
   } = e;
-  console.log("handleButtonClick", e);
+  console.log("tableBtnEvent", e);
 };
 
-const handleSizeChange = (pageSize) => {
-  console.log("handleSizeChange", pageSize);
+const pageSizeEvent = (pageSize) => {
+  console.log("pageSizeEvent", pageSize);
   // pageSize=>页容量
   state.pageInfo.pageSize = pageSize;
   updateTableData();
 };
-const handlePageChange = (page) => {
-  console.log("handlePageChange", page);
+const pageEvent = (page) => {
+  console.log("pageEvent", page);
   // pageSize=>当前页
   state.pageInfo.page = page;
   updateTableData();
 };
 
-const resetFilterTable = (resetForm) => {
+const resetSearch = (resetForm) => {
   state.pageInfo.page = 1; // 重置页码为1
   state.pageInfo.pageSize = 5; // 重置页容量为5
   state.lastFilter = resetForm;

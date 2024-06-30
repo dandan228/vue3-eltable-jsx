@@ -1,51 +1,4 @@
-export const _data = [
-    // 0=>显示所有; 1=>通过; 2=>取消; 3=>禁用
-    { date: "date", name: "John", state: 0, btn: "按钮1" },
-    { date: "date1", name: "Jane", state: 1, btn: "按钮2" },
-    { date: "date1", name: "Jane", state: 2, btn: "按钮3" },
-    { date: "da2te1", name: "Jan23e", state: 3, btn: "按钮4" },
-];
-
-export const _columns = [
-    {
-        prop: "date",
-        label: "Date",
-        width: "180",
-    },
-    {
-        prop: "name",
-        label: "昵称",
-        width: "180",
-    },
-    {
-        prop: "state",
-        label: "状态",
-        width: "180",
-        dict: [
-            { label: '全部', value: 0 },
-            { label: '通过', value: 1 },
-            { label: '取消', value: 2 },
-            { label: '禁用', value: 3 },
-        ]
-    },
-    {
-        prop: "input",
-        label: "input",
-        width: "180",
-        tableType: "input",
-    },
-    {
-        label: "操作",
-        tableType: "btn",
-        btnArr: [
-            { btnId: 0, label: "通过", color: "primary" },
-            { btnId: 1, label: "取消", color: "danger" },
-            { btnId: 2, label: "禁用", color: "danger", disabled: true },
-        ],
-    },
-];
-
-export const _filterForm = [
+export const searchForm = [
     {
         prop: 'date',
         label: 'Date',
@@ -88,8 +41,47 @@ export const _filterForm = [
     },
 ]
 
-// 根据状态不通，显示不同的按钮，0=》table里的的值
-export const _formatBtnObj = {
+export const tableColumns = [
+    {
+        prop: "date",
+        label: "Date",
+        width: "180",
+    },
+    {
+        prop: "name",
+        label: "昵称",
+        width: "180",
+    },
+    {
+        prop: "state",
+        label: "状态",
+        width: "180",
+        dict: [
+            { label: '全部', value: 0 },
+            { label: '通过', value: 1 },
+            { label: '取消', value: 2 },
+            { label: '禁用', value: 3 },
+        ]
+    },
+    {
+        prop: "input",
+        label: "input",
+        width: "180",
+        tableType: "input",
+    },
+    {
+        label: "操作",
+        tableType: "btn",
+        btnArr: [
+            { btnId: 0, label: "通过", color: "primary" },
+            { btnId: 1, label: "取消", color: "danger" },
+            { btnId: 2, label: "禁用", color: "danger", disabled: true },
+        ],
+    },
+];
+
+// 根据状态不通，显示不同的按钮，0=》table里的props的值
+export const btnByStateMap = {
     0: [
         { label: "通过", color: "primary" },
         { label: "取消", color: "danger" },

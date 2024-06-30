@@ -1,6 +1,6 @@
 import { reactive, onMounted, defineComponent } from "vue";
 import MTable from "../components/mTable.jsx";
-import { _columns, _data, _filterForm } from "./config.js";
+import { tableColumns, btnByStateMap, searchForm } from "./config.js";
 import axiox from "axios";
 
 export default defineComponent({
@@ -37,7 +37,7 @@ export default defineComponent({
       });
     };
 
-    const handleFilterTable = (e) => {
+    const formEvent = (e) => {
       // search=>操作栏form, btnInfo=》操作栏按钮信息
       const { search, btnInfo } = e;
       state.pageInfo.page = 1;
@@ -47,7 +47,7 @@ export default defineComponent({
       updateTableData();
     };
 
-    const handleButtonClick = (e) => {
+    const tableBtnEvent = (e) => {
       // btnIdx=>table栏，按钮对应的下标
       // colIdx=>table栏，当前列的索引
       // $index=>table栏，当前行下标
@@ -59,18 +59,18 @@ export default defineComponent({
       } = e;
     };
 
-    const handleSizeChange = (pageSize) => {
+    const pageSizeEvent = (pageSize) => {
       // pageSize=>页容量
       state.pageInfo.pageSize = pageSize;
       updateTableData();
     };
-    const handlePageChange = (page) => {
+    const pageEvent = (page) => {
       // pageSize=>当前页
       state.pageInfo.page = page;
       updateTableData();
     };
 
-    const resetFilterTable = (resetForm) => {
+    const resetSearch = (resetForm) => {
       state.pageInfo.page = 1; // 重置页码为1
       state.pageInfo.pageSize = 5; // 重置页容量为5
       state.lastFilter = resetForm;
@@ -85,15 +85,16 @@ export default defineComponent({
 
     return () => (
       <MTable
-        columns={_columns}
-        filterForm={_filterForm}
+        columns={tableColumns}
+        filterForm={searchForm}
         tableData={state.tableData}
         pageInfo={state.pageInfo}
-        onHandleFilterTable={handleFilterTable}
-        onHandleButtonClick={handleButtonClick}
-        onHandleSizeChange={handleSizeChange}
-        onHandlePageChange={handlePageChange}
-        onResetFilterTable={resetFilterTable}
+        btnByStateMap={btnByStateMap}
+        onFormEvent={formEvent}
+        onTableBtnEvent={tableBtnEvent}
+        onPageSizeEvent={pageSizeEvent}
+        onPageEvent={pageEvent}
+        onResetSearch={resetSearch}
         onTableInput={tableInput}
         onTableBlur={tableBlur}
       />

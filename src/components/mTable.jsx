@@ -1,7 +1,7 @@
 import { defineComponent, reactive, watchEffect } from "vue";
 import { ElButton, ElInput } from "element-plus";
 import { Table } from "./table";
-import { FilterTable } from "./filterTable";
+import { Search } from "./search";
 import { Pagination } from "./paginate";
 
 export default defineComponent({
@@ -24,7 +24,7 @@ export default defineComponent({
       type: Object,
       default: () => ({}),
     },
-    formatBtnObj: {
+    btnByStateMap: {
       type: Object,
       default: () => ({}),
     },
@@ -32,7 +32,7 @@ export default defineComponent({
 
   setup(props, { emit }) {
     // 解构 props
-    const { columns, filterForm, tableData, pageInfo, formatBtnObj } = props;
+    const { columns, filterForm, tableData, pageInfo, btnByStateMap } = props;
 
     // 初始化响应式数据状态
     let state = reactive({
@@ -45,41 +45,41 @@ export default defineComponent({
     });
 
     // 处理按钮点击事件
-    const handleButtonClick = (scope, colIdx, btnIdx) => {
+    const tableBtnEvent = (scope, colIdx, btnIdx) => {
       const { row, $index: rowIndex } = scope;
-      // 触发 handleButtonClick 事件，并传递相关参数
-      emit("handleButtonClick", { scope, colIdx, btnIdx });
+      // 触发 tableBtnEvent 事件，并传递相关参数
+      emit("tableBtnEvent", { scope, colIdx, btnIdx });
     };
 
-    // 格式化按钮列，根据 formatBtnObj 中的配置生成按钮数组
+    // 格式化按钮列，根据 btnByStateMap 中的配置生成按钮数组
     const formatBtn = (scope) => {
       const { row } = scope;
-      const btnArr = formatBtnObj;
+      const btnArr = btnByStateMap;
       return btnArr[row.state];
     };
 
     // 处理页容量变化
-    const handleSizeChange = (pageSize) => {
-      // 触发 handleSizeChange 事件，并传递新的页容量
-      emit("handleSizeChange", pageSize);
+    const pageSizeEvent = (pageSize) => {
+      // 触发 pageSizeEvent 事件，并传递新的页容量
+      emit("pageSizeEvent", pageSize);
     };
 
     // 处理页码变化
-    const handlePageChange = (page) => {
-      // 触发 handlePageChange 事件，并传递新的页码
-      emit("handlePageChange", page);
+    const pageEvent = (page) => {
+      // 触发 pageEvent 事件，并传递新的页码
+      emit("pageEvent", page);
     };
 
     // 处理筛选表单提交
-    const handleFilterTable = (form, _filterForm) => {
-      // 触发 handleFilterTable 事件，并传递筛选表单数据和按钮信息
-      emit("handleFilterTable", { search: form, btnInfo: _filterForm });
+    const formEvent = (form, searchForm) => {
+      // 触发 formEvent 事件，并传递筛选表单数据和按钮信息
+      emit("formEvent", { search: form, btnInfo: searchForm });
     };
 
     // 重置筛选表单
-    const resetFilterTable = (resetForm) => {
-      // 触发 resetFilterTable 事件，并传递重置后的表单数据
-      emit("resetFilterTable", resetForm);
+    const resetSearch = (resetForm) => {
+      // 触发 resetSearch 事件，并传递重置后的表单数据
+      emit("resetSearch", resetForm);
     };
 
     // 判断对象是否为空对象
@@ -89,8 +89,8 @@ export default defineComponent({
 
     // 渲染按钮插槽
     const renderButtons = (scope, col, colIdx) => {
-      // 根据 formatBtnObj 判断是否需要格式化按钮
-      const _btnArr = isEmptyObject(formatBtnObj)
+      // 根据 btnByStateMap 判断是否需要格式化按钮
+      const _btnArr = isEmptyObject(btnByStateMap)
         ? col.btnArr
         : formatBtn(scope);
 
@@ -99,7 +99,7 @@ export default defineComponent({
         <ElButton
           type={btn.color}
           disabled={btn.disabled}
-          onClick={() => handleButtonClick(scope, colIdx, btnIdx)}
+          onClick={() => tableBtnEvent(scope, colIdx, btnIdx)}
         >
           {btn.label}
         </ElButton>
@@ -132,10 +132,10 @@ export default defineComponent({
     return () => (
       <div>
         {/* 渲染筛选表单组件 */}
-        <FilterTable
+        <Search
           filterForm={filterForm}
-          onHandleFilterTable={handleFilterTable}
-          resetFilterTable={resetFilterTable}
+          onformEvent={formEvent}
+          resetSearch={resetSearch}
         />
         {/* 渲染表格组件 */}
         <Table data={state.tableData} columns={columns}>
@@ -148,8 +148,8 @@ export default defineComponent({
         <Pagination
           data={state.tableData}
           pageInfo={pageInfo}
-          onSizeChange={handleSizeChange}
-          onPageChange={handlePageChange}
+          onSizeChange={pageSizeEvent}
+          onPageChange={pageEvent}
         />
       </div>
     );
