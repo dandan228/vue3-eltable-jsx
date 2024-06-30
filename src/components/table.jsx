@@ -16,7 +16,12 @@ export const Table = (props, { slots }) => {
           >
             {{
               default: (scope) => {
-                if (col.tableType === "btn") {
+                if (col.dict) {
+                  const dictItem = col.dict.find(
+                    (item) => item.value === scope.row[col.prop]
+                  );
+                  return dictItem ? dictItem.label : "";
+                } else if (col.tableType === "btn") {
                   return <div>{slots.btnSlot(scope, col, colIdx)}</div>;
                 } else if (col.tableType === "input") {
                   return <div>{slots.inputSlot(scope, col, colIdx)}</div>;
