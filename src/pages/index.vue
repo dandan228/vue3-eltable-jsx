@@ -10,6 +10,8 @@
     @handleSizeChange="handleSizeChange"
     @handlePageChange="handlePageChange"
     @resetFilterTable="resetFilterTable"
+    @tableInput="tableInput"
+    @tableBlur="tableBlur"
   />
 </template>
 <script>
@@ -94,4 +96,11 @@ const resetFilterTable = (resetForm) => {
   state.lastFilter = resetForm;
   updateTableData();
 };
+
+const tableInput = (val, row) => {
+  // val=>当前值
+  // row=>当前这一行数据
+};
+
+const tableBlur = (val, row) => {};
 </script>

@@ -10,15 +10,15 @@ export default defineComponent({
   props: {
     filterForm: {
       type: Array,
-      default: () => ([]),
+      default: () => [],
     },
     columns: {
       type: Array,
-      default: () => ([]),
+      default: () => [],
     },
     tableData: {
       type: Array,
-      default: () => ([]),
+      default: () => [],
     },
     pageInfo: {
       type: Object,
@@ -26,8 +26,8 @@ export default defineComponent({
     },
     formatBtnObj: {
       type: Object,
-      default: () => ({})
-    }
+      default: () => ({}),
+    },
   },
 
   setup(props, { emit }) {
@@ -84,7 +84,7 @@ export default defineComponent({
 
     // 判断对象是否为空对象
     const isEmptyObject = (obj) => {
-      return JSON.stringify(obj) === '{}' && obj.constructor === Object;
+      return JSON.stringify(obj) === "{}" && obj.constructor === Object;
     };
 
     // 渲染按钮插槽
@@ -106,9 +106,26 @@ export default defineComponent({
       ));
     };
 
+    const onInput = (val, row) => {
+      emit("tableInput", val, row);
+    };
+    const onBlur = (val, row) => {
+      emit("tableBlur", val, row);
+    };
+
     // 渲染输入框插槽
     const renderInputSlot = (scope, col, colIdx) => {
-      return <ElInput value={123}>123</ElInput>;
+      return (
+        <ElInput
+          v-model={scope.row[col.prop]}
+          onInput={(val) => {
+            onInput(val, scope.row);
+          }}
+          onBlur={(val) => {
+            onBlur(val, scope.row);
+          }}
+        ></ElInput>
+      );
     };
 
     // 渲染组件结构
@@ -123,8 +140,8 @@ export default defineComponent({
         {/* 渲染表格组件 */}
         <Table data={state.tableData} columns={columns}>
           {{
-            btnSlot: renderButtons,  // 渲染按钮插槽
-            inputSlot: renderInputSlot  // 渲染输入框插槽
+            btnSlot: renderButtons, // 渲染按钮插槽
+            inputSlot: renderInputSlot, // 渲染输入框插槽
           }}
         </Table>
         {/* 渲染分页组件 */}

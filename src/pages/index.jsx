@@ -40,7 +40,7 @@ export default defineComponent({
     const handleFilterTable = (e) => {
       // search=>操作栏form, btnInfo=》操作栏按钮信息
       const { search, btnInfo } = e;
-      state.pageInfo.page = 1
+      state.pageInfo.page = 1;
       console.log("search-------", search);
       // 保存当前筛选参数
       state.lastFilter = search;
@@ -77,6 +77,12 @@ export default defineComponent({
       updateTableData();
     };
 
+    const tableInput = (val, row) => {
+      // val=>当前值
+      // row=>当前这一行数据
+    };
+    const tableBlur = (val, row) => {};
+
     return () => (
       <MTable
         columns={_columns}
@@ -88,6 +94,8 @@ export default defineComponent({
         onHandleSizeChange={handleSizeChange}
         onHandlePageChange={handlePageChange}
         onResetFilterTable={resetFilterTable}
+        onTableInput={tableInput}
+        onTableBlur={tableBlur}
       />
     );
   },

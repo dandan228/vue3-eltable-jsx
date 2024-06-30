@@ -14,8 +14,19 @@ export const _columns = [
     },
     {
         prop: "name",
-        label: "Name",
+        label: "昵称",
         width: "180",
+    },
+    {
+        prop: "state",
+        label: "状态",
+        width: "180",
+        dict: [
+            { label: '全部', value: 0 },
+            { label: '通过', value: 1 },
+            { label: '取消', value: 2 },
+            { label: '禁用', value: 3 },
+        ]
     },
     {
         prop: "input",
@@ -42,17 +53,19 @@ export const _filterForm = [
     },
     {
         prop: 'name',
-        label: 'name',
+        label: '昵称',
         filterType: 'input',
     },
     {
-        prop: 'city',
-        label: '城市',
+        prop: 'state',
+        label: '状态',
         filterType: 'select',
         defaultVal: 0,
         option: [
-            { label: '深圳', value: 0 },
-            { label: '北京', value: 1 },
+            { label: '全部', value: 0 },
+            { label: '通过', value: 1 },
+            { label: '取消', value: 2 },
+            { label: '禁用', value: 3 },
         ]
     },
     {
