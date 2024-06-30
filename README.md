@@ -32,42 +32,42 @@
 `事件`
 | 事件名   | 说明 | 形参 |
 |--------|------|------|
-| `onFormEvent`   | searchForm按钮事件   | e: {search, btnInfo}   |
-| `onResetSearch`   | 重置搜索   | resetForm |
+| onFormEvent   | searchForm按钮事件   | e: {search, btnInfo}   |
+| onResetSearch   | 重置搜索   | resetForm |
 
 `属性`
 | 事件名   | 说明 | 形参 |
 |--------|------|------|
-| `filterForm`   | filterForm   |  |
+| filterForm   | filterForm   |  |
 
 <span style="color:red;">table</span>
 
 `事件`
 | 事件名   | 说明 | 形参 |
 |--------|------|------|
-| `onTableBtnEvent`   | 操作栏按钮事件   | e: {btnIdx, colIdx, $index, row}   |
-| `onTableInput`   | input事件   | val， row |
-| `onSwitchChange`   | switch事件   | bln, row |
-| `onSelectionChange`   | table多选事件   | row |
+| onTableBtnEvent   | 操作栏按钮事件   | e: {btnIdx, colIdx, $index, row}   |
+| onTableInput   | input事件   | val， row |
+| onSwitchChange   | switch事件   | bln, row |
+| onSelectionChange   | table多选事件   | row |
 
 `属性`
 | 事件名   | 说明 | 形参 |
 |--------|------|------|
-| `tableData`   | table源数据   |  |
-| `columns`   | tablecolumns   |  |
-| `tableMultiple`   | 多选   |  |
-| `btnByStateMapAt`   |  tableColumns属性key  |  |
-| `btnByStateMapAt`   | 根据状态tableColumns属性key，显示不同的按钮   |  |
+| tableData   | table源数据   |  |
+| columns   | tablecolumns   |  |
+| tableMultiple   | 多选   |  |
+| btnByStateMapAt   |  tableColumns属性key  |  |
+| btnByStateMapAt   | 根据状态tableColumns属性key，显示不同的按钮   |  |
 
 <span style="color:red;">分页</span>
 `事件`
 | 事件名   | 说明 | 形参 |
 |--------|------|------|
-| `onPageSizeEvent`   | 页容量事件   | pageSize   |
-| `onPageEvent`   | 当前页事件   | page |
+| onPageSizeEvent   | 页容量事件   | pageSize   |
+| onPageEvent   | 当前页事件   | page |
 
 `属性`
 
 | 事件名   | 说明 | 形参 |
 |--------|------|------|
-| `pageInfo`   | 分页信息   |  |
+| pageInfo   | 分页信息   |  |
