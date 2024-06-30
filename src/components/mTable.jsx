@@ -28,11 +28,29 @@ export default defineComponent({
       type: Object,
       default: () => ({}),
     },
+    btnByStateMapAt: {
+      type: String,
+      default: "",
+    },
   },
 
   setup(props, { emit }) {
     // 解构 props
-    const { columns, filterForm, tableData, pageInfo, btnByStateMap } = props;
+    const {
+      columns,
+      filterForm,
+      tableData,
+      pageInfo,
+      btnByStateMap,
+      btnByStateMapAt,
+    } = props;
+
+    // 当btnByStateMap传递了这个值，btnByStateMapAt这个就必须传
+    if (Object.keys(btnByStateMap).length !== 0 && !btnByStateMapAt) {
+      throw new Error(
+        "btnByStateMapAt is required when btnByStateMap is provided"
+      );
+    }
 
     // 初始化响应式数据状态
     let state = reactive({
@@ -55,7 +73,7 @@ export default defineComponent({
     const formatBtn = (scope) => {
       const { row } = scope;
       const btnArr = btnByStateMap;
-      return btnArr[row.state];
+      return btnArr[row[btnByStateMapAt]];
     };
 
     // 处理页容量变化
@@ -89,10 +107,11 @@ export default defineComponent({
 
     // 渲染按钮插槽
     const renderButtons = (scope, col, colIdx) => {
-      // 根据 btnByStateMap 判断是否需要格式化按钮
-      const _btnArr = isEmptyObject(btnByStateMap)
-        ? col.btnArr
-        : formatBtn(scope);
+      // 根据状态btnByStateMapAt值来展示对应的按钮
+      const _btnArr =
+        isEmptyObject(btnByStateMap) || !btnByStateMapAt
+          ? col.btnArr
+          : formatBtn(scope);
 
       // 渲染按钮数组
       return _btnArr?.map((btn, btnIdx) => (

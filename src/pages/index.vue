@@ -5,6 +5,7 @@
     :tableData="state.tableData"
     :pageInfo="state.pageInfo"
     :btnByStateMap="btnByStateMap"
+    btnByStateMapAt="state"
     @formEvent="formEvent"
     @tableBtnEvent="tableBtnEvent"
     @pageSizeEvent="pageSizeEvent"

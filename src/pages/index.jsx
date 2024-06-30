@@ -90,6 +90,7 @@ export default defineComponent({
         tableData={state.tableData}
         pageInfo={state.pageInfo}
         btnByStateMap={btnByStateMap}
+        btnByStateMapAt={'state'}
         onFormEvent={formEvent}
         onTableBtnEvent={tableBtnEvent}
         onPageSizeEvent={pageSizeEvent}
