@@ -1,6 +1,6 @@
 import { reactive, onMounted, defineComponent } from "vue";
 import MTable from "../components/mTable.jsx";
-import { tableColumns, btnByStateMap, searchForm } from "./config.js";
+import { columns, btnByStateMap, searchForm } from "./config.js";
 import axiox from "axios";
 
 export default defineComponent({
@@ -88,8 +88,8 @@ export default defineComponent({
 
     return () => (
       <MTable
-        columns={tableColumns}
-        filterForm={searchForm}
+        columns={columns}
+        searchForm={searchForm}
         tableData={state.tableData}
         pageInfo={state.pageInfo}
         btnByStateMap={btnByStateMap}

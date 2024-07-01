@@ -8,7 +8,7 @@ export default defineComponent({
   name: "MTable",
 
   props: {
-    filterForm: {
+    searchForm: {
       type: Array,
       default: () => [],
     },
@@ -42,7 +42,7 @@ export default defineComponent({
     // 解构 props
     const {
       columns,
-      filterForm,
+      searchForm,
       tableData,
       pageInfo,
       btnByStateMap,
@@ -171,7 +171,7 @@ export default defineComponent({
       <div>
         {/* 渲染筛选表单组件 */}
         <Search
-          filterForm={filterForm}
+          searchForm={searchForm}
           onformEvent={formEvent}
           resetSearch={resetSearch}
         />
