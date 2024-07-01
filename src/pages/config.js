@@ -41,7 +41,7 @@ export const searchForm = [
     },
 ]
 
-export const tableColumns = [
+export const columns = [
     {
         prop: "date",
         label: "Date",
