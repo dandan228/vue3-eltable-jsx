@@ -11,7 +11,7 @@ export const Table = (props, { slots, emit }) => {
     <div>
       <ElTable data={data} onSelectionChange={selectCheckbox}>
         {tableMultiple && <ElTableColumn type="selection" width="55" />}
-        {columns.map((col, colIdx) => (
+        {columns?.map((col, colIdx) => (
           <ElTableColumn
             key={col.prop}
             prop={col.prop}

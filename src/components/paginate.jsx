@@ -1,8 +1,13 @@
 import { ElPagination } from "element-plus";
 
 export const Pagination = (props, { slots }) => {
-  const { pageInfo } = props;
-
+  const {
+    pageInfo = {
+      total: 0,
+      page: 1,
+      pageSize: 10,
+    },
+  } = props;
 
   const pageSizeEvent = (val) => {
     props.onSizeChange(val);
@@ -10,7 +15,7 @@ export const Pagination = (props, { slots }) => {
 
   const curPageChange = (val) => {
     props.onPageChange(val);
-  };    
+  };
 
   return (
     <div>
