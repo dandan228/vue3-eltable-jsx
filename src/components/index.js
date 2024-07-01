@@ -8,4 +8,4 @@ export {
     Table,
     Pagination,
     MTable
-}
+}  
