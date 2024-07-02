@@ -1,11 +1,4 @@
-import { Search } from './search.jsx'
-import { Table } from './table.jsx'
-import { Pagination } from './paginate.jsx'
-import MTable from './mTable.jsx'
-
-export {
-    Search,
-    Table,
-    Pagination,
-    MTable
-}  
+export * from './search.jsx';
+export * from './table.jsx';
+export * from './paginate.jsx';
+export { default as MTable } from './mTable.jsx';

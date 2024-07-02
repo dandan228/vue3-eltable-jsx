@@ -1,13 +1,26 @@
 import { ElPagination } from "element-plus";
 
 export const Pagination = (props, { slots }) => {
-  const {
+  let {
     pageInfo = {
       total: 0,
       page: 1,
       pageSize: 10,
     },
   } = props;
+
+  // 判断对象是否为空对象
+  const isEmptyObject = (obj) => {
+    return JSON.stringify(obj) === "{}" && obj.constructor === Object;
+  };
+
+  if (isEmptyObject(pageInfo)) {
+    pageInfo = {
+      total: 0,
+      page: 1,
+      pageSize: 10,
+    };
+  }
 
   const pageSizeEvent = (val) => {
     props.onSizeChange(val);
