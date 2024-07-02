@@ -11,9 +11,9 @@ import {
 import { reactive } from "vue";
 
 export const Search = (props, { slots }) => {
-  const { searchForm } = props;
+  const { searchColumns } = props;
 
-  const initForm = searchForm?.reduce((acc, item) => {
+  const initForm = searchColumns?.reduce((acc, item) => {
     if (item.prop) {
       // 当item.defaultVal为number 0 时， 不给赋值，所以加个判断
       acc[item.prop] = item.defaultVal !== undefined ? item.defaultVal : "";
@@ -66,7 +66,7 @@ export const Search = (props, { slots }) => {
 
   return (
     <ElForm model={state.modelForm} inline>
-      {searchForm?.map((s, index) => (
+      {searchColumns?.map((s, index) => (
         <ElFormItem label={s.filterType === "btn" ? "" : s.label} key={index}>
           {s.filterType === "input" && (
             <ElInput v-model={state.modelForm[s.prop]} />

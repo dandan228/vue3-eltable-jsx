@@ -58,7 +58,7 @@ import { MTable, Search, Table, Pagination } from "el-table-jsx";
 return () => (
       <MTable
         columns={columns}
-        searchForm={searchForm}
+        searchColumns={searchColumns}
         tableData={state.tableData}
         pageInfo={state.pageInfo}
         btnByStateMap={btnByStateMap}
@@ -94,7 +94,7 @@ return () => (
 `属性`
 | 事件名   | 说明 | 形参 |
 |--------|------|------|
-| searchForm   | searchForm   |  |
+| searchColumns   | searchColumns   |  |
 
 <span style="color:red;">table</span>
 

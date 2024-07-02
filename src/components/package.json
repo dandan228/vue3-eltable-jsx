@@ -1,27 +1,27 @@
 {
     "name": "el-table-jsx",
     "private": false,
-    "version": "0.0.9",
+    "version": "0.1.3",
     "type": "module",
     "scripts": {
-      "dev": "vite",
-      "build": "vite build",
-      "preview": "vite preview"
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
     },
     "dependencies": {
-      "@vitejs/plugin-vue-jsx": "^4.0.0",
-      "axios": "^1.7.2",
-      "element-plus": "^2.7.6",
-      "vue": "^3.2.20"
+        "@vitejs/plugin-vue-jsx": "^4.0.0",
+        "axios": "^1.7.2",
+        "element-plus": "^2.7.6",
+        "vue": "^3.2.20"
     },
     "devDependencies": {
-      "@vitejs/plugin-vue": "^5.0.5",
-      "mockjs": "^1.1.0",
-      "vite": "^5.3.1"
+        "@vitejs/plugin-vue": "^5.0.5",
+        "debug": "^4.3.5",
+        "mockjs": "^1.1.0",
+        "vite": "^5.3.1"
     },
     "repository": {
-    "type": "git",
-    "url": "https://github.com/dandan228/vue3-eltable-jsx"
-  }
-  }
-  
+        "type": "git",
+        "url": "https://github.com/dandan228/vue3-eltable-jsx"
+    }
+}
