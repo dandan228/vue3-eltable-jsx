@@ -32,7 +32,20 @@
 **<span style="color:blue;">5. 使用方法</span>**
 1. 安装依赖
 ```js
-npm i el-table-jsx
+npm i el-table-jsx @vitejs/plugin-vue-jsx
+```
+
+1.1 vite.config.js引入插件
+
+```html
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+
+export default defineConfig({
+  plugins: [vue(), vueJsx()],
+})
+
 ```
 2. 引入组件（具体用法，可以看src/pages/index.jsx, 或者src/pages/index.vue）
 ```js
@@ -92,7 +105,7 @@ return () => (
 | onResetSearch   | 重置搜索   | resetForm |
 
 `属性`
-| 事件名   | 说明 | 形参 |
+| 属性名   | 说明 | 形参 |
 |--------|------|------|
 | searchColumns   | searchColumns   |  |
 
@@ -107,7 +120,7 @@ return () => (
 | onSelectionChange   | table多选事件   | row |
 
 `属性`
-| 事件名   | 说明 | 形参 |
+| 属性名   | 说明 | 形参 |
 |--------|------|------|
 | tableData   | table源数据   |  |
 | columns   | columns   |  |
@@ -125,6 +138,6 @@ return () => (
 
 `属性`
 
-| 事件名   | 说明 | 形参 |
+| 属性名   | 说明 | 形参 |
 |--------|------|------|
 | pageInfo   | 分页信息   |  |
