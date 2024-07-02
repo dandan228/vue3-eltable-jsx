@@ -12,7 +12,7 @@
 **<span style="color:blue;">3. 目录机构</span>**
   ```
    ├── src/
-   │   ├── components/
+   │   ├── dist/
    │   │   ├── mTable.jsx         # 合并Search，table,paginate
    │   │   ├── Search.jsx         # 表单操作栏
    │   │   ├── paginate.jsx       # 分页
