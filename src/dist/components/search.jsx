@@ -9,6 +9,7 @@ import {
   ElOption,
 } from "element-plus";
 import { reactive } from "vue";
+import { isArrayProperty } from "../utils/judgeType";
 
 export const Search = (props, { slots }) => {
   const { searchColumns } = props;
@@ -89,13 +90,15 @@ export const Search = (props, { slots }) => {
               v-model={state.modelForm[s.prop]}
               style={{ width: "200px" }}
             >
-              {s.option.map((s, i) => (
-                <ElOption
-                  key={s.value}
-                  value={s.value}
-                  label={s.label}
-                ></ElOption>
-              ))}
+              {isArrayProperty(s, "option")
+                ? s.option.map((s, i) => (
+                    <ElOption
+                      key={s.value}
+                      value={s.value}
+                      label={s.label}
+                    ></ElOption>
+                  ))
+                : null}
             </ElSelect>
           )}
           {s.filterType === "switch" && (
