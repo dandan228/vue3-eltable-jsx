@@ -1,6 +1,6 @@
 <template>
-  <MTable />
+  <Index />
 </template>
-<script setup>
-import { MTable } from 'el-table-jsx'
+<script setup jsx>
+import Index from "./pages/index.jsx";
 </script>

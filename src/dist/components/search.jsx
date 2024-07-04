@@ -88,7 +88,6 @@ export const Search = (props, { slots }) => {
           {s.filterType === "select" && (
             <ElSelect
               v-model={state.modelForm[s.prop]}
-              style={{ width: "200px" }}
             >
               {isArrayProperty(s, "option")
                 ? s.option.map((s, i) => (
