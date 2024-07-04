@@ -1,5 +1,5 @@
 import { reactive, onMounted, defineComponent } from "vue";
-import MTable from "../dist/mTable.jsx";
+import MTable from "../dist/components/mTable.jsx";
 import { columns, btnByStateMap, searchColumns } from "./config.js";
 import axiox from "axios";
 
