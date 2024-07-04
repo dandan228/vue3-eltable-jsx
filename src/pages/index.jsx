@@ -40,6 +40,7 @@ export default defineComponent({
     const formEvent = (e) => {
       // search=>操作栏form, btnInfo=》操作栏按钮信息
       const { search, btnInfo } = e;
+      console.log('formEvent', e);
       state.pageInfo.page = 1;
       // 保存当前筛选参数
       state.lastFilter = search;

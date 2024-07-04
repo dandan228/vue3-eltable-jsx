@@ -161,6 +161,11 @@ export default defineComponent({
         />
       );
     };
+    const renderImgSlot = (scope, col, colIdx) => {
+      return (
+        <img src={scope.row[col.prop]} style={{width: col.imgWidth?`${col.imgWidth}px`: '50px', height: col.imgHeight ? `${col.imgHeight}px` : '50px', }}/>
+      );
+    };
 
     // 渲染组件结构
     return () => (
@@ -182,6 +187,7 @@ export default defineComponent({
             btnSlot: renderButtons, // 渲染按钮插槽
             inputSlot: renderInputSlot, // 渲染输入框插槽
             switchSlot: renderSwitchSlot, // 渲染开关插槽
+            imgSlot: renderImgSlot, // 渲染开关插槽
           }}
         </Table>
         {/* 渲染分页组件 */}

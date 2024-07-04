@@ -32,6 +32,8 @@ export const Table = (props, { slots, emit }) => {
                   return <div>{slots.inputSlot(scope, col, colIdx)}</div>;
                 } else if (col.tableType === "switch") {
                   return <div>{slots.switchSlot(scope, col, colIdx)}</div>;
+                } else if (col.tableType === "img") {
+                  return <div>{slots.imgSlot(scope, col, colIdx)}</div>;
                 } else {
                   return scope.row[col.prop];
                 }

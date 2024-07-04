@@ -1,3 +1,5 @@
+import { h } from "vue";
+
 export const tableData = [
     // 0=>显示所有; 1=>通过; 2=>取消; 3=>禁用
     { date: "date", name: "John", state: 0, btn: "按钮1" },
@@ -22,7 +24,7 @@ export const searchColumns = [
         label: '状态',
         filterType: 'select',
         defaultVal: 0,
-        width: '140px',
+        width: '140',
         option: [
             { label: '全部', value: 0 },
             { label: '通过', value: 1 },
@@ -82,7 +84,14 @@ export const columns = [
         prop: "isTrue",
         label: "开关",
         tableType: "switch",
-        width: "180",
+        width: "80",
+    },
+    {
+        prop: "imageUrl",
+        label: "图片",
+        tableType: "img",
+        width: '150',
+        imgWidth: "80",
     },
     {
         label: "操作",
