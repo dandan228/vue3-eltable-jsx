@@ -1,5 +1,5 @@
 import { defineComponent, reactive, watchEffect } from "vue";
-import { ElButton, ElInput, ElSwitch } from "element-plus";
+import { ElButton, ElInput, ElSwitch, ElTag } from "element-plus";
 import { Table } from "./table";
 import { Search } from "./search";
 import { Pagination } from "./paginate";
@@ -180,6 +180,9 @@ export default defineComponent({
         />
       );
     };
+    const renderTagSlot = (scope, col, colIdx, dictItem) => {
+      return <ElTag type={dictItem.color} size={dictItem.size}>{dictItem.label}</ElTag>;
+    };
 
     // 渲染组件结构
     return () => (
@@ -200,10 +203,11 @@ export default defineComponent({
           defaultSort={defaultSort}
         >
           {{
-            btnSlot: renderButtons, // 渲染按钮插槽
-            inputSlot: renderInputSlot, // 渲染输入框插槽
-            switchSlot: renderSwitchSlot, // 渲染开关插槽
-            imgSlot: renderImgSlot, // 渲染开关插槽
+            btnSlot: renderButtons,
+            inputSlot: renderInputSlot,
+            switchSlot: renderSwitchSlot,
+            imgSlot: renderImgSlot,
+            tagSlot: renderTagSlot,
           }}
         </Table>
         {/* 渲染分页组件 */}

@@ -68,12 +68,15 @@ export const columns = [
         prop: "state",
         label: "状态",
         width: "180",
-        dict: [
-            { label: '全部', value: 0 },
-            { label: '通过', value: 1 },
-            { label: '取消', value: 2 },
-            { label: '禁用', value: 3 },
-        ]
+        dict: {
+            tag: true,
+            dictMap: [
+                { label: '全部', value: 0, color: 'primary', size: "large" },
+                { label: '通过', value: 1, color: 'success', size: "" },
+                { label: '取消', value: 2, color: 'info', size: "small" },
+                { label: '禁用', value: 3, color: 'danger', size: "small" },
+            ]
+        }
     },
     {
         prop: "input",
