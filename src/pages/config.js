@@ -22,6 +22,7 @@ export const searchColumns = [
         label: '状态',
         filterType: 'select',
         defaultVal: 0,
+        width: '140px',
         option: [
             { label: '全部', value: 0 },
             { label: '通过', value: 1 },
