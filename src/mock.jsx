@@ -21,7 +21,7 @@ Mock.mock("/api/getList", "post", (options) => {
         state: params.state !== undefined ? params.state : "@integer(0, 3)", // 根据传递的 state 参数进行过滤，否则生成随机状态值
         btn: "按钮@natural(1, 4)",
         isTrue: Mock.Random.boolean(),
-        imageUrl: "@image('200x100', '@color', 'Mock Image')"
+        imageUrl: "@image('200x100', '@color', 'el-table-jsx')"
       },
     ],
   }).data;

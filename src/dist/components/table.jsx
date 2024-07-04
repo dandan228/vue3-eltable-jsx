@@ -11,6 +11,10 @@ export const Table = (props, { slots, emit }) => {
     emit("sortChange", sort);
   };
 
+  const rowItemEvent = (row) => {
+    emit("rowItemEvent", row);
+  };
+
   const renderColumnContent = (scope, col, colIdx) => {
     // 如果列有 dict 属性
     if (col.dict) {
@@ -42,13 +46,22 @@ export const Table = (props, { slots, emit }) => {
     const slotRenderer = slotMap[col.tableType];
     if (slotRenderer) {
       // 如果有对应的渲染函数，使用该插槽渲染
-      return (
-        <div>{slotRenderer(scope, col, colIdx)}</div>
-      );
+      return <div>{slotRenderer(scope, col, colIdx)}</div>;
     }
 
     // 否则返回当前行列的值
-    return scope.row[col.prop];
+    return (
+      <div
+        onClick={() => {
+          if (col.color) {
+            rowItemEvent(scope.row);
+          }
+        }}
+        style={{ color: col.color, cursor: col.color ? "pointer" : "default" }}
+      >
+        {scope.row[col.prop]}
+      </div>
+    );
   };
 
   return (

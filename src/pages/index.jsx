@@ -100,6 +100,9 @@ export default defineComponent({
     const sortChange = (sort) => {
       console.log("sort", sort);
     };
+    const rowItemEvent = (row) => {
+      console.log("rowItemEvent--", row);
+    };
 
     return () => (
       <MTable
@@ -124,6 +127,7 @@ export default defineComponent({
         onSelectCheckbox={selectCheckbox}
         onSwitchChange={switchChange}
         onSortChange={sortChange}
+        onRowItemEvent={rowItemEvent}
       />
     );
   },

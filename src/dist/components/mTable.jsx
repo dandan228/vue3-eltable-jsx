@@ -146,6 +146,9 @@ export default defineComponent({
     const switchChange = (bln, row) => {
       emit("switchChange", bln, row);
     };
+    const rowItemEvent = row => {
+      emit("rowItemEvent", row);
+    };
 
     // 渲染输入框插槽
     const renderInputSlot = (scope, col, colIdx) => {
@@ -197,6 +200,7 @@ export default defineComponent({
         <Table
           onSelectCheckbox={selectCheckbox}
           onSortChange={sortChange}
+          onRowItemEvent={rowItemEvent}
           data={state.tableData}
           columns={columns}
           tableMultiple={tableMultiple}

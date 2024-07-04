@@ -63,6 +63,7 @@ export const columns = [
         prop: "name",
         label: "昵称",
         width: "180",
+        color: "blue",
     },
     {
         prop: "state",

@@ -120,6 +120,7 @@ return () => (
 | onSwitchChange   | switch事件   | bln, row |
 | onSelectionChange   | table多选事件   | row |
 | onSortChange   | table表头排序事件   | sort |
+| rowItemEvent   | table里的a标签   | row |
 
 `属性`
 | 属性名   | 说明 | 出参 |
