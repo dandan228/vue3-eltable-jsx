@@ -57,6 +57,7 @@ export const columns = [
         prop: "date",
         label: "Date",
         width: "280",
+        sortable: true,
     },
     {
         prop: "name",

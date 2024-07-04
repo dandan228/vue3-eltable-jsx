@@ -119,6 +119,7 @@ return () => (
 | onTableInput   | input事件   | val， row |
 | onSwitchChange   | switch事件   | bln, row |
 | onSelectionChange   | table多选事件   | row |
+| onSortChange   | table表头排序事件   | sort |
 
 `属性`
 | 属性名   | 说明 | 出参 |
@@ -128,6 +129,7 @@ return () => (
 | tableMultiple   | 多选   |  |
 | btnByStateMapAt   |  columns属性key  |  |
 | btnByStateMap   | 根据状态columns属性key，显示不同的按钮   |  |
+| defaultSort   | 表头默认排序(是个对象)   |  |
 
 <span style="color:red;">分页</span>
 

@@ -37,6 +37,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    defaultSort: {
+      type: Object,
+      default: () => ({}),
+    },
   },
 
   setup(props, { emit }) {
@@ -49,6 +53,7 @@ export default defineComponent({
       btnByStateMap,
       btnByStateMapAt,
       tableMultiple,
+      defaultSort,
     } = props;
 
     // 当btnByStateMap传递了这个值，btnByStateMapAt这个就必须传
@@ -135,6 +140,9 @@ export default defineComponent({
     const selectCheckbox = (row) => {
       emit("selectCheckbox", row);
     };
+    const sortChange = (sort) => {
+      emit("sortChange", sort);
+    };
     const switchChange = (bln, row) => {
       emit("switchChange", bln, row);
     };
@@ -163,7 +171,13 @@ export default defineComponent({
     };
     const renderImgSlot = (scope, col, colIdx) => {
       return (
-        <img src={scope.row[col.prop]} style={{width: col.imgWidth?`${col.imgWidth}px`: '50px', height: col.imgHeight ? `${col.imgHeight}px` : '50px', }}/>
+        <img
+          src={scope.row[col.prop]}
+          style={{
+            width: col.imgWidth ? `${col.imgWidth}px` : "50px",
+            height: col.imgHeight ? `${col.imgHeight}px` : "50px",
+          }}
+        />
       );
     };
 
@@ -179,9 +193,11 @@ export default defineComponent({
         {/* 渲染表格组件 */}
         <Table
           onSelectCheckbox={selectCheckbox}
+          onSortChange={sortChange}
           data={state.tableData}
           columns={columns}
           tableMultiple={tableMultiple}
+          defaultSort={defaultSort}
         >
           {{
             btnSlot: renderButtons, // 渲染按钮插槽

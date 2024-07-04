@@ -80,12 +80,26 @@ export default defineComponent({
     const tableInput = (val, row) => {
       // val=>当前值
       // row=>当前这一行数据
+      console.log("tableInput--val", val);
+      console.log("tableInput--row", row);
     };
-    const tableBlur = (val, row) => {};
+    const tableBlur = (val, row) => {
+      console.log("tableBlur--val", val);
+      console.log("tableBlur--row", row);
+    };
 
-    const selectCheckbox = (row) => {};
+    const selectCheckbox = (row) => {
+      console.log("selectCheckbox--row", row);
+    };
 
-    const switchChange = (bln, row) => {};
+    const switchChange = (bln, row) => {
+      console.log("switchChange--bln", bln);
+      console.log("switchChange--row", row);
+    };
+
+    const sortChange = (sort) => {
+      console.log("sort", sort);
+    };
 
     return () => (
       <MTable
@@ -95,6 +109,10 @@ export default defineComponent({
         pageInfo={state.pageInfo}
         btnByStateMap={btnByStateMap}
         btnByStateMapAt={"state"}
+        defaultSort={{
+          prop: "date",
+          order: "descending",
+        }}
         tableMultiple
         onFormEvent={formEvent}
         onTableBtnEvent={tableBtnEvent}
@@ -105,6 +123,7 @@ export default defineComponent({
         onTableBlur={tableBlur}
         onSelectCheckbox={selectCheckbox}
         onSwitchChange={switchChange}
+        onSortChange={sortChange}
       />
     );
   },
