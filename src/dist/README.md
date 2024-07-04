@@ -100,20 +100,20 @@ return () => (
  <span style="color:red;">searchForm表格操作栏</span>
 
 `事件`
-| 事件名   | 说明 | 形参 |
+| 事件名   | 说明 | 出参 |
 |--------|------|------|
 | onFormEvent   | searchForm按钮事件   | e: {search, btnInfo}   |
 | onResetSearch   | 重置搜索   | resetForm |
 
 `属性`
-| 属性名   | 说明 | 形参 |
+| 属性名   | 说明 | 出参 |
 |--------|------|------|
 | searchColumns   | searchColumns   |  |
 
 <span style="color:red;">table</span>
 
 `事件`
-| 事件名   | 说明 | 形参 |
+| 事件名   | 说明 | 出参 |
 |--------|------|------|
 | onTableBtnEvent   | 操作栏按钮事件   | e: {btnIdx, colIdx, $index, row}   |
 | onTableInput   | input事件   | val， row |
@@ -121,7 +121,7 @@ return () => (
 | onSelectionChange   | table多选事件   | row |
 
 `属性`
-| 属性名   | 说明 | 形参 |
+| 属性名   | 说明 | 出参 |
 |--------|------|------|
 | tableData   | table源数据   |  |
 | columns   | columns   |  |
@@ -132,13 +132,13 @@ return () => (
 <span style="color:red;">分页</span>
 
 `事件`
-| 事件名   | 说明 | 形参 |
+| 事件名   | 说明 | 出参 |
 |--------|------|------|
 | onPageSizeEvent   | 页容量事件   | pageSize   |
 | onPageEvent   | 当前页事件   | page |
 
 `属性`
 
-| 属性名   | 说明 | 形参 |
+| 属性名   | 说明 | 出参 |
 |--------|------|------|
 | pageInfo   | 分页信息   |  |
