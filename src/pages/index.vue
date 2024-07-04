@@ -20,7 +20,7 @@ name: "Index";
 </script>
 <script setup>
 import { reactive } from "vue";
-import MTable from "../dist/components/mTable.jsx";
+import { MTable } from "../dist/index.js";
 import { columns, searchColumns, btnByStateMap } from "./config.js";
 import axiox from "axios";
 
