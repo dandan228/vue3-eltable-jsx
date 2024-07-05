@@ -11,7 +11,7 @@ import {
 import { reactive } from "vue";
 import { isArrayProperty } from "../utils/judgeType";
 
-export const Search = (props, { slots, emit }) => {
+export const Form = (props, { slots, emit }) => {
   const {
     formColumns,
     inline = true,

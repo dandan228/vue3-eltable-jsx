@@ -1,5 +1,5 @@
 import { reactive, onMounted, defineComponent } from "vue";
-import { MTable, Dialog, Search } from "../dist/components/index.js";
+import { MTable, Dialog, Form } from "../dist/components/index.js";
 import {
   columns,
   btnByStateMap,
@@ -148,7 +148,7 @@ export default defineComponent({
           title={"对话框"}
           width={500}
         >
-          <Search
+          <Form
             formColumns={dialogColumns}
             inline={false}
             onFormEvent={diaFormEvent}

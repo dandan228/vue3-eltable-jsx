@@ -15,7 +15,7 @@
    │   ├── dist/
    │   │   ├── components/          
    │   │   │   ├── MTable.jsx       # 合并所有组件
-   │   │   │   ├── Search.jsx       # 表单操作栏
+   │   │   │   ├── Form.jsx       # form表单
    │   │   │   ├── Paginate.jsx     # 分页
    │   │   │   ├── Table.jsx        # table
    │   │   │   ├── Dialog.jsx       # Dialog
@@ -64,8 +64,8 @@ export default defineConfig({
   />
 </template>
 
-// MTable= Search + Table + Pagination
-import { MTable, Search, Table, Pagination } from "el-table-jsx";
+// MTable= Form + Table + Pagination + Dialog
+import { MTable, Form, Table, Pagination, Dialog } from "el-table-jsx";
 
 
 

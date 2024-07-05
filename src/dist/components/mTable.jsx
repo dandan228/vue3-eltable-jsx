@@ -1,7 +1,7 @@
 import { defineComponent, reactive, watchEffect } from "vue";
 import { ElButton, ElInput, ElSwitch, ElTag } from "element-plus";
 import { Table } from "./Table";
-import { Search } from "./Form";
+import { Form } from "./Form";
 import { Pagination } from "./Paginate";
 import { isEmptyObject } from "../utils/judgeType";
 
@@ -197,7 +197,7 @@ export default defineComponent({
     return () => (
       <div>
         {/* 渲染筛选表单组件 */}
-        <Search
+        <Form
           formColumns={formColumns}
           onFormEvent={formEvent}
           resetSearch={resetSearch}
