@@ -1,12 +1,12 @@
 #### 为什么用*el-table-jsx*
->使用jsx编写，search，table, 分页组件，对于常见的搜索栏需要保留上次参数，table里的操作按钮需要根据状态显示不同的按钮及是否禁用，都可以通过配置来轻易解决，还支持template，jsx引用组件
+>当后台模块都需重复开发时，利用基于Vue 3和Element Plus的`JSX`封装组件，您只需专注于配置，无需处理内部逻辑。无论是表格（table）、表单（form），还是对话框（dialog），统一管理和快速开发都变得异常简便！
 
 **<span style="color:blue;">1. 先说说背景</span>**
    
    - 后台大多数都是table表单，重复性的工作，根本提不起精神，就差睡着了
    - 之前也封装了一个table组件，用的是template写法（[https://juejin.cn/post/7260783336217329724](https://)），但是当需求越复杂，用template就不灵活
 
-**<span style="color:blue;">2. 上预览图，第一版就是目前看到的这些功能，要是有空，后续继续完善</span>**
+**<span style="color:blue;">2. 上预览图，我将会持续更新</span>**
 ![示例图片](./public/image.png)
 
 **<span style="color:blue;">3. 目录机构</span>**
