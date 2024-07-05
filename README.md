@@ -14,11 +14,12 @@
    ├── src/
    │   ├── dist/
    │   │   ├── components/          
-   │   │   │   ├── mTable.jsx       # 合并Search，table,paginate
+   │   │   │   ├── MTable.jsx       # 合并所有组件
    │   │   │   ├── Search.jsx       # 表单操作栏
-   │   │   │   ├── paginate.jsx     # 分页
-   │   │   │   ├── table.jsx        # table
-   │   │   └── index.js             # 导出组件
+   │   │   │   ├── Paginate.jsx     # 分页
+   │   │   │   ├── Table.jsx        # table
+   │   │   │   ├── Dialog.jsx       # Dialog
+   │   │   │   ├── index.js         # 导出组件
    │   ├── pages/
    │   │   ├── config.js            # 数据配置项
    │   │   ├── index.jsx            # 使用jsx引入table组件

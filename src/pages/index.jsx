@@ -1,5 +1,5 @@
 import { reactive, onMounted, defineComponent } from "vue";
-import { MTable, Dialog, Search } from "../dist/index.js";
+import { MTable, Dialog, Search } from "../dist/components/index.js";
 import {
   columns,
   btnByStateMap,
