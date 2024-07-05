@@ -88,7 +88,7 @@ export const Search = (props, { slots }) => {
           {s.filterType === "select" && (
             <ElSelect
               v-model={state.modelForm[s.prop]}
-              style={{ width: Boolean(s.width)?`${s.width}px`:'240px' }}
+              style={{ width: Boolean(s.width) ? `${s.width}px` : "240px" }}
             >
               {isArrayProperty(s, "option")
                 ? s.option.map((s, i) => (
@@ -104,16 +104,24 @@ export const Search = (props, { slots }) => {
           {s.filterType === "switch" && (
             <ElSwitch v-model={state.modelForm[s.prop]} />
           )}
-          {s.filterType === "btn" && s.label !== "重置" && (
-            <ElButton type={s.color} onClick={() => formEvent(s, index)}>
-              {s.label}
-            </ElButton>
-          )}
-          {s.filterType === "btn" && s.label === "重置" && (
-            <ElButton type={s.color} onClick={resetSearch}>
-              {s.label}
-            </ElButton>
-          )}
+          {s.filterType === "btn" &&
+            s.btnArr.map((btn, btnIdx) => {
+              return (
+                <ElButton
+                  onClick={() => {
+                    if (btn.label === "重置") {
+                      resetSearch();
+                    } else {
+                      formEvent(btn, btnIdx);
+                    }
+                  }}
+                  key={btnIdx}
+                  type={btn.color}
+                >
+                  {btn.label}
+                </ElButton>
+              );
+            })}
         </ElFormItem>
       ))}
     </ElForm>

@@ -33,22 +33,12 @@ export const searchColumns = [
         ]
     },
     {
-        btnId: 0,
-        label: '查询',
-        filterType: 'btn',
-        color: 'success'
-    },
-    {
-        btnId: 1,
-        label: '查询1',
-        filterType: 'btn',
-        color: 'success'
-    },
-    {
-        btnId: 2,
-        label: '重置',
-        filterType: 'btn',
-        color: 'primary'
+        filterType: "btn",
+        btnArr: [
+            { btnId: 0, label: "查询", color: "primary" },
+            { btnId: 1, label: "新增", color: "success" },
+            { btnId: 2, label: "重置", color: "warning", disabled: true },
+        ],
     },
 ]
 
