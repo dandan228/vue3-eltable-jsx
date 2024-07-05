@@ -1,7 +1,7 @@
 <template>
   <MTable
     :columns="columns"
-    :searchColumns="searchColumns"
+    :formColumns="formColumns"
     :tableData="state.tableData"
     :pageInfo="state.pageInfo"
     :btnByStateMap="btnByStateMap"
@@ -21,7 +21,7 @@ name: "Index";
 <script setup>
 import { reactive } from "vue";
 import { MTable } from "../dist/components/index.js";
-import { columns, searchColumns, btnByStateMap } from "./config.js";
+import { columns, formColumns, btnByStateMap } from "./config.js";
 import axiox from "axios";
 
 const state = reactive({

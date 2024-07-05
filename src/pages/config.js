@@ -8,7 +8,7 @@ export const tableData = [
     { date: "da2te1", name: "Jan23e", state: 3, btn: "按钮4" },
 ];
 
-export const searchColumns = [
+export const formColumns = [
     {
         prop: 'date',
         label: 'Date',

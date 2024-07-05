@@ -13,13 +13,13 @@ import { isArrayProperty } from "../utils/judgeType";
 
 export const Search = (props, { slots, emit }) => {
   const {
-    searchColumns,
+    formColumns,
     inline = true,
     labelWidth = "",
     labelPosition = "right",
   } = props;
 
-  const initForm = searchColumns?.reduce((acc, item) => {
+  const initForm = formColumns?.reduce((acc, item) => {
     if (item.prop) {
       // 当item.defaultVal为number 0 时， 不给赋值，所以加个判断
       acc[item.prop] = item.defaultVal !== undefined ? item.defaultVal : "";
@@ -76,7 +76,7 @@ export const Search = (props, { slots, emit }) => {
       label-position={labelPosition}
       label-width={labelWidth}
     >
-      {searchColumns?.map((s, index) => (
+      {formColumns?.map((s, index) => (
         <ElFormItem label={s.filterType === "btn" ? "" : s.label} key={index}>
           {s.filterType === "input" && (
             <ElInput v-model={state.modelForm[s.prop]} />

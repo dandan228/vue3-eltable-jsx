@@ -3,7 +3,7 @@ import { MTable, Dialog, Search } from "../dist/components/index.js";
 import {
   columns,
   btnByStateMap,
-  searchColumns,
+  formColumns,
   dialogColumns,
 } from "./config.js";
 import axiox from "axios";
@@ -149,14 +149,14 @@ export default defineComponent({
           width={500}
         >
           <Search
-            searchColumns={dialogColumns}
+            formColumns={dialogColumns}
             inline={false}
             onFormEvent={diaFormEvent}
           />
         </Dialog>
         <MTable
           columns={columns}
-          searchColumns={searchColumns}
+          formColumns={formColumns}
           tableData={state.tableData}
           pageInfo={state.pageInfo}
           btnByStateMap={btnByStateMap}
