@@ -109,6 +109,9 @@ return () => (
 | 属性名   | 说明 | 出参 |
 |--------|------|------|
 | searchColumns   | searchColumns   |  |
+| inline   | 行内表单模式   |  |
+| labelWidth   | 标签的长度，例如 '50px'。 作为 Form 直接子元素的 form-item 会继承该值。 可以使用 auto   |  |
+| labelPosition   | 表单域标签的位置， 当设置为 left 或 right 时，则也需要设置 label-width 属性   |  |
 
 <span style="color:red;">table</span>
 
@@ -145,3 +148,15 @@ return () => (
 | 属性名   | 说明 | 出参 |
 |--------|------|------|
 | pageInfo   | 分页信息   |  |
+
+
+<span style="color:red;">dialog</span>
+
+
+`属性`
+
+| 属性名   | 说明 | 出参 |
+|--------|------|------|
+| dialogVisible   | 是否显示对话框   |  |
+| title   | title   |  |
+| width   | width   |  |

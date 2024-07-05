@@ -11,8 +11,13 @@ import {
 import { reactive } from "vue";
 import { isArrayProperty } from "../utils/judgeType";
 
-export const Search = (props, { slots }) => {
-  const { searchColumns } = props;
+export const Search = (props, { slots, emit }) => {
+  const {
+    searchColumns,
+    inline = true,
+    labelWidth = "",
+    labelPosition = "right",
+  } = props;
 
   const initForm = searchColumns?.reduce((acc, item) => {
     if (item.prop) {
@@ -26,9 +31,8 @@ export const Search = (props, { slots }) => {
     modelForm: initForm,
   });
 
-  const formEvent = (s) => {
-    const searchForm = s;
-    props.onformEvent(state.modelForm, searchForm);
+  const formEvent = (btnInfo) => {
+    emit('formEvent', state.modelForm, btnInfo)
   };
   const resetSearch = () => {
     state.modelForm = {};
@@ -66,7 +70,12 @@ export const Search = (props, { slots }) => {
   ];
 
   return (
-    <ElForm model={state.modelForm} inline>
+    <ElForm
+      model={state.modelForm}
+      inline={inline}
+      label-position={labelPosition}
+      label-width={labelWidth}
+    >
       {searchColumns?.map((s, index) => (
         <ElFormItem label={s.filterType === "btn" ? "" : s.label} key={index}>
           {s.filterType === "input" && (

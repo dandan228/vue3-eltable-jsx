@@ -1,6 +1,11 @@
 import { reactive, onMounted, defineComponent } from "vue";
-import { MTable } from "../dist/index.js";
-import { columns, btnByStateMap, searchColumns } from "./config.js";
+import { MTable, Dialog, Search } from "../dist/index.js";
+import {
+  columns,
+  btnByStateMap,
+  searchColumns,
+  dialogColumns,
+} from "./config.js";
 import axiox from "axios";
 
 export default defineComponent({
@@ -15,6 +20,7 @@ export default defineComponent({
       },
       // 保存当前筛选参数
       lastFilter: {},
+      dialogVisible: false,
     });
 
     const fetchTableData = (params) => {
@@ -40,11 +46,41 @@ export default defineComponent({
     const formEvent = (e) => {
       // search=>操作栏form, btnInfo=》操作栏按钮信息
       const { search, btnInfo } = e;
-      console.log("formEvent", e);
-      state.pageInfo.page = 1;
-      // 保存当前筛选参数
-      state.lastFilter = search;
-      updateTableData();
+      // console.log("search", search);
+      // console.log("btnInfo", btnInfo);
+
+      const eventsMap = {
+        0: () => {
+          // 保存当前筛选参数
+          state.lastFilter = search;
+          state.pageInfo.page = 1;
+          updateTableData();
+        },
+        1: () => {
+          state.dialogVisible = true;
+        },
+      };
+
+      eventsMap[btnInfo.btnId]();
+    };
+
+    const diaFormEvent = (form, btnInfo) => {
+      console.log("diaFormEvent---search", form);
+      console.log("diaFormEvent---btnInfo", btnInfo);
+      const eventsMap = {
+        0: () => {
+          state.dialogVisible = false;
+        },
+        1: () => {
+          diaConfirm(form);
+        },
+      };
+      eventsMap[btnInfo.btnId]();
+    };
+
+    const diaConfirm = (form) => {
+      console.log("diaConfirm", form);
+      state.dialogVisible = false
     };
 
     const tableBtnEvent = (e) => {
@@ -100,35 +136,49 @@ export default defineComponent({
     const sortChange = (sort) => {
       console.log("sort", sort);
     };
+
     const rowItemEvent = (row) => {
       console.log("rowItemEvent--", row);
     };
 
     return () => (
-      <MTable
-        columns={columns}
-        searchColumns={searchColumns}
-        tableData={state.tableData}
-        pageInfo={state.pageInfo}
-        btnByStateMap={btnByStateMap}
-        btnByStateMapAt={"state"}
-        defaultSort={{
-          prop: "date",
-          order: "descending",
-        }}
-        tableMultiple
-        onFormEvent={formEvent}
-        onTableBtnEvent={tableBtnEvent}
-        onPageSizeEvent={pageSizeEvent}
-        onPageEvent={pageEvent}
-        onResetSearch={resetSearch}
-        onTableInput={tableInput}
-        onTableBlur={tableBlur}
-        onSelectCheckbox={selectCheckbox}
-        onSwitchChange={switchChange}
-        onSortChange={sortChange}
-        onRowItemEvent={rowItemEvent}
-      />
+      <div>
+        <Dialog
+          dialogVisible={state.dialogVisible}
+          title={"对话框"}
+          width={500}
+        >
+          <Search
+            searchColumns={dialogColumns}
+            inline={false}
+            onFormEvent={diaFormEvent}
+          />
+        </Dialog>
+        <MTable
+          columns={columns}
+          searchColumns={searchColumns}
+          tableData={state.tableData}
+          pageInfo={state.pageInfo}
+          btnByStateMap={btnByStateMap}
+          btnByStateMapAt={"state"}
+          defaultSort={{
+            prop: "date",
+            order: "descending",
+          }}
+          tableMultiple
+          onFormEvent={formEvent}
+          onTableBtnEvent={tableBtnEvent}
+          onPageSizeEvent={pageSizeEvent}
+          onPageEvent={pageEvent}
+          onResetSearch={resetSearch}
+          onTableInput={tableInput}
+          onTableBlur={tableBlur}
+          onSelectCheckbox={selectCheckbox}
+          onSwitchChange={switchChange}
+          onSortChange={sortChange}
+          onRowItemEvent={rowItemEvent}
+        />
+      </div>
     );
   },
 });

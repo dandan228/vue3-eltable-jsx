@@ -100,9 +100,11 @@ export default defineComponent({
     };
 
     // 处理筛选表单提交
-    const formEvent = (form, searchForm) => {
+    const formEvent = (form, btnInfo) => {
+      console.log("mtable", form);
+      console.log("btnInfo", btnInfo);
       // 触发 formEvent 事件，并传递筛选表单数据和按钮信息
-      emit("formEvent", { search: form, btnInfo: searchForm });
+      emit("formEvent", { search: form, btnInfo });
     };
 
     // 重置筛选表单
@@ -146,7 +148,7 @@ export default defineComponent({
     const switchChange = (bln, row) => {
       emit("switchChange", bln, row);
     };
-    const rowItemEvent = row => {
+    const rowItemEvent = (row) => {
       emit("rowItemEvent", row);
     };
 
@@ -184,7 +186,11 @@ export default defineComponent({
       );
     };
     const renderTagSlot = (scope, col, colIdx, dictItem) => {
-      return <ElTag type={dictItem.color} size={dictItem.size}>{dictItem.label}</ElTag>;
+      return (
+        <ElTag type={dictItem.color} size={dictItem.size}>
+          {dictItem.label}
+        </ElTag>
+      );
     };
 
     // 渲染组件结构
@@ -193,7 +199,7 @@ export default defineComponent({
         {/* 渲染筛选表单组件 */}
         <Search
           searchColumns={searchColumns}
-          onformEvent={formEvent}
+          onFormEvent={formEvent}
           resetSearch={resetSearch}
         />
         {/* 渲染表格组件 */}
