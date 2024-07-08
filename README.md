@@ -105,6 +105,7 @@ return () => (
 |--------|------|------|
 | onFormEvent   | searchForm按钮事件   | e: {search, btnInfo}   |
 | onResetSearch   | 重置搜索   | resetForm |
+| onRadioChange   | 单选框   | e |
 
 `属性`
 | 属性名   | 说明 | 出参 |
@@ -125,6 +126,7 @@ return () => (
 | onSelectionChange   | table多选事件   | row |
 | onSortChange   | table表头排序事件   | sort |
 | rowItemEvent   | table里的a标签   | row |
+| onRadioChange   | 单选框   | e |
 
 `属性`
 | 属性名   | 说明 | 出参 |
