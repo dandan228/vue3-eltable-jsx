@@ -1,9 +1,7 @@
 import { defineComponent, reactive, watchEffect } from "vue";
 import { ElButton, ElInput, ElSwitch, ElTag } from "element-plus";
-import { Table } from "./Table";
-import { Form } from "./Form";
-import { Pagination } from "./Paginate";
-import { isEmptyObject } from "../utils/judgeType";
+import { Form, Table, Pagination } from "../index";
+import { isEmptyObject } from "../../utils/judgeType";
 
 export default defineComponent({
   name: "MTable",

@@ -1,5 +1,5 @@
 import { ElPagination } from "element-plus";
-import { isEmptyObject } from "../utils/judgeType";
+import { isEmptyObject } from "../../utils/judgeType";
 
 export const Pagination = (props, { slots }) => {
   const { pageInfo } = props;

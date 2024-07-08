@@ -12,7 +12,7 @@ import {
 } from "element-plus";
 import { Plus } from "@element-plus/icons-vue";
 import { reactive } from "vue";
-import { isArrayProperty } from "../utils/judgeType";
+import { isArrayProperty } from "../../utils/judgeType";
 import "./Form.css";
 
 export const Form = (props, { slots, emit }) => {
