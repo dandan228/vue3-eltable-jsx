@@ -147,6 +147,9 @@ export default defineComponent({
     const rowItemEvent = (row) => {
       emit("rowItemEvent", row);
     };
+    const radioChange = e => {
+      emit("radioChange", e);
+    }
 
     // 渲染输入框插槽
     const renderInputSlot = (scope, col, colIdx) => {
@@ -197,6 +200,7 @@ export default defineComponent({
           formColumns={formColumns}
           onFormEvent={formEvent}
           resetSearch={resetSearch}
+          onRadioChange={radioChange}
         />
         {/* 渲染表格组件 */}
         <Table

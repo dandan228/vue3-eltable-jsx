@@ -9,6 +9,8 @@ import {
   ElOption,
   ElUpload,
   ElIcon,
+  ElRadioGroup,
+  ElRadio,
 } from "element-plus";
 import { Plus } from "@element-plus/icons-vue";
 import { reactive } from "vue";
@@ -78,6 +80,10 @@ export const Form = (props, { slots, emit }) => {
     emit("onSuccess", e);
   };
 
+  const radioChange = e => {
+    emit("radioChange", e);
+  }
+
   return (
     <ElForm
       model={state.modelForm}
@@ -132,6 +138,17 @@ export const Form = (props, { slots, emit }) => {
                 <Plus />
               </ElIcon>
             </ElUpload>
+          )}
+          {s.filterType === "radio" && (
+            <ElRadioGroup v-model={state.modelForm[s.prop]} onChange={radioChange}>
+              {s.radioArr.map((r) => {
+                return (
+                  <ElRadio value={r.value} size={r.size} key={r.value}>
+                    {r.label}
+                  </ElRadio>
+                );
+              })}
+            </ElRadioGroup>
           )}
           {s.filterType === "btn" &&
             s.btnArr.map((btn, btnIdx) => {

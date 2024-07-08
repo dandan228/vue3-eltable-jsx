@@ -142,6 +142,10 @@ export default defineComponent({
       console.log("rowItemEvent--", row);
     };
 
+    const radioChange = e => {
+      console.log("radioChange--", e);
+    }
+
     return () => (
       <div>
         <Dialog
@@ -157,6 +161,7 @@ export default defineComponent({
             formColumns={dialogColumns}
             inline={false}
             onFormEvent={diaFormEvent}
+            onRadioChange={radioChange}
           />
         </Dialog>
         <MTable

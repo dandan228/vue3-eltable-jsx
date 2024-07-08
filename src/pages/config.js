@@ -59,6 +59,24 @@ export const dialogColumns = [
         filterType: 'upload',
     },
     {
+        prop: 'radio',
+        label: '单选框',
+        filterType: 'radio',
+        defaultVal: 0,
+        radioArr: [
+            {
+                value: 0,
+                label: '单选框1',
+                size: 'large'
+            },
+            {
+                value: 1,
+                label: '单选框2',
+                size: 'small'
+            },
+        ]
+    },
+    {
         prop: 'state',
         label: '状态',
         filterType: 'select',
