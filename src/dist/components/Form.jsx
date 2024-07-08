@@ -20,6 +20,7 @@ export const Form = (props, { slots, emit }) => {
     formColumns,
     inline = true,
     labelWidth = "",
+    actionUrl = "",
     labelPosition = "right",
   } = props;
 
@@ -73,6 +74,10 @@ export const Form = (props, { slots, emit }) => {
     },
   ];
 
+  const onSuccess = (e) => {
+    emit("onSuccess", e);
+  };
+
   return (
     <ElForm
       model={state.modelForm}
@@ -118,7 +123,11 @@ export const Form = (props, { slots, emit }) => {
             <ElSwitch v-model={state.modelForm[s.prop]} />
           )}
           {s.filterType === "upload" && (
-            <ElUpload className="avatar-uploader">
+            <ElUpload
+              className="avatar-uploader"
+              action={actionUrl}
+              onSuccess={onSuccess}
+            >
               <ElIcon>
                 <Plus />
               </ElIcon>
