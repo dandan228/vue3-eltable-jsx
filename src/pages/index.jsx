@@ -64,8 +64,9 @@ export default defineComponent({
       eventsMap[btnInfo.btnId]();
     };
 
-    const diaFormEvent = (form, btnInfo) => {
-      console.log("diaFormEvent---search", form);
+    const diaFormEvent = e => {
+      const { form, btnInfo } = e;
+      console.log("diaFormEvent---form", form);
       console.log("diaFormEvent---btnInfo", btnInfo);
       const eventsMap = {
         0: () => {

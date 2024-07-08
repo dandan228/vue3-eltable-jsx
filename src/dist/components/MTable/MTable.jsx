@@ -98,11 +98,9 @@ export default defineComponent({
     };
 
     // 处理筛选表单提交
-    const formEvent = (form, btnInfo) => {
-      console.log("mtable", form);
-      console.log("btnInfo", btnInfo);
+    const formEvent = (e) => {
       // 触发 formEvent 事件，并传递筛选表单数据和按钮信息
-      emit("formEvent", { search: form, btnInfo });
+      emit("formEvent", e);
     };
 
     // 重置筛选表单

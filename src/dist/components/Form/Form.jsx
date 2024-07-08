@@ -37,7 +37,7 @@ export const Form = (props, { slots, emit }) => {
   });
 
   const formEvent = (btnInfo) => {
-    emit("formEvent", state.modelForm, btnInfo);
+    emit("formEvent", { form: state.modelForm, btnInfo });
   };
   const resetSearch = () => {
     state.modelForm = {};
