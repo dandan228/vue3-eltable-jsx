@@ -1,6 +1,6 @@
 import { defineComponent, reactive, watchEffect } from "vue";
 import { ElButton, ElInput, ElSwitch, ElTag } from "element-plus";
-import { Form, Table, Pagination } from "../index";
+import { Form, Table, Pagination } from "../../index";
 import { isEmptyObject } from "../../utils/judgeType";
 
 export default defineComponent({
