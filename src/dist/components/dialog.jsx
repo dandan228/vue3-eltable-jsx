@@ -1,7 +1,7 @@
 import { ElDialog, ElButton } from "element-plus";
 
 export const Dialog = (props, { slots, emit }) => {
-  const {
+  let {
     dialogVisible,
     title,
     width = "",
@@ -17,11 +17,17 @@ export const Dialog = (props, { slots, emit }) => {
     emit("confirm");
   };
 
+  const closeDialog = () => {
+    emit('closeDialog'); 
+  }
+
   return (
     <ElDialog
       modelValue={dialogVisible}
       title={title}
       width={width}
+      modal-append-to-body={false}
+      onClose={closeDialog}
     //   v-slots={{
     //     footer: () => (
     //       <div class="dialog-footer">

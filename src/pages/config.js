@@ -54,6 +54,11 @@ export const dialogColumns = [
         filterType: 'input',
     },
     {
+        prop: 'name',
+        label: '上传图片',
+        filterType: 'upload',
+    },
+    {
         prop: 'state',
         label: '状态',
         filterType: 'select',

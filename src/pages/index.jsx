@@ -80,7 +80,7 @@ export default defineComponent({
 
     const diaConfirm = (form) => {
       console.log("diaConfirm", form);
-      state.dialogVisible = false
+      state.dialogVisible = false;
     };
 
     const tableBtnEvent = (e) => {
@@ -147,8 +147,12 @@ export default defineComponent({
           dialogVisible={state.dialogVisible}
           title={"对话框"}
           width={500}
+          onCloseDialog={() => {
+            state.dialogVisible = false;
+          }}
         >
           <Form
+            labelWidth={80}
             formColumns={dialogColumns}
             inline={false}
             onFormEvent={diaFormEvent}

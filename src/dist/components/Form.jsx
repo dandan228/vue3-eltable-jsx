@@ -7,9 +7,13 @@ import {
   ElDatePicker,
   ElSelect,
   ElOption,
+  ElUpload,
+  ElIcon,
 } from "element-plus";
+import { Plus } from "@element-plus/icons-vue";
 import { reactive } from "vue";
 import { isArrayProperty } from "../utils/judgeType";
+import "./Form.css";
 
 export const Form = (props, { slots, emit }) => {
   const {
@@ -32,7 +36,7 @@ export const Form = (props, { slots, emit }) => {
   });
 
   const formEvent = (btnInfo) => {
-    emit('formEvent', state.modelForm, btnInfo)
+    emit("formEvent", state.modelForm, btnInfo);
   };
   const resetSearch = () => {
     state.modelForm = {};
@@ -112,6 +116,13 @@ export const Form = (props, { slots, emit }) => {
           )}
           {s.filterType === "switch" && (
             <ElSwitch v-model={state.modelForm[s.prop]} />
+          )}
+          {s.filterType === "upload" && (
+            <ElUpload className="avatar-uploader">
+              <ElIcon>
+                <Plus />
+              </ElIcon>
+            </ElUpload>
           )}
           {s.filterType === "btn" &&
             s.btnArr.map((btn, btnIdx) => {
