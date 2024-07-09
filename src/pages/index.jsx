@@ -64,7 +64,7 @@ export default defineComponent({
       eventsMap[btnInfo.btnId]();
     };
 
-    const diaFormEvent = e => {
+    const diaFormEvent = (e) => {
       const { form, btnInfo } = e;
       console.log("diaFormEvent---form", form);
       console.log("diaFormEvent---btnInfo", btnInfo);
@@ -142,9 +142,9 @@ export default defineComponent({
       console.log("rowItemEvent--", row);
     };
 
-    const radioChange = e => {
+    const radioChange = (e) => {
       console.log("radioChange--", e);
-    }
+    };
 
     return () => (
       <div>

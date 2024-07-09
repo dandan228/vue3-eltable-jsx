@@ -80,9 +80,9 @@ export const Form = (props, { slots, emit }) => {
     emit("onSuccess", e);
   };
 
-  const radioChange = e => {
+  const radioChange = (e) => {
     emit("radioChange", e);
-  }
+  };
 
   return (
     <ElForm
@@ -140,7 +140,10 @@ export const Form = (props, { slots, emit }) => {
             </ElUpload>
           )}
           {s.filterType === "radio" && (
-            <ElRadioGroup v-model={state.modelForm[s.prop]} onChange={radioChange}>
+            <ElRadioGroup
+              v-model={state.modelForm[s.prop]}
+              onChange={radioChange}
+            >
               {s.radioArr.map((r) => {
                 return (
                   <ElRadio value={r.value} size={r.size} key={r.value}>
