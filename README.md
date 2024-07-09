@@ -121,7 +121,7 @@ return () => (
 `事件`
 | 事件名   | 说明 | 出参 |
 |--------|------|------|
-| onTableBtnEvent   | 操作栏按钮事件   | e: {btnIdx, colIdx, $index, row}   |
+| onTableBtnEvent   | 操作栏按钮事件   | e: {btn, colIdx, $index, row}   |
 | onTableInput   | input事件   | val， row |
 | onSwitchChange   | switch事件   | bln, row |
 | onSelectionChange   | table多选事件   | row |

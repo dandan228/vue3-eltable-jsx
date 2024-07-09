@@ -21,6 +21,7 @@ export default defineComponent({
       // 保存当前筛选参数
       lastFilter: {},
       dialogVisible: false,
+      row: {},
     });
 
     const fetchTableData = (params) => {
@@ -91,15 +92,26 @@ export default defineComponent({
     };
 
     const tableBtnEvent = (e) => {
-      // btnIdx=>table栏，按钮对应的下标
+      // btn=>table栏，当前点击按钮
       // colIdx=>table栏，当前列的索引
       // $index=>table栏，当前行下标
       // row=>table栏，当前行数据
       const {
-        btnIdx,
+        btn,
         colIdx,
         scope: { $index, row },
       } = e;
+      console.log('row', row);
+      console.log('btn', btn);
+
+      const eventsMap = {
+        // 编辑
+        3: () => {
+          state.row = row
+          state.dialogVisible = true
+        }
+      }
+      eventsMap[btn.btnId]()
     };
 
     const pageSizeEvent = (pageSize) => {

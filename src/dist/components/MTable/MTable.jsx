@@ -72,10 +72,10 @@ export default defineComponent({
     });
 
     // 处理按钮点击事件
-    const tableBtnEvent = (scope, colIdx, btnIdx) => {
+    const tableBtnEvent = (scope, colIdx, btn) => {
       const { row, $index: rowIndex } = scope;
       // 触发 tableBtnEvent 事件，并传递相关参数
-      emit("tableBtnEvent", { scope, colIdx, btnIdx });
+      emit("tableBtnEvent", { scope, colIdx, btn });
     };
 
     // 格式化按钮列，根据 btnByStateMap 中的配置生成按钮数组
@@ -122,7 +122,7 @@ export default defineComponent({
         <ElButton
           type={btn.color}
           disabled={btn.disabled}
-          onClick={() => tableBtnEvent(scope, colIdx, btnIdx)}
+          onClick={() => tableBtnEvent(scope, colIdx, btn)}
         >
           {btn.label}
         </ElButton>

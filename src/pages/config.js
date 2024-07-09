@@ -1,5 +1,3 @@
-import { h } from "vue";
-
 export const tableData = [
     // 0=>显示所有; 1=>通过; 2=>取消; 3=>禁用
     { date: "date", name: "John", state: 0, btn: "按钮1" },
@@ -10,27 +8,27 @@ export const tableData = [
 
 export const formColumns = [
     {
-        prop: 'date',
-        label: 'Date',
-        filterType: 'date',
+        prop: "date",
+        label: "Date",
+        filterType: "date",
     },
     {
-        prop: 'name',
-        label: '昵称',
-        filterType: 'input',
+        prop: "name",
+        label: "昵称",
+        filterType: "input",
     },
     {
-        prop: 'state',
-        label: '状态',
-        filterType: 'select',
+        prop: "state",
+        label: "状态",
+        filterType: "select",
         defaultVal: 0,
-        width: '140',
+        width: "140",
         option: [
-            { label: '全部', value: 0 },
-            { label: '通过', value: 1 },
-            { label: '取消', value: 2 },
-            { label: '禁用', value: 3 },
-        ]
+            { label: "全部", value: 0 },
+            { label: "通过", value: 1 },
+            { label: "取消", value: 2 },
+            { label: "禁用", value: 3 },
+        ],
     },
     {
         filterType: "btn",
@@ -40,54 +38,54 @@ export const formColumns = [
             { btnId: 2, label: "重置", color: "warning", disabled: true },
         ],
     },
-]
+];
 
 export const dialogColumns = [
     {
-        prop: 'date',
-        label: 'Date',
-        filterType: 'date',
+        prop: "date",
+        label: "Date",
+        filterType: "date",
     },
     {
-        prop: 'name',
-        label: '昵称',
-        filterType: 'input',
+        prop: "name",
+        label: "昵称",
+        filterType: "input",
     },
     {
-        prop: 'name',
-        label: '上传图片',
-        filterType: 'upload',
+        prop: "name",
+        label: "上传图片",
+        filterType: "upload",
     },
     {
-        prop: 'radio',
-        label: '单选框',
-        filterType: 'radio',
+        prop: "radio",
+        label: "单选框",
+        filterType: "radio",
         defaultVal: 0,
         radioArr: [
             {
                 value: 0,
-                label: '单选框1',
-                size: 'large'
+                label: "单选框1",
+                size: "large",
             },
             {
                 value: 1,
-                label: '单选框2',
-                size: 'small'
+                label: "单选框2",
+                size: "small",
             },
-        ]
+        ],
     },
     {
-        prop: 'state',
-        label: '状态',
-        filterType: 'select',
+        prop: "state",
+        label: "状态",
+        filterType: "select",
         defaultVal: 0,
-        width: '440',
+        width: "440",
         option: [
-            { label: '全部', value: 0 },
-            { label: '通过', value: 1 },
-            { label: '取消', value: 2 },
-            { label: '禁用', value: 3 },
-        ]
+            { label: "全部", value: 0 },
+            { label: "通过", value: 1 },
+            { label: "取消", value: 2 },
+            { label: "禁用", value: 3 },
+        ],
     },
     {
         filterType: "btn",
@@ -95,8 +93,8 @@ export const dialogColumns = [
             { btnId: 0, label: "取消", color: "" },
             { btnId: 1, label: "确定", color: "primary" },
         ],
-    }
-]
+    },
+];
 
 export const columns = [
     {
@@ -118,12 +116,12 @@ export const columns = [
         dict: {
             tag: true,
             dictMap: [
-                { label: '全部', value: 0, color: 'primary', size: "large" },
-                { label: '通过', value: 1, color: 'success', size: "" },
-                { label: '取消', value: 2, color: 'info', size: "small" },
-                { label: '禁用', value: 3, color: 'danger', size: "small" },
-            ]
-        }
+                { label: "全部", value: 0, color: "primary", size: "large" },
+                { label: "通过", value: 1, color: "success", size: "" },
+                { label: "取消", value: 2, color: "info", size: "small" },
+                { label: "禁用", value: 3, color: "danger", size: "small" },
+            ],
+        },
     },
     {
         prop: "input",
@@ -141,7 +139,7 @@ export const columns = [
         prop: "imageUrl",
         label: "图片",
         tableType: "img",
-        width: '150',
+        width: "150",
         imgWidth: "80",
     },
     {
@@ -151,6 +149,7 @@ export const columns = [
             { btnId: 0, label: "通过", color: "primary" },
             { btnId: 1, label: "取消", color: "danger" },
             { btnId: 2, label: "禁用", color: "danger", disabled: true },
+            { btnId: 3, label: "编辑", color: "success" },
         ],
     },
 ];
@@ -158,11 +157,21 @@ export const columns = [
 // 根据状态不通，显示不同的按钮，0=》table里的props的值
 export const btnByStateMap = {
     0: [
-        { label: "通过", color: "primary" },
-        { label: "取消", color: "danger" },
-        { label: "禁用", color: "danger", disabled: true },
+        { btnId: 0, label: "通过", color: "primary" },
+        { btnId: 1, label: "取消", color: "danger" },
+        { btnId: 2, label: "禁用", color: "danger", disabled: true },
+        { btnId: 3, btnId: 3, label: "编辑", color: "success" },
     ],
-    1: [{ label: "通过", color: "primary" }],
-    2: [{ label: "取消", color: "danger" }],
-    3: [{ label: "禁用", color: "danger", disabled: true }],
+    1: [
+        { btnId: 0, label: "通过", color: "primary" },
+        { btnId: 3, label: "编辑", color: "success" },
+    ],
+    2: [
+        { btnId: 1, label: "取消", color: "danger" },
+        { btnId: 3, label: "编辑", color: "success" },
+    ],
+    3: [
+        { btnId: 2, label: "禁用", color: "danger", disabled: true },
+        { btnId: 3, label: "编辑", color: "success" },
+    ],
 };
