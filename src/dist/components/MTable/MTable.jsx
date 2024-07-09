@@ -199,7 +199,7 @@ export default defineComponent({
         <Form
           formColumns={formColumns}
           onFormEvent={formEvent}
-          resetSearch={resetSearch}
+          onResetSearch={resetSearch}
           onRadioChange={radioChange}
         />
         {/* 渲染表格组件 */}
