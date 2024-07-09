@@ -44,15 +44,15 @@ export default defineComponent({
     };
 
     const formEvent = (e) => {
-      // search=>操作栏form, btnInfo=》操作栏按钮信息
-      const { search, btnInfo } = e;
-      // console.log("search", search);
+      // form=>操作栏form, btnInfo=》操作栏按钮信息
+      const { form, btnInfo } = e;
+      // console.log("form", form);
       // console.log("btnInfo", btnInfo);
 
       const eventsMap = {
         0: () => {
           // 保存当前筛选参数
-          state.lastFilter = search;
+          state.lastFilter = form;
           state.pageInfo.page = 1;
           updateTableData();
         },

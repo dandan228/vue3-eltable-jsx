@@ -98,12 +98,12 @@ return () => (
 **<span style="color:blue;">6. Api</span>**
 >切记：当用template用法时，事件前缀不需要加on
 
- <span style="color:red;">searchForm表格操作栏</span>
+ <span style="color:red;">Form</span>
 
 `事件`
 | 事件名   | 说明 | 出参 |
 |--------|------|------|
-| onFormEvent   | searchForm按钮事件   | e: {search, btnInfo}   |
+| onFormEvent   | searchForm按钮事件   | e: {form, btnInfo}   |
 | onResetSearch   | 重置搜索   | resetForm |
 | onRadioChange   | 单选框   | e |
 

@@ -7,7 +7,7 @@
    - 之前也封装了一个table组件，用的是template写法（[https://juejin.cn/post/7260783336217329724](https://)），但是当需求越复杂，用template就不灵活
 
 **<span style="color:blue;">2. 上预览图，我将会持续更新</span>**
-![示例图片](./public/image.png)
+![示例图片](../../public/image.png)
 
 **<span style="color:blue;">3. 目录机构</span>**
   ```
@@ -29,7 +29,7 @@
 
   ```
   **<span style="color:blue;">4. 重点看下`config.js`文件配置</span>**
-![示例图片](./public/info.png)
+![示例图片](../../public/info.png)
 
 **<span style="color:blue;">5. 使用方法</span>**
 1. 安装依赖
@@ -92,18 +92,18 @@ return () => (
     );
 ```
 3. 当单独使用`table`组件，table里需要使用input，switch,按钮时，需要单独引入插槽，如下
-![示例图片](./public/cc.jpg)
+![示例图片](../../public/cc.jpg)
 
 
 **<span style="color:blue;">6. Api</span>**
 >切记：当用template用法时，事件前缀不需要加on
 
- <span style="color:red;">searchForm表格操作栏</span>
+ <span style="color:red;">Form</span>
 
 `事件`
 | 事件名   | 说明 | 出参 |
 |--------|------|------|
-| onFormEvent   | searchForm按钮事件   | e: {search, btnInfo}   |
+| onFormEvent   | searchForm按钮事件   | e: {form, btnInfo}   |
 | onResetSearch   | 重置搜索   | resetForm |
 | onRadioChange   | 单选框   | e |
 
