@@ -52,7 +52,7 @@ export const dialogColumns = [
         filterType: "input",
     },
     {
-        prop: "name",
+        prop: "pic",
         label: "上传图片",
         filterType: "upload",
     },
@@ -60,7 +60,7 @@ export const dialogColumns = [
         prop: "radio",
         label: "单选框",
         filterType: "radio",
-        defaultVal: 0,
+        defaultVal: 1,
         radioArr: [
             {
                 value: 0,

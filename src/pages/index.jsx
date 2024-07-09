@@ -22,6 +22,7 @@ export default defineComponent({
       lastFilter: {},
       dialogVisible: false,
       row: {},
+      dialogColumns,
     });
 
     const fetchTableData = (params) => {
@@ -91,6 +92,14 @@ export default defineComponent({
       }
     };
 
+    const dialogFormDefaultValByRow = (row) => {
+      state.dialogColumns.forEach((item) => {
+        if (item.prop && row.hasOwnProperty(item.prop)) {
+          item.defaultVal = row[item.prop];
+        }
+      });
+    };
+
     const tableBtnEvent = (e) => {
       // btn=>table栏，当前点击按钮
       // colIdx=>table栏，当前列的索引
@@ -101,17 +110,19 @@ export default defineComponent({
         colIdx,
         scope: { $index, row },
       } = e;
-      console.log('row', row);
-      console.log('btn', btn);
+      console.log("row", row);
+      console.log("btn", btn);
 
       const eventsMap = {
         // 编辑
         3: () => {
-          state.row = row
-          state.dialogVisible = true
-        }
-      }
-      eventsMap[btn.btnId]()
+          state.row = row;
+          state.dialogVisible = true;
+          // 处理对话框的默认值，从当前row数据带过去
+          dialogFormDefaultValByRow(row);
+        },
+      };
+      eventsMap[btn.btnId]();
     };
 
     const pageSizeEvent = (pageSize) => {
@@ -182,7 +193,7 @@ export default defineComponent({
           <Form
             ref={FormRef}
             labelWidth={80}
-            formColumns={dialogColumns}
+            formColumns={state.dialogColumns}
             inline={false}
             onFormEvent={diaFormEvent}
             onRadioChange={radioChange}
