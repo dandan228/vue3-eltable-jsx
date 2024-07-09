@@ -106,6 +106,7 @@ return () => (
 | onFormEvent   | searchForm按钮事件   | e: {form, btnInfo}   |
 | onResetSearch   | 重置搜索   | resetForm |
 | onRadioChange   | 单选框   | e |
+| resetModelForm   | 使用 ref 来调用子组件的 resetModelForm 方法`FormRef.value.resetModelForm()`，以达到清空数据的效果   |  |
 
 `属性`
 | 属性名   | 说明 | 出参 |
