@@ -42,7 +42,7 @@ export const Form = defineComponent({
     },
   },
 
-  setup(props, { emit }) {
+  setup(props, { emit, expose }) {
     const { formColumns, inline, labelPosition, labelWidth, actionUrl } = props;
 
     const initForm = formColumns?.reduce((acc, item) => {
@@ -103,6 +103,12 @@ export const Form = defineComponent({
     const radioChange = (e) => {
       emit("radioChange", e);
     };
+
+    const resetModelForm = () => {
+      state.modelForm = {};
+    };
+
+    expose({ resetModelForm });
 
     return () => (
       <ElForm

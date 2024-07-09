@@ -1,4 +1,4 @@
-import { reactive, onMounted, defineComponent } from "vue";
+import { reactive, onMounted, defineComponent, ref } from "vue";
 import { MTable, Dialog, Form } from "../dist/index.js";
 import {
   columns,
@@ -71,6 +71,9 @@ export default defineComponent({
       const eventsMap = {
         0: () => {
           state.dialogVisible = false;
+          if (FormRef.value) {
+            FormRef.value.resetModelForm();
+          }
         },
         1: () => {
           diaConfirm(form);
@@ -82,6 +85,9 @@ export default defineComponent({
     const diaConfirm = (form) => {
       console.log("diaConfirm", form);
       state.dialogVisible = false;
+      if (FormRef.value) {
+        FormRef.value.resetModelForm();
+      }
     };
 
     const tableBtnEvent = (e) => {
@@ -146,6 +152,8 @@ export default defineComponent({
       console.log("radioChange--", e);
     };
 
+    const FormRef = ref(null);
+
     return () => (
       <div>
         <Dialog
@@ -154,9 +162,13 @@ export default defineComponent({
           width={500}
           onCloseDialog={() => {
             state.dialogVisible = false;
+            if (FormRef.value) {
+              FormRef.value.resetModelForm();
+            }
           }}
         >
           <Form
+            ref={FormRef}
             labelWidth={80}
             formColumns={dialogColumns}
             inline={false}
