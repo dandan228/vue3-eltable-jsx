@@ -6,7 +6,7 @@ import {
   formColumns,
   dialogColumns,
 } from "./config.js";
-import axiox from "axios";
+import axios from "axios";
 
 export default defineComponent({
   setup(props, { emit }) {
@@ -21,12 +21,11 @@ export default defineComponent({
       // 保存当前筛选参数
       lastFilter: {},
       dialogVisible: false,
-      row: {},
       dialogColumns,
     });
 
     const fetchTableData = (params) => {
-      axiox.post("/api/getList", params).then((res) => {
+      axios.post("/api/getList", params).then((res) => {
         const { data } = res;
         state.tableData = data.data.list;
         state.pageInfo.total = data.data.total;
@@ -73,6 +72,7 @@ export default defineComponent({
       const eventsMap = {
         0: () => {
           state.dialogVisible = false;
+
           if (FormRef.value) {
             FormRef.value.resetModelForm();
           }
@@ -116,7 +116,6 @@ export default defineComponent({
       const eventsMap = {
         // 编辑
         3: () => {
-          state.row = row;
           state.dialogVisible = true;
           // 处理对话框的默认值，从当前row数据带过去
           dialogFormDefaultValByRow(row);
