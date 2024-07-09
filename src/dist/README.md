@@ -44,10 +44,14 @@ npm i el-table-jsx @vitejs/plugin-vue-jsx
 
 1.1 vite.config.js 引入插件
 
-```html
-import { defineConfig } from 'vite' import vue from '@vitejs/plugin-vue' import
-vueJsx from '@vitejs/plugin-vue-jsx' export default defineConfig({ plugins:
-[vue(), vueJsx()], })
+```js
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import vueJsx from "@vitejs/plugin-vue-jsx";
+
+export default defineConfig({
+  plugins: [vue(), vueJsx()],
+});
 ```
 
 2. 引入组件（具体用法，可以看 src/pages/index.jsx, 或者 src/pages/index.vue）
@@ -106,7 +110,7 @@ return () => (
 |--------|------|------|------|------|
 | prop | 选中项绑定值 | string |
 | label | 选中项 label | string / number / boolean | |
-| filterType | 组件类型 | string |  | 当前组件有`input` `date` `select` `btn` |
+| filterType | 组件类型 | string | | 当前组件有`input` `date` `select` `btn` |
 | defaultVal | 选中项默认值 | string / number / boolean |
 | option | 当 filterType='select'时，下拉框选项 | array |
 | width | 宽度 | string |
