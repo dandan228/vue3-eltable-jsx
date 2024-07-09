@@ -115,6 +115,7 @@ return () => (
 | option | 当 filterType='select'时，下拉框选项 | array |
 | width | 宽度 | string |
 | btnArr | 按钮组 | array |
+| appendBtn | 当 filterType='input'时，开启input右边插槽按钮 | boolean |
 
 **formColumns 属性示例**
 
@@ -126,6 +127,7 @@ export const formColumns = [
     filterType: "select",
     defaultVal: 0,
     width: "140",
+    appendBtn: true,
     option: [
       { label: "全部", value: 0 },
       { label: "通过", value: 1 },
@@ -191,6 +193,7 @@ export const columns = [
 | onFormEvent | searchForm 按钮事件 | e: {form, btnInfo} |
 | onResetSearch | 重置搜索 | resetForm |
 | onRadioChange | 单选框 | e |
+| inputBtnSearch | input右边插槽按钮事件 | val |
 | resetModelForm | 使用 ref 来调用子组件的 resetModelForm 方法`FormRef.value.resetModelForm()`，以达到清空数据的效果 | |
 
 `属性`
@@ -213,6 +216,7 @@ export const columns = [
 | onSortChange | table 表头排序事件 | sort |
 | rowItemEvent | table 里的 a 标签 | row |
 | onRadioChange | 单选框 | e |
+| inputBtnSearch | input右边插槽按钮事件 | val |
 
 `属性`
 | 属性名 | 说明 | 出参 |

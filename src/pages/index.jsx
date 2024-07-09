@@ -174,6 +174,10 @@ export default defineComponent({
       console.log("radioChange--", e);
     };
 
+    const inputBtnSearch = (val) => {
+      console.log("inputBtnSearch--", val);
+    };
+
     const FormRef = ref(null);
 
     return () => (
@@ -196,6 +200,7 @@ export default defineComponent({
             inline={false}
             onFormEvent={diaFormEvent}
             onRadioChange={radioChange}
+            onInputBtnSearch={inputBtnSearch}
           />
         </Dialog>
         <MTable
@@ -221,6 +226,7 @@ export default defineComponent({
           onSwitchChange={switchChange}
           onSortChange={sortChange}
           onRowItemEvent={rowItemEvent}
+          onInputBtnSearch={inputBtnSearch}
         />
       </div>
     );

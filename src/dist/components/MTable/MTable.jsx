@@ -150,6 +150,9 @@ export default defineComponent({
     const radioChange = e => {
       emit("radioChange", e);
     }
+    const inputBtnSearch = val => {
+      emit("inputBtnSearch", val);
+    }
 
     // 渲染输入框插槽
     const renderInputSlot = (scope, col, colIdx) => {
@@ -201,6 +204,7 @@ export default defineComponent({
           onFormEvent={formEvent}
           onResetSearch={resetSearch}
           onRadioChange={radioChange}
+          onInputBtnSearch={inputBtnSearch}
         />
         {/* 渲染表格组件 */}
         <Table

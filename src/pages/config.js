@@ -16,6 +16,7 @@ export const formColumns = [
         prop: "name",
         label: "昵称",
         filterType: "input",
+        appendBtn: true
     },
     {
         prop: "state",
@@ -50,6 +51,7 @@ export const dialogColumns = [
         prop: "name",
         label: "昵称",
         filterType: "input",
+        appendBtn: true
     },
     {
         prop: "pic",

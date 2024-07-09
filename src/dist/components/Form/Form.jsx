@@ -12,7 +12,7 @@ import {
   ElRadioGroup,
   ElRadio,
 } from "element-plus";
-import { Plus } from "@element-plus/icons-vue";
+import { Plus, Search } from "@element-plus/icons-vue";
 import { defineComponent, reactive } from "vue";
 import { isArrayProperty } from "../../utils/judgeType";
 import "./Form.css";
@@ -104,6 +104,10 @@ export const Form = defineComponent({
       emit("radioChange", e);
     };
 
+    const inputBtnSearch = (val) => {
+      emit("inputBtnSearch", val)
+    }
+
     const resetModelForm = () => {
       state.modelForm = {};
     };
@@ -120,7 +124,11 @@ export const Form = defineComponent({
         {formColumns?.map((s, index) => (
           <ElFormItem label={s.filterType === "btn" ? "" : s.label} key={index}>
             {s.filterType === "input" && (
-              <ElInput v-model={state.modelForm[s.prop]} />
+              <ElInput v-model={state.modelForm[s.prop]}>
+                {{
+                  append: s.appendBtn ? () => <ElButton onClick={()=>{inputBtnSearch(state.modelForm[s.prop])}} icon={Search} /> : null
+                }}
+              </ElInput>
             )}
             {s.filterType === "date" && (
               <ElDatePicker
