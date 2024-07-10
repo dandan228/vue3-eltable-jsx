@@ -12,7 +12,7 @@
     "@element-plus/icons-vue": "^2.3.1",
     "@vitejs/plugin-vue-jsx": "^4.0.0",
     "axios": "^1.7.2",
-    "el-table-jsx": "^0.1.6",
+    "el-table-jsx": "^0.3.8",
     "element-plus": "^2.7.6",
     "vue": "^3.2.20"
   },

@@ -116,7 +116,12 @@ export const Form = defineComponent({
 
     const renderFormItem = (s, index) => {
       const inputField = (
-        <ElInput v-model={state.modelForm[s.prop]}>
+        <ElInput
+          v-model={state.modelForm[s.prop]}
+          disabled={s.disabled}
+          type={s.type}
+          size={s.size}
+        >
           {{
             append: s.appendBtn
               ? () => (

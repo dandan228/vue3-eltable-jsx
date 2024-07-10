@@ -1,6 +1,6 @@
 #### 为什么用*el-table-jsx*
 
-> 当后台模块都需重复开发时，利用基于 Vue 3 和 Element Plus 的`JSX`封装组件，您只需专注于配置，无需处理内部逻辑。无论是表格（table）、表单（form），还是对话框（dialog），统一管理和快速开发都变得异常简便！
+> 当后台模块都需重复开发时，利用基于 Vue 3 和 Element Plus 的`JSX`封装组件，您只需专注于配置，无需处理内部逻辑。无论是表格`table`、表单`form`，还是对话框`dialog`等组件，统一管理和快速开发都变得异常简便！
 
 **<span style="color:blue;">1. 先说说背景</span>**
 
@@ -57,45 +57,86 @@ export default defineConfig({
 2. 引入组件（具体用法，可以看 src/pages/index.jsx, 或者 src/pages/index.vue）
 
 ```js
-// 这是template用法
+// template用法
 <template>
-  <MTable
-    :columns="columns"
-    :data="state.tableData"
-    :pageInfo="{
-      total: 0,
-      page: 1,
-      pageSize: 10,
-    }"
-  />
+  <MTable :columns="columns" :tableData="tableData" />
 </template>
+<script setup>
+import { MTable } from 'el-table-jsx'
 
-// MTable= Form + Table + Pagination + Dialog
-import { MTable, Form, Table, Pagination, Dialog } from "el-table-jsx";
+const columns = [
+  {
+    prop: "date",
+    label: "Date",
+    width: "280",
+    sortable: true,
+  },
+  {
+    prop: "name",
+    label: "昵称",
+    width: "180",
+    color: "blue",
+  },
+]
+
+const tableData = [
+  {
+    data: '2020-09-01',
+    name: '张三'
+  },
+  {
+    data: '2020-09-02',
+    name: '李四'
+  }
+]
+</script>
+```
 
 
+```js
+// jsx用法
+import { defineComponent, reactive } from "vue";
+import { MTable } from "el-table-jsx";
 
-// 这是jsx用法
-return () => (
-      <MTable
-        columns={columns}
-        formColumns={formColumns}
-        tableData={state.tableData}
-        pageInfo={state.pageInfo}
-        btnByStateMap={btnByStateMap}
-        btnByStateMapAt={"state"}
-        tableMultiple
-        onFormEvent={formEvent}
-        onTableBtnEvent={tableBtnEvent}
-        onPageSizeEvent={pageSizeEvent}
-        onPageEvent={pageEvent}
-        onResetSearch={resetSearch}
-        onTableInput={tableInput}
-        onTableBlur={tableBlur}
-        onSelectCheckbox={selectCheckbox}
-        onSwitchChange={switchChange}
-      />
+const columns = [
+  {
+    prop: "date",
+    label: "Date",
+    width: "280",
+    sortable: true,
+  },
+  {
+    prop: "name",
+    label: "昵称",
+    width: "180",
+    color: "blue",
+  },
+];
+
+const tableData = [
+  {
+    date: "2020-09-01",
+    name: "张三",
+  },
+  {
+    date: "2020-09-02",
+    name: "李四",
+  },
+];
+
+defineComponent({
+  name: "TableComponent",
+  setup() {
+    const state = reactive({
+      columns,
+      tableData,
+    });
+
+    return () => (
+      <MTable columns={state.columns} tableData={state.tableData} />
     );
+  },
+});
 ```
 
 3. 当单独使用`table`组件，table 里需要使用 input，switch,按钮时，需要单独引入插槽，如下
@@ -117,6 +158,9 @@ return () => (
 | btnArr | 按钮组 | array |
 | appendBtn | 当 filterType='input'时，开启input右边插槽按钮 | boolean |
 | rules | 表单验证规则 | object |
+| type | 类型 | string 等 <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types">原生 input 类型</a> |
+| disabled | 是否禁用 | boolean |
+| size | 输入框尺寸，只在 type 不为 'textarea' 时有效 | enum |
 
 **formColumns 属性示例**
 
