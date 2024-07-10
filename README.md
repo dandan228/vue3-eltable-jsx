@@ -92,7 +92,6 @@ const tableData = [
 </script>
 ```
 
-
 ```js
 // jsx用法
 import { defineComponent, reactive } from "vue";
@@ -132,9 +131,7 @@ defineComponent({
       tableData,
     });
 
-    return () => (
-      <MTable columns={state.columns} tableData={state.tableData} />
-    );
+    return () => <MTable columns={state.columns} tableData={state.tableData} />;
   },
 });
 ```
@@ -156,11 +153,12 @@ defineComponent({
 | option | 当 filterType='select'时，下拉框选项 | array |
 | width | 宽度 | string |
 | btnArr | 按钮组 | array |
-| appendBtn | 当 filterType='input'时，开启input右边插槽按钮 | boolean |
+| appendBtn | 当 filterType='input'时，开启 input 右边插槽按钮 | boolean |
 | rules | 表单验证规则 | object |
 | type | 类型 | string 等 <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types">原生 input 类型</a> |
 | disabled | 是否禁用 | boolean |
 | size | 输入框尺寸，只在 type 不为 'textarea' 时有效 | enum |
+| placeholder | 输入框占位文本 | string |
 
 **formColumns 属性示例**
 
@@ -238,7 +236,7 @@ export const columns = [
 | onFormEvent | searchForm 按钮事件 | e: {form, btnInfo} |
 | onResetSearch | 重置搜索 | resetForm |
 | onRadioChange | 单选框 | e |
-| inputBtnSearch | input右边插槽按钮事件 | val |
+| inputBtnSearch | input 右边插槽按钮事件 | val |
 | resetModelForm | 使用 ref 来调用子组件的 resetModelForm 方法`FormRef.value.resetModelForm()`，以达到清空数据的效果 | |
 
 `属性`
@@ -246,7 +244,7 @@ export const columns = [
 |--------|------|------|
 | formColumns | formColumns | |
 | inline | 行内表单模式 | |
-| labelWidth | 标签的长度，例如 '50px'。 作为 Form 直接子元素的 form-item 会继承该值。 可以使用 auto | |
+| labelWidth | 标签的长度，例如 '50'。 作为 Form 直接子元素的 form-item 会继承该值。 可以使用 auto | |
 | labelPosition | 表单域标签的位置， 当设置为 left 或 right 时，则也需要设置 label-width 属性 | |
 
 <span style="color:red;">table</span>
@@ -261,7 +259,7 @@ export const columns = [
 | onSortChange | table 表头排序事件 | sort |
 | rowItemEvent | table 里的 a 标签 | row |
 | onRadioChange | 单选框 | e |
-| inputBtnSearch | input右边插槽按钮事件 | val |
+| inputBtnSearch | input 右边插槽按钮事件 | val |
 
 `属性`
 | 属性名 | 说明 | 出参 |
@@ -288,6 +286,8 @@ export const columns = [
 | pageInfo | 分页信息 |      |
 
 <span style="color:red;">dialog</span>
+
+> 注意：当使用 dialog 时，需要加上事件 onCloseDialog={() => {state.dialogVisible = false;}}， 否则第二次打不开弹窗
 
 `属性`
 

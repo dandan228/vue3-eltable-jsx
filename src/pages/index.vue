@@ -1,26 +1,34 @@
 <template>
-  <MTable
-    :columns="columns"
-    :formColumns="formColumns"
-    :tableData="state.tableData"
-    :pageInfo="state.pageInfo"
-    :btnByStateMap="btnByStateMap"
-    btnByStateMapAt="state"
-    @formEvent="formEvent"
-    @tableBtnEvent="tableBtnEvent"
-    @pageSizeEvent="pageSizeEvent"
-    @pageEvent="pageEvent"
-    @resetSearch="resetSearch"
-    @tableInput="tableInput"
-    @tableBlur="tableBlur"
-  />
+  <div>
+    <Dialog
+      :dialogVisible="state.dialogVisible"
+      @closeDialog="state.dialogVisible = false"
+    >
+      <Form></Form>
+    </Dialog>
+    <MTable
+      :columns="columns"
+      :formColumns="formColumns"
+      :tableData="state.tableData"
+      :pageInfo="state.pageInfo"
+      :btnByStateMap="btnByStateMap"
+      btnByStateMapAt="state"
+      @formEvent="formEvent"
+      @tableBtnEvent="tableBtnEvent"
+      @pageSizeEvent="pageSizeEvent"
+      @pageEvent="pageEvent"
+      @resetSearch="resetSearch"
+      @tableInput="tableInput"
+      @tableBlur="tableBlur"
+    />
+  </div>
 </template>
 <script>
 name: "Index";
 </script>
 <script setup>
 import { reactive } from "vue";
-import { MTable } from "../dist/index.js";
+import { MTable, Dialog, Form } from "../dist/index.js";
 import { columns, formColumns, btnByStateMap } from "./config.js";
 import axiox from "axios";
 
@@ -34,6 +42,7 @@ const state = reactive({
   },
   // 保存当前筛选参数
   lastFilter: {},
+  dialogVisible: false,
 });
 
 const fetchTableData = async (params) => {
@@ -56,13 +65,24 @@ const updateTableData = () => {
 };
 
 const formEvent = (e) => {
-  // search=>操作栏form, btnInfo=》操作栏按钮信息
-  const { search, btnInfo } = e;
-  console.log("search-------", search);
-  state.pageInfo.page = 1;
-  // 保存当前筛选参数
-  state.lastFilter = search;
-  updateTableData();
+  // form=>操作栏form, btnInfo=》操作栏按钮信息
+  const { form, btnInfo } = e;
+  // console.log("form", form);
+  // console.log("btnInfo", btnInfo);
+
+  const eventsMap = {
+    0: () => {
+      // 保存当前筛选参数
+      state.lastFilter = form;
+      state.pageInfo.page = 1;
+      updateTableData();
+    },
+    1: () => {
+      state.dialogVisible = true;
+    },
+  };
+
+  eventsMap[btnInfo.btnId]();
 };
 
 const tableBtnEvent = (e) => {

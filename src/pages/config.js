@@ -17,6 +17,7 @@ export const formColumns = [
         label: "昵称",
         filterType: "input",
         appendBtn: true,
+        placeholder: '输入框'
     },
     {
         prop: "state",

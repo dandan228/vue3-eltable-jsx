@@ -53,6 +53,7 @@ export const Form = defineComponent({
     formColumns: {
       type: Array,
       required: true,
+      default: () => [],
     },
     inline: {
       type: Boolean,
@@ -121,6 +122,7 @@ export const Form = defineComponent({
           disabled={s.disabled}
           type={s.type}
           size={s.size}
+          placeholder={s.placeholder}
         >
           {{
             append: s.appendBtn
