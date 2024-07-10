@@ -105,8 +105,8 @@ export const Form = defineComponent({
     };
 
     const inputBtnSearch = (val) => {
-      emit("inputBtnSearch", val)
-    }
+      emit("inputBtnSearch", val);
+    };
 
     const resetModelForm = () => {
       state.modelForm = {};
@@ -126,7 +126,16 @@ export const Form = defineComponent({
             {s.filterType === "input" && (
               <ElInput v-model={state.modelForm[s.prop]}>
                 {{
-                  append: s.appendBtn ? () => <ElButton onClick={()=>{inputBtnSearch(state.modelForm[s.prop])}} icon={Search} /> : null
+                  append: s.appendBtn
+                    ? () => (
+                        <ElButton
+                          onClick={() => {
+                            inputBtnSearch(state.modelForm[s.prop]);
+                          }}
+                          icon={Search}
+                        />
+                      )
+                    : null,
                 }}
               </ElInput>
             )}
