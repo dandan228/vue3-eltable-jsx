@@ -17,6 +17,36 @@ import { defineComponent, reactive } from "vue";
 import { isArrayProperty } from "../../utils/judgeType";
 import "./Form.css";
 
+const shortcuts = [
+  {
+    text: "Last week",
+    value: () => {
+      const end = new Date();
+      const start = new Date();
+      start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+      return [start, end];
+    },
+  },
+  {
+    text: "Last month",
+    value: () => {
+      const end = new Date();
+      const start = new Date();
+      start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+      return [start, end];
+    },
+  },
+  {
+    text: "Last 3 months",
+    value: () => {
+      const end = new Date();
+      const start = new Date();
+      start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+      return [start, end];
+    },
+  },
+];
+
 export const Form = defineComponent({
   name: "FormComponent",
   props: {
@@ -41,11 +71,10 @@ export const Form = defineComponent({
       default: "right",
     },
   },
-
   setup(props, { emit, expose }) {
     const { formColumns, inline, labelPosition, labelWidth, actionUrl } = props;
 
-    const initForm = formColumns?.reduce((acc, item) => {
+    const initForm = formColumns.reduce((acc, item) => {
       if (item.prop) {
         // 当 item.defaultVal 为 number 0 时，不给赋值，所以加个判断
         acc[item.prop] = item.defaultVal !== undefined ? item.defaultVal : "";
@@ -53,9 +82,7 @@ export const Form = defineComponent({
       return acc;
     }, {});
 
-    const state = reactive({
-      modelForm: initForm,
-    });
+    const state = reactive({ modelForm: initForm });
 
     const formEvent = (btnInfo) => {
       emit("formEvent", { form: state.modelForm, btnInfo });
@@ -66,53 +93,116 @@ export const Form = defineComponent({
       emit("resetSearch", state.modelForm);
     };
 
-    const shortcuts = [
-      {
-        text: "Last week",
-        value: () => {
-          const end = new Date();
-          const start = new Date();
-          start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
-          return [start, end];
-        },
-      },
-      {
-        text: "Last month",
-        value: () => {
-          const end = new Date();
-          const start = new Date();
-          start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
-          return [start, end];
-        },
-      },
-      {
-        text: "Last 3 months",
-        value: () => {
-          const end = new Date();
-          const start = new Date();
-          start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
-          return [start, end];
-        },
-      },
-    ];
+    const onSuccess = (e) => emit("onSuccess", e);
 
-    const onSuccess = (e) => {
-      emit("onSuccess", e);
-    };
+    const radioChange = (e) => emit("radioChange", e);
 
-    const radioChange = (e) => {
-      emit("radioChange", e);
-    };
-
-    const inputBtnSearch = (val) => {
-      emit("inputBtnSearch", val);
-    };
+    const inputBtnSearch = (val) => emit("inputBtnSearch", val);
 
     const resetModelForm = () => {
       state.modelForm = {};
     };
 
     expose({ resetModelForm });
+
+    const renderFormItem = (s, index) => {
+      const inputField = (
+        <ElInput v-model={state.modelForm[s.prop]}>
+          {{
+            append: s.appendBtn
+              ? () => (
+                  <ElButton
+                    onClick={() => {
+                      inputBtnSearch(state.modelForm[s.prop]);
+                    }}
+                    icon={Search}
+                  />
+                )
+              : null,
+          }}
+        </ElInput>
+      );
+
+      const dateField = (
+        <ElDatePicker
+          v-model={state.modelForm[s.prop]}
+          type="daterange"
+          unlink-panels
+          range-separator="To"
+          start-placeholder="Start date"
+          end-placeholder="End date"
+          shortcuts={shortcuts}
+          format="YYYY/MM/DD"
+          value-format="YYYY-MM-DD"
+        />
+      );
+
+      const selectField = (
+        <ElSelect
+          v-model={state.modelForm[s.prop]}
+          style={{ width: s.width ? `${s.width}px` : "240px" }}
+        >
+          {isArrayProperty(s, "option") &&
+            s.option.map((opt) => (
+              <ElOption key={opt.value} value={opt.value} label={opt.label} />
+            ))}
+        </ElSelect>
+      );
+
+      const switchField = <ElSwitch v-model={state.modelForm[s.prop]} />;
+
+      const uploadField = (
+        <ElUpload
+          className="avatar-uploader"
+          action={actionUrl}
+          onSuccess={onSuccess}
+        >
+          <ElIcon>
+            <Plus />
+          </ElIcon>
+        </ElUpload>
+      );
+
+      const radioField = (
+        <ElRadioGroup v-model={state.modelForm[s.prop]} onChange={radioChange}>
+          {s.radioArr?.map((r) => (
+            <ElRadio value={r.value} size={r.size} key={r.value}>
+              {r.label}
+            </ElRadio>
+          ))}
+        </ElRadioGroup>
+      );
+
+      const buttonField = s.btnArr
+        ? s.btnArr.map((btn, btnIdx) => (
+            <ElButton
+              onClick={() =>
+                btn.label === "重置" ? resetSearch() : formEvent(btn)
+              }
+              key={btnIdx}
+              type={btn.color}
+            >
+              {btn.label}
+            </ElButton>
+          ))
+        : null;
+
+      const fieldTypeMap = {
+        input: inputField,
+        date: dateField,
+        select: selectField,
+        switch: switchField,
+        upload: uploadField,
+        radio: radioField,
+        btn: buttonField,
+      };
+
+      return (
+        <ElFormItem label={s.filterType === "btn" ? "" : s.label} key={index}>
+          {fieldTypeMap[s.filterType]}
+        </ElFormItem>
+      );
+    };
 
     return () => (
       <ElForm
@@ -121,97 +211,7 @@ export const Form = defineComponent({
         label-position={labelPosition}
         label-width={labelWidth}
       >
-        {formColumns?.map((s, index) => (
-          <ElFormItem label={s.filterType === "btn" ? "" : s.label} key={index}>
-            {s.filterType === "input" && (
-              <ElInput v-model={state.modelForm[s.prop]}>
-                {{
-                  append: s.appendBtn
-                    ? () => (
-                        <ElButton
-                          onClick={() => {
-                            inputBtnSearch(state.modelForm[s.prop]);
-                          }}
-                          icon={Search}
-                        />
-                      )
-                    : null,
-                }}
-              </ElInput>
-            )}
-            {s.filterType === "date" && (
-              <ElDatePicker
-                v-model={state.modelForm[s.prop]}
-                type="daterange"
-                unlink-panels
-                range-separator="To"
-                start-placeholder="Start date"
-                end-placeholder="End date"
-                shortcuts={shortcuts}
-                format="YYYY/MM/DD"
-                value-format="YYYY-MM-DD"
-              />
-            )}
-            {s.filterType === "select" && (
-              <ElSelect
-                v-model={state.modelForm[s.prop]}
-                style={{ width: Boolean(s.width) ? `${s.width}px` : "240px" }}
-              >
-                {isArrayProperty(s, "option")
-                  ? s.option.map((s, i) => (
-                      <ElOption
-                        key={s.value}
-                        value={s.value}
-                        label={s.label}
-                      ></ElOption>
-                    ))
-                  : null}
-              </ElSelect>
-            )}
-            {s.filterType === "switch" && (
-              <ElSwitch v-model={state.modelForm[s.prop]} />
-            )}
-            {s.filterType === "upload" && (
-              <ElUpload
-                className="avatar-uploader"
-                action={actionUrl}
-                onSuccess={onSuccess}
-              >
-                <ElIcon>
-                  <Plus />
-                </ElIcon>
-              </ElUpload>
-            )}
-            {s.filterType === "radio" && (
-              <ElRadioGroup
-                v-model={state.modelForm[s.prop]}
-                onChange={radioChange}
-              >
-                {s.radioArr.map((r) => (
-                  <ElRadio value={r.value} size={r.size} key={r.value}>
-                    {r.label}
-                  </ElRadio>
-                ))}
-              </ElRadioGroup>
-            )}
-            {s.filterType === "btn" &&
-              s.btnArr.map((btn, btnIdx) => (
-                <ElButton
-                  onClick={() => {
-                    if (btn.label === "重置") {
-                      resetSearch();
-                    } else {
-                      formEvent(btn, btnIdx);
-                    }
-                  }}
-                  key={btnIdx}
-                  type={btn.color}
-                >
-                  {btn.label}
-                </ElButton>
-              ))}
-          </ElFormItem>
-        ))}
+        {formColumns.map((s, index) => renderFormItem(s, index))}
       </ElForm>
     );
   },
