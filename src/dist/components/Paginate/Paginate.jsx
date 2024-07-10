@@ -19,7 +19,7 @@ export const Pagination = (props, { slots }) => {
           layout="total, sizes, prev, pager, next, jumper"
           total={pageInfo.total}
           pageSizes={[5, 10, 15, 20]}
-          currentPage={pageInfo.page}
+          currentPage={pageInfo.pageNum}
           pageSize={pageInfo.pageSize}
           onSizeChange={pageSizeEvent}
           onCurrentChange={curPageChange}

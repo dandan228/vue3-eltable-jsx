@@ -16,7 +16,7 @@ export default defineComponent({
       pageInfo: {
         total: 0,
         pageSize: 5,
-        page: 1,
+        pageNum: 1,
       },
       // 保存当前筛选参数
       lastFilter: {},
@@ -38,7 +38,7 @@ export default defineComponent({
 
     const updateTableData = () => {
       fetchTableData({
-        page: state.pageInfo.page,
+        pageNum: state.pageInfo.pageNum,
         pageSize: state.pageInfo.pageSize,
         ...state.lastFilter,
       });
@@ -54,7 +54,7 @@ export default defineComponent({
         0: () => {
           // 保存当前筛选参数
           state.lastFilter = form;
-          state.pageInfo.page = 1;
+          state.pageInfo.pageNum = 1;
           updateTableData();
         },
         1: () => {
@@ -128,14 +128,14 @@ export default defineComponent({
       state.pageInfo.pageSize = pageSize;
       updateTableData();
     };
-    const pageEvent = (page) => {
+    const pageEvent = (pageNum) => {
       // pageSize=>当前页
-      state.pageInfo.page = page;
+      state.pageInfo.pageNum = pageNum;
       updateTableData();
     };
 
     const resetSearch = (resetForm) => {
-      state.pageInfo.page = 1; // 重置页码为1
+      state.pageInfo.pageNum = 1; // 重置页码为1
       state.pageInfo.pageSize = 5; // 重置页容量为5
       state.lastFilter = resetForm;
       updateTableData();

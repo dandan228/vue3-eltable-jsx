@@ -7,7 +7,7 @@ Mock.mock("/api/getList", "post", (options) => {
   // 模拟数据总数和每页条数
   const total = 20; // 假设总数据量为20条
   const pageSize = params.pageSize || 5; // 每页默认5条数据
-  const page = params.page || 1; // 默认第一页
+  const pageNum = params.pageNum || 1; // 默认第一页
 
   // 模拟生成当前页的数据
   const data = Mock.mock({
@@ -31,7 +31,7 @@ Mock.mock("/api/getList", "post", (options) => {
     message: "Success",
     data: {
       total,
-      page,
+      pageNum,
       pageSize,
       list: data,
     },

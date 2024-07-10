@@ -92,9 +92,9 @@ export default defineComponent({
     };
 
     // 处理页码变化
-    const pageEvent = (page) => {
+    const pageEvent = (pageNum) => {
       // 触发 pageEvent 事件，并传递新的页码
-      emit("pageEvent", page);
+      emit("pageEvent", pageNum);
     };
 
     // 处理筛选表单提交

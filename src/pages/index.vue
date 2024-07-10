@@ -38,7 +38,7 @@ const state = reactive({
   pageInfo: {
     total: 0,
     pageSize: 5,
-    page: 1,
+    pageNum: 1,
   },
   // 保存当前筛选参数
   lastFilter: {},
@@ -58,7 +58,7 @@ fetchTableData({});
 
 const updateTableData = () => {
   fetchTableData({
-    page: state.pageInfo.page,
+    pageNum: state.pageInfo.pageNum,
     pageSize: state.pageInfo.pageSize,
     ...state.lastFilter,
   });
@@ -74,7 +74,7 @@ const formEvent = (e) => {
     0: () => {
       // 保存当前筛选参数
       state.lastFilter = form;
-      state.pageInfo.page = 1;
+      state.pageInfo.pageNum = 1;
       updateTableData();
     },
     1: () => {
@@ -104,15 +104,15 @@ const pageSizeEvent = (pageSize) => {
   state.pageInfo.pageSize = pageSize;
   updateTableData();
 };
-const pageEvent = (page) => {
-  console.log("pageEvent", page);
+const pageEvent = (pageNum) => {
+  console.log("pageEvent", pageNum);
   // pageSize=>当前页
-  state.pageInfo.page = page;
+  state.pageInfo.pageNum = pageNum;
   updateTableData();
 };
 
 const resetSearch = (resetForm) => {
-  state.pageInfo.page = 1; // 重置页码为1
+  state.pageInfo.pageNum = 1; // 重置页码为1
   state.pageInfo.pageSize = 5; // 重置页容量为5
   state.lastFilter = resetForm;
   updateTableData();
