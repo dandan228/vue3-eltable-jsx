@@ -51,7 +51,12 @@ export const dialogColumns = [
         prop: "name",
         label: "昵称",
         filterType: "input",
-        appendBtn: true
+        appendBtn: true,
+        rules: {
+            required: true,
+            message: 'domain can not be null',
+            trigger: 'blur',
+        }
     },
     {
         prop: "pic",

@@ -86,7 +86,6 @@ export default defineComponent({
 
     const diaConfirm = (form) => {
       console.log("diaConfirm", form);
-      state.dialogVisible = false;
       if (FormRef.value) {
         FormRef.value.resetModelForm();
       }

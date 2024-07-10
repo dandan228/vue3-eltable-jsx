@@ -13,7 +13,7 @@ import {
   ElRadio,
 } from "element-plus";
 import { Plus, Search } from "@element-plus/icons-vue";
-import { defineComponent, reactive } from "vue";
+import { defineComponent, reactive, ref } from "vue";
 import { isArrayProperty } from "../../utils/judgeType";
 import "./Form.css";
 
@@ -84,7 +84,16 @@ export const Form = defineComponent({
 
     const state = reactive({ modelForm: initForm });
 
-    const formEvent = (btnInfo) => {
+    const formEvent = (btnInfo, formEl) => {
+      if (!formEl) return;
+      formEl.value.validate((valid) => {
+        if (valid) {
+          console.log("submit!");
+        } else {
+          console.log("error submit!");
+        }
+      });
+
       emit("formEvent", { form: state.modelForm, btnInfo });
     };
 
@@ -177,7 +186,7 @@ export const Form = defineComponent({
         ? s.btnArr.map((btn, btnIdx) => (
             <ElButton
               onClick={() =>
-                btn.label === "重置" ? resetSearch() : formEvent(btn)
+                btn.label === "重置" ? resetSearch() : formEvent(btn, formRef)
               }
               key={btnIdx}
               type={btn.color}
@@ -198,14 +207,22 @@ export const Form = defineComponent({
       };
 
       return (
-        <ElFormItem label={s.filterType === "btn" ? "" : s.label} key={index}>
+        <ElFormItem
+          label={s.filterType === "btn" ? "" : s.label}
+          key={index}
+          rules={s.rules}
+          prop={s.prop}
+        >
           {fieldTypeMap[s.filterType]}
         </ElFormItem>
       );
     };
 
+    const formRef = ref(null);
+
     return () => (
       <ElForm
+        ref={formRef}
         model={state.modelForm}
         inline={inline}
         label-position={labelPosition}
