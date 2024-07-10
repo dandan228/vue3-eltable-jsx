@@ -39,6 +39,38 @@ export default defineComponent({
       type: Object,
       default: () => ({}),
     },
+    shortcuts: {
+      type: Array,
+      default: () => [
+        {
+          text: "Last week",
+          value: () => {
+            const end = new Date();
+            const start = new Date();
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+            return [start, end];
+          },
+        },
+        {
+          text: "Last month",
+          value: () => {
+            const end = new Date();
+            const start = new Date();
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+            return [start, end];
+          },
+        },
+        {
+          text: "Last 3 months",
+          value: () => {
+            const end = new Date();
+            const start = new Date();
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+            return [start, end];
+          },
+        },
+      ],
+    },
   },
 
   setup(props, { emit }) {
@@ -52,6 +84,7 @@ export default defineComponent({
       btnByStateMapAt,
       tableMultiple,
       defaultSort,
+      shortcuts,
     } = props;
 
     // 当btnByStateMap传递了这个值，btnByStateMapAt这个就必须传
@@ -147,12 +180,12 @@ export default defineComponent({
     const rowItemEvent = (row) => {
       emit("rowItemEvent", row);
     };
-    const radioChange = e => {
+    const radioChange = (e) => {
       emit("radioChange", e);
-    }
-    const inputBtnSearch = val => {
+    };
+    const inputBtnSearch = (val) => {
       emit("inputBtnSearch", val);
-    }
+    };
 
     // 渲染输入框插槽
     const renderInputSlot = (scope, col, colIdx) => {
@@ -201,6 +234,7 @@ export default defineComponent({
         {/* 渲染筛选表单组件 */}
         <Form
           formColumns={formColumns}
+          shortcuts={shortcuts}
           onFormEvent={formEvent}
           onResetSearch={resetSearch}
           onRadioChange={radioChange}

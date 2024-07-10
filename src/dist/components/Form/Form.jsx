@@ -17,36 +17,6 @@ import { defineComponent, reactive, ref } from "vue";
 import { isArrayProperty } from "../../utils/judgeType";
 import "./Form.css";
 
-const shortcuts = [
-  {
-    text: "Last week",
-    value: () => {
-      const end = new Date();
-      const start = new Date();
-      start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
-      return [start, end];
-    },
-  },
-  {
-    text: "Last month",
-    value: () => {
-      const end = new Date();
-      const start = new Date();
-      start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
-      return [start, end];
-    },
-  },
-  {
-    text: "Last 3 months",
-    value: () => {
-      const end = new Date();
-      const start = new Date();
-      start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
-      return [start, end];
-    },
-  },
-];
-
 export const Form = defineComponent({
   name: "FormComponent",
   props: {
@@ -71,9 +41,48 @@ export const Form = defineComponent({
       type: String,
       default: "right",
     },
+    shortcuts: {
+      type: Array,
+      default: () => [
+        {
+          text: "Last week",
+          value: () => {
+            const end = new Date();
+            const start = new Date();
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+            return [start, end];
+          },
+        },
+        {
+          text: "Last month",
+          value: () => {
+            const end = new Date();
+            const start = new Date();
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+            return [start, end];
+          },
+        },
+        {
+          text: "Last 3 months",
+          value: () => {
+            const end = new Date();
+            const start = new Date();
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+            return [start, end];
+          },
+        },
+      ],
+    },
   },
   setup(props, { emit, expose }) {
-    const { formColumns, inline, labelPosition, labelWidth, actionUrl } = props;
+    const {
+      formColumns,
+      inline,
+      labelPosition,
+      labelWidth,
+      actionUrl,
+      shortcuts,
+    } = props;
 
     const initForm = formColumns.reduce((acc, item) => {
       if (item.prop) {

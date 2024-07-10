@@ -179,6 +179,7 @@ defineComponent({
 | btnByStateMap | 根据状态 columns 属性 key，显示不同的按钮 | {} | object |
 | defaultSort | 表头默认排序(是个对象) | {} | object |
 | pageInfo | 分页信息 |        | object |
+| shortcuts | 设置快捷选项，需要传入数组对象 | 不传默认展示last week, last month, last 3 month | object |
 
 <span style="color:red;">Form</span>
 
@@ -198,6 +199,7 @@ defineComponent({
 | inline | 行内表单模式 | true | boolean |
 | labelWidth | 标签的长度，例如 '50'。 作为 Form 直接子元素的 form-item 会继承该值。 可以使用 auto | | number |
 | labelPosition | 表单域标签的位置， 当设置为 left 或 right 时，则也需要设置 label-width 属性 | right | string |
+| shortcuts | 设置快捷选项，需要传入数组对象 | 不传默认展示last week, last month, last 3 month | object |
 
 <span style="color:red;">table</span>
 

@@ -47,7 +47,7 @@ export default defineComponent({
     const formEvent = (e) => {
       // form=>操作栏form, btnInfo=》操作栏按钮信息
       const { form, btnInfo } = e;
-      // console.log("form", form);
+      console.log("form", form);
       // console.log("btnInfo", btnInfo);
 
       const eventsMap = {
