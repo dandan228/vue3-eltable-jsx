@@ -136,12 +136,126 @@ defineComponent({
 });
 ```
 
-3. 当单独使用`table`组件，table 里需要使用 input，switch,按钮时，需要单独引入插槽，如下
+3. `MTable`组件可以满足多数后台系统
+- 你可以把MTable组件当成Form组件使用，因为MTable集成了Form组件，table组件，分页组件
+- 当table组件交互比较复杂事，可以单独引入`table`组件，table 里需要使用 input，switch,按钮时，需要单独引入插槽，如下
    ![示例图片](./public/cc.jpg)
 
 **<span style="color:blue;">6. Api</span>**
 
 > 切记：当用 template 用法时，事件前缀不需要加 on
+
+<span style="color:red;">MTable </span>
+`事件`
+| 事件名 | 说明 | 出参 |
+|--------|------|------|
+| onFormEvent | Form 表单事件 | e: {form, btnInfo} |
+| onResetSearch | 重置搜索 | Formb 表单默认值 |
+| onRadioChange | 单选框 | e |
+| inputBtnSearch | input 右边插槽按钮事件 | val |
+| resetModelForm | 使用 ref 来调用子组件的 resetModelForm 方法`FormRef.value.resetModelForm()`，以达到清空数据的效果 | |
+| onTableBtnEvent | 操作栏按钮事件 | e: {btn, colIdx, $index, row} |
+| onTableInput | input 事件 | val， row |
+| onSwitchChange | switch 事件 | bln, row |
+| onSelectionChange | table 多选事件 | row |
+| onSortChange | table 表头排序事件 | sort |
+| rowItemEvent | table 里的 a 标签 | row |
+| onRadioChange | 单选框 | e |
+| inputBtnSearch | input 右边插槽按钮事件 | val |
+| onPageSizeEvent | 页容量事件 | pageSize |
+| onPageEvent | 当前页事件 | page |
+
+`属性`
+| 属性名 | 说明 | 默认值 | 类型 |
+|--------|------|------|------|
+| formColumns | formColumns | |
+| inline | 行内表单模式 | true | boolean |
+| labelWidth | 标签的长度，例如 '50'。 作为 Form 直接子元素的 form-item 会继承该值。 可以使用 auto | | number |
+| labelPosition | 表单域标签的位置， 当设置为 left 或 right 时，则也需要设置 label-width 属性 | right | string |
+| tableData | table 源数据 | [] | array |
+| columns | columns | [] | array |
+| tableMultiple | 多选 | false | boolean |
+| btnByStateMapAt | columns 属性 key | | string |
+| btnByStateMap | 根据状态 columns 属性 key，显示不同的按钮 | {} | object |
+| defaultSort | 表头默认排序(是个对象) | {} | object |
+| pageInfo | 分页信息 |        | object |
+
+<span style="color:red;">Form</span>
+
+`事件`
+| 事件名 | 说明 | 出参 |
+|--------|------|------|
+| onFormEvent | Form 表单事件 | e: {form, btnInfo} |
+| onResetSearch | 重置搜索 | Formb 表单默认值 |
+| onRadioChange | 单选框 | e |
+| inputBtnSearch | input 右边插槽按钮事件 | val |
+| resetModelForm | 使用 ref 来调用子组件的 resetModelForm 方法`FormRef.value.resetModelForm()`，以达到清空数据的效果 | |
+
+`属性`
+| 属性名 | 说明 | 默认值 | 类型 |
+|--------|------|------|------|
+| formColumns | formColumns | |
+| inline | 行内表单模式 | true | boolean |
+| labelWidth | 标签的长度，例如 '50'。 作为 Form 直接子元素的 form-item 会继承该值。 可以使用 auto | | number |
+| labelPosition | 表单域标签的位置， 当设置为 left 或 right 时，则也需要设置 label-width 属性 | right | string |
+
+<span style="color:red;">table</span>
+
+`事件`
+| 事件名 | 说明 | 出参 |
+|--------|------|------|
+| onTableBtnEvent | 操作栏按钮事件 | e: {btn, colIdx, $index, row} |
+| onTableInput | input 事件 | val， row |
+| onSwitchChange | switch 事件 | bln, row |
+| onSelectionChange | table 多选事件 | row |
+| onSortChange | table 表头排序事件 | sort |
+| rowItemEvent | table 里的 a 标签 | row |
+| onRadioChange | 单选框 | e |
+| inputBtnSearch | input 右边插槽按钮事件 | val |
+
+`属性`
+| 属性名 | 说明 | 默认值 | 类型 |
+|--------|------|------|------|
+| tableData | table 源数据 | [] | array |
+| columns | columns | [] | array |
+| tableMultiple | 多选 | false | boolean |
+| btnByStateMapAt | columns 属性 key | | string |
+| btnByStateMap | 根据状态 columns 属性 key，显示不同的按钮 | {} | object |
+| defaultSort | 表头默认排序(是个对象) | {} | object |
+
+<span style="color:red;">分页</span>
+
+`事件`
+| 事件名 | 说明 | 出参 |
+|--------|------|------|
+| onPageSizeEvent | 页容量事件 | pageSize |
+| onPageEvent | 当前页事件 | page |
+
+`属性`
+
+| 属性名   | 说明     | 默认值 | 类型   |
+| -------- | -------- | ------ | ------ |
+| pageInfo | 分页信息 |        | object |
+
+<span style="color:red;">dialog</span>
+
+> 注意：当使用 dialog 时，需要加上事件 onCloseDialog={() => {state.dialogVisible = false;}}， 否则第二次打不开弹窗
+
+`事件`
+
+| 属性名        | 说明              | 出参 |
+| ------------- | ----------------- | ---- |
+| onCloseDialog | Dialog 关闭的回调 |      |
+
+`属性`
+
+| 属性名        | 说明           | 默认值 | 类型    |
+| ------------- | -------------- | ------ | ------- |
+| dialogVisible | 是否显示对话框 | false  | boolean |
+| title         | title          |        | string  |
+| width         | width          |        | number  |
+
+
 
 <span style="color:red;">formColumns 属性</span>
 | 属性 | 说明 | 类型 | Default | 备注 |
@@ -227,72 +341,3 @@ export const columns = [
   },
 ];
 ```
-
-<span style="color:red;">Form</span>
-
-`事件`
-| 事件名 | 说明 | 出参 |
-|--------|------|------|
-| onFormEvent | searchForm 按钮事件 | e: {form, btnInfo} |
-| onResetSearch | 重置搜索 | resetForm |
-| onRadioChange | 单选框 | e |
-| inputBtnSearch | input 右边插槽按钮事件 | val |
-| resetModelForm | 使用 ref 来调用子组件的 resetModelForm 方法`FormRef.value.resetModelForm()`，以达到清空数据的效果 | |
-
-`属性`
-| 属性名 | 说明 | 出参 |
-|--------|------|------|
-| formColumns | formColumns | |
-| inline | 行内表单模式 | |
-| labelWidth | 标签的长度，例如 '50'。 作为 Form 直接子元素的 form-item 会继承该值。 可以使用 auto | |
-| labelPosition | 表单域标签的位置， 当设置为 left 或 right 时，则也需要设置 label-width 属性 | |
-
-<span style="color:red;">table</span>
-
-`事件`
-| 事件名 | 说明 | 出参 |
-|--------|------|------|
-| onTableBtnEvent | 操作栏按钮事件 | e: {btn, colIdx, $index, row} |
-| onTableInput | input 事件 | val， row |
-| onSwitchChange | switch 事件 | bln, row |
-| onSelectionChange | table 多选事件 | row |
-| onSortChange | table 表头排序事件 | sort |
-| rowItemEvent | table 里的 a 标签 | row |
-| onRadioChange | 单选框 | e |
-| inputBtnSearch | input 右边插槽按钮事件 | val |
-
-`属性`
-| 属性名 | 说明 | 出参 |
-|--------|------|------|
-| tableData | table 源数据 | |
-| columns | columns | |
-| tableMultiple | 多选 | |
-| btnByStateMapAt | columns 属性 key | |
-| btnByStateMap | 根据状态 columns 属性 key，显示不同的按钮 | |
-| defaultSort | 表头默认排序(是个对象) | |
-
-<span style="color:red;">分页</span>
-
-`事件`
-| 事件名 | 说明 | 出参 |
-|--------|------|------|
-| onPageSizeEvent | 页容量事件 | pageSize |
-| onPageEvent | 当前页事件 | page |
-
-`属性`
-
-| 属性名   | 说明     | 出参 |
-| -------- | -------- | ---- |
-| pageInfo | 分页信息 |      |
-
-<span style="color:red;">dialog</span>
-
-> 注意：当使用 dialog 时，需要加上事件 onCloseDialog={() => {state.dialogVisible = false;}}， 否则第二次打不开弹窗
-
-`属性`
-
-| 属性名        | 说明           | 出参 |
-| ------------- | -------------- | ---- |
-| dialogVisible | 是否显示对话框 |      |
-| title         | title          |      |
-| width         | width          |      |
