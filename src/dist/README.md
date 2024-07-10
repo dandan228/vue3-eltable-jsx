@@ -116,6 +116,7 @@ return () => (
 | width | 宽度 | string |
 | btnArr | 按钮组 | array |
 | appendBtn | 当 filterType='input'时，开启input右边插槽按钮 | boolean |
+| rules | 表单验证规则 | object |
 
 **formColumns 属性示例**
 
