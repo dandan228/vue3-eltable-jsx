@@ -1,3 +1,6 @@
+import { Search } from "@element-plus/icons-vue";
+import { shallowRef } from "vue"
+
 export const tableData = [
     // 0=>显示所有; 1=>通过; 2=>取消; 3=>禁用
     { date: "date", name: "John", state: 0, btn: "按钮1" },
@@ -16,8 +19,6 @@ export const formColumns = [
         prop: "name",
         label: "昵称",
         filterType: "input",
-        appendBtn: true,
-        placeholder: '输入框'
     },
     {
         prop: "state",
@@ -52,7 +53,7 @@ export const dialogColumns = [
         prop: "name",
         label: "昵称",
         filterType: "input",
-        appendBtn: true,
+        appendIcon: shallowRef(Search),
         rules: {
             required: true,
             message: 'domain can not be null',

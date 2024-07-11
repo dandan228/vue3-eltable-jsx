@@ -7,7 +7,7 @@
 - 后台大多数都是 table 表单，重复性的工作，根本提不起精神，就差睡着了
 - 之前也封装了一个 table 组件，用的是 template 写法（[https://juejin.cn/post/7260783336217329724](https://)），但是当需求越复杂，用 template 就不灵活
 
-**<span style="color:blue;">2. 上预览图，我将会持续更新</span>**
+**<span style="color:blue;">2. 上预览图，持续更新中</span>**
 ![示例图片](./public/image.png)
 
 **<span style="color:blue;">3. 目录机构</span>**
@@ -137,9 +137,10 @@ defineComponent({
 ```
 
 3. `MTable`组件可以满足多数后台系统
-- 你可以把MTable组件当成Form组件使用，因为MTable集成了Form组件，table组件，分页组件
-- 当table组件交互比较复杂事，可以单独引入`table`组件，table 里需要使用 input，switch,按钮时，需要单独引入插槽，如下
-   ![示例图片](./public/cc.jpg)
+
+- 你可以把 MTable 组件当成 Form 组件使用，因为 MTable 集成了 Form 组件，table 组件，分页组件
+- 当 table 组件交互比较复杂事，可以单独引入`table`组件，table 里需要使用 input，switch,按钮时，需要单独引入插槽，如下
+  ![示例图片](./public/cc.jpg)
 
 **<span style="color:blue;">6. Api</span>**
 
@@ -178,8 +179,8 @@ defineComponent({
 | btnByStateMapAt | columns 属性 key | | string |
 | btnByStateMap | 根据状态 columns 属性 key，显示不同的按钮 | {} | object |
 | defaultSort | 表头默认排序(是个对象) | {} | object |
-| pageInfo | 分页信息 |        | object |
-| shortcuts | 设置快捷选项，需要传入数组对象 | 不传默认展示last week, last month, last 3 month | object |
+| pageInfo | 分页信息 | | object |
+| shortcuts | 设置快捷选项，需要传入数组对象 | 不传默认展示 last week, last month, last 3 month | object |
 
 <span style="color:red;">Form</span>
 
@@ -199,7 +200,7 @@ defineComponent({
 | inline | 行内表单模式 | true | boolean |
 | labelWidth | 标签的长度，例如 '50'。 作为 Form 直接子元素的 form-item 会继承该值。 可以使用 auto | | number |
 | labelPosition | 表单域标签的位置， 当设置为 left 或 right 时，则也需要设置 label-width 属性 | right | string |
-| shortcuts | 设置快捷选项，需要传入数组对象 | 不传默认展示last week, last month, last 3 month | object |
+| shortcuts | 设置快捷选项，需要传入数组对象 | 不传默认展示 last week, last month, last 3 month | object |
 
 <span style="color:red;">table</span>
 
@@ -224,6 +225,10 @@ defineComponent({
 | btnByStateMapAt | columns 属性 key | | string |
 | btnByStateMap | 根据状态 columns 属性 key，显示不同的按钮 | {} | object |
 | defaultSort | 表头默认排序(是个对象) | {} | object |
+| prependIcon | 当 filterType='input'时，开启 input 前面 icon 插槽 | | icon |
+| prependTxt | 当 filterType='input'时，开启 input 前面 txt 插槽 | | string |
+| appendIcon | 当 filterType='input'时，开启 input 后面 icon 插槽 | | boolean |
+| appendTxt | 当 filterType='input'时，开启 input 后面 txt 插槽 | | string |
 
 <span style="color:red;">分页</span>
 
@@ -257,8 +262,6 @@ defineComponent({
 | title         | title          |        | string  |
 | width         | width          |        | number  |
 
-
-
 <span style="color:red;">formColumns 属性</span>
 | 属性 | 说明 | 类型 | Default | 备注 |
 |--------|------|------|------|------|
@@ -269,7 +272,10 @@ defineComponent({
 | option | 当 filterType='select'时，下拉框选项 | array |
 | width | 宽度 | string |
 | btnArr | 按钮组 | array |
-| appendBtn | 当 filterType='input'时，开启 input 右边插槽按钮 | boolean |
+| prependIcon | 当 filterType='input'时，开启 input 前面 icon 插槽 | icon |
+| prependTxt | 当 filterType='input'时，开启 input 前面 txt 插槽 | string |
+| appendIcon | 当 filterType='input'时，开启 input 后面 icon 插槽 | boolean |
+| appendTxt | 当 filterType='input'时，开启 input 后面 txt 插槽 | string |
 | rules | 表单验证规则 | object |
 | type | 类型 | string 等 <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types">原生 input 类型</a> |
 | disabled | 是否禁用 | boolean |
@@ -286,7 +292,6 @@ export const formColumns = [
     filterType: "select",
     defaultVal: 0,
     width: "140",
-    appendBtn: true,
     option: [
       { label: "全部", value: 0 },
       { label: "通过", value: 1 },

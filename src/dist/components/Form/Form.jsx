@@ -12,7 +12,7 @@ import {
   ElRadioGroup,
   ElRadio,
 } from "element-plus";
-import { Plus, Search } from "@element-plus/icons-vue";
+import { Plus } from "@element-plus/icons-vue";
 import { defineComponent, reactive, ref } from "vue";
 import { isArrayProperty } from "../../utils/judgeType";
 import "./Form.css";
@@ -124,6 +124,32 @@ export const Form = defineComponent({
 
     expose({ resetModelForm });
 
+    const inputSlot = (icon, text, click, prop) => {
+      if (icon) {
+        return () => (
+          <ElButton
+            onClick={() => {
+              click(state.modelForm[prop]);
+            }}
+            icon={icon}
+          />
+        );
+      } else if (text) {
+        return () => (
+          <span
+            onClick={() => {
+              click(state.modelForm[prop]);
+            }}
+            style={{ cursor: "pointer" }}
+          >
+            {text}
+          </span>
+        );
+      } else {
+        return null;
+      }
+    };
+
     const renderFormItem = (s, index) => {
       const inputField = (
         <ElInput
@@ -132,20 +158,21 @@ export const Form = defineComponent({
           type={s.type}
           size={s.size}
           placeholder={s.placeholder}
-        >
-          {{
-            append: s.appendBtn
-              ? () => (
-                  <ElButton
-                    onClick={() => {
-                      inputBtnSearch(state.modelForm[s.prop]);
-                    }}
-                    icon={Search}
-                  />
-                )
-              : null,
+          v-slots={{
+            prepend: inputSlot(
+              s.prependIcon,
+              s.prependTxt,
+              inputBtnSearch,
+              s.prop
+            ),
+            append: inputSlot(
+              s.appendIcon,
+              s.appendTxt,
+              inputBtnSearch,
+              s.prop
+            ),
           }}
-        </ElInput>
+        ></ElInput>
       );
 
       const dateField = (
