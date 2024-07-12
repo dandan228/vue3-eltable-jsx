@@ -262,6 +262,35 @@ defineComponent({
 | title         | title          |        | string  |
 | width         | width          |        | number  |
 
+<span style="color:red;">Descriptions 描述列表</span>
+
+`事件`
+
+| 属性名        | 说明          | 出参 |
+| ------------- | ------------- | ---- |
+| desRightClick | desRightClick |      |
+
+`属性`
+
+| 属性名  | 说明                          | 默认值 | 类型   |
+| ------- | ----------------------------- | ------ | ------ |
+| desInfo | Descriptions 配置             | {}     | object |
+| column  | 一行 Descriptions Item 的数量 | 3      | number |
+
+<span style="color:red;">Tooltip</span>
+
+`事件`
+
+| 属性名        | 说明          | 出参 |
+| ------------- | ------------- | ---- |
+| desRightClick | desRightClick |      |
+
+`属性`
+
+| 属性名      | 说明             | 默认值 | 类型   |
+| ----------- | ---------------- | ------ | ------ |
+| tooltipInfo | tooltipInfo 配置 | {}     | object |
+
 <span style="color:red;">formColumns 属性</span>
 | 属性 | 说明 | 类型 | Default | 备注 |
 |--------|------|------|------|------|
