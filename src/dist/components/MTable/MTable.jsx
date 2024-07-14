@@ -241,23 +241,26 @@ export default defineComponent({
           onInputBtnSearch={inputBtnSearch}
         />
         {/* 渲染表格组件 */}
-        <Table
-          onSelectCheckbox={selectCheckbox}
-          onSortChange={sortChange}
-          onRowItemEvent={rowItemEvent}
-          data={state.tableData}
-          columns={columns}
-          tableMultiple={tableMultiple}
-          defaultSort={defaultSort}
-        >
-          {{
-            btnSlot: renderButtons,
-            inputSlot: renderInputSlot,
-            switchSlot: renderSwitchSlot,
-            imgSlot: renderImgSlot,
-            tagSlot: renderTagSlot,
-          }}
-        </Table>
+        {columns.length > 0 ? (
+          <Table
+            onSelectCheckbox={selectCheckbox}
+            onSortChange={sortChange}
+            onRowItemEvent={rowItemEvent}
+            data={state.tableData}
+            columns={columns}
+            tableMultiple={tableMultiple}
+            defaultSort={defaultSort}
+          >
+            {{
+              btnSlot: renderButtons,
+              inputSlot: renderInputSlot,
+              switchSlot: renderSwitchSlot,
+              imgSlot: renderImgSlot,
+              tagSlot: renderTagSlot,
+            }}
+          </Table>
+        ) : null}
+
         {/* 渲染分页组件 */}
         <Pagination
           data={state.tableData}
