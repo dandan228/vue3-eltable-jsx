@@ -157,6 +157,7 @@ export const Form = defineComponent({
           disabled={s.disabled}
           type={s.type}
           size={s.size}
+          rows={s.rows}
           placeholder={s.placeholder}
           v-slots={{
             prepend: inputSlot(
@@ -228,6 +229,8 @@ export const Form = defineComponent({
       const buttonField = s.btnArr
         ? s.btnArr.map((btn, btnIdx) => (
             <ElButton
+              icon={btn.icon}
+              disabled={btn.disabled}
               onClick={() =>
                 btn.label === "重置" ? resetSearch() : formEvent(btn, formRef)
               }
