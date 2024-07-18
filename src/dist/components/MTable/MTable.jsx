@@ -35,6 +35,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    border: {
+      type: Boolean,
+      default: false,
+    },
     defaultSort: {
       type: Object,
       default: () => ({}),
@@ -85,6 +89,7 @@ export default defineComponent({
       tableMultiple,
       defaultSort,
       shortcuts,
+      border,
     } = props;
 
     // 当btnByStateMap传递了这个值，btnByStateMapAt这个就必须传
@@ -250,6 +255,7 @@ export default defineComponent({
             columns={columns}
             tableMultiple={tableMultiple}
             defaultSort={defaultSort}
+            border={border}
           >
             {{
               btnSlot: renderButtons,
