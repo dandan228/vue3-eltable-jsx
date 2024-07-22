@@ -114,11 +114,13 @@ export const Form = defineComponent({
 
     const onSuccess = (e) => emit("onSuccess", e);
 
-    const radioChange = (val, e) => {
-      emit("radioChange", val, e);
+    const radioChange = (sour, e) => {
+      emit("radioChange", sour, e);
     };
 
-    const inputBtnSearch = (val) => emit("inputBtnSearch", val);
+    const inputBtnSearch = (sour, val, modelForm) => {
+      emit('inputBtnSearch', sour, val, modelForm)
+    }
 
     const resetModelForm = () => {
       state.modelForm = {};
@@ -126,12 +128,12 @@ export const Form = defineComponent({
 
     expose({ resetModelForm });
 
-    const inputSlot = (icon, text, click, prop) => {
+    const inputSlot = (icon, text, click, prop, s, modelForm) => {
       if (icon) {
         return () => (
           <ElButton
             onClick={() => {
-              click(state.modelForm[prop]);
+              click(s, state.modelForm[prop], modelForm);
             }}
             icon={icon}
           />
@@ -140,7 +142,7 @@ export const Form = defineComponent({
         return () => (
           <span
             onClick={() => {
-              click(state.modelForm[prop]);
+              click(s, state.modelForm[prop], modelForm);
             }}
             style={{ cursor: "pointer" }}
           >
@@ -152,7 +154,7 @@ export const Form = defineComponent({
       }
     };
 
-    const renderFormItem = (s, index) => {
+    const renderFormItem = (s, index, modelForm) => {
       const inputField = (
         <ElInput
           v-model={state.modelForm[s.prop]}
@@ -166,13 +168,17 @@ export const Form = defineComponent({
               s.prependIcon,
               s.prependTxt,
               inputBtnSearch,
-              s.prop
+              s.prop,
+              s,
+              modelForm
             ),
             append: inputSlot(
               s.appendIcon,
               s.appendTxt,
               inputBtnSearch,
-              s.prop
+              s.prop,
+              s,
+              modelForm
             ),
           }}
         ></ElInput>
@@ -276,7 +282,7 @@ export const Form = defineComponent({
         label-position={labelPosition}
         label-width={labelWidth}
       >
-        {formColumns.map((s, index) => renderFormItem(s, index))}
+        {formColumns.map((s, index) => renderFormItem(s, index, state.modelForm))}
       </ElForm>
     );
   },
