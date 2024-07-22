@@ -114,7 +114,9 @@ export const Form = defineComponent({
 
     const onSuccess = (e) => emit("onSuccess", e);
 
-    const radioChange = (e) => emit("radioChange", e);
+    const radioChange = (val, e) => {
+      emit("radioChange", val, e);
+    };
 
     const inputBtnSearch = (val) => emit("inputBtnSearch", val);
 
@@ -217,7 +219,7 @@ export const Form = defineComponent({
       );
 
       const radioField = (
-        <ElRadioGroup v-model={state.modelForm[s.prop]} onChange={radioChange}>
+        <ElRadioGroup v-model={state.modelForm[s.prop]} onChange={(e)=>{radioChange(s, e)}}>
           {s.radioArr?.map((r) => (
             <ElRadio value={r.value} size={r.size} key={r.value}>
               {r.label}

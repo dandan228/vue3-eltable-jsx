@@ -185,8 +185,8 @@ export default defineComponent({
     const rowItemEvent = (row) => {
       emit("rowItemEvent", row);
     };
-    const radioChange = (e) => {
-      emit("radioChange", e);
+    const radioChange = (val, e) => {
+      emit("radioChange", val, e);
     };
     const inputBtnSearch = (val) => {
       emit("inputBtnSearch", val);
