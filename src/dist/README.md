@@ -1,5 +1,5 @@
 ## 文档
-<a href="https://dandan228.github.io/vue3-eltable-jsx-docs/">文档地址</a>
+<a href="https://dandan228.github.io/vue3-eltable-jsx/components/MTable/">文档地址</a>
 
 ## 为什么用*el-table-jsx*
 
