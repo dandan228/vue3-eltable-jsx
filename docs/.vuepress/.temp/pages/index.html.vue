@@ -7,8 +7,6 @@
 <li>后台大多数都是 table 表单，重复性的工作，根本提不起精神，就差睡着了</li>
 <li>之前也封装了一个 table 组件，用的是 template 写法（<a href="https://" target="_blank" rel="noopener noreferrer">https://juejin.cn/post/7260783336217329724</a>），但是当需求越复杂，用 template 就不灵活</li>
 </ul>
-<h3 id="上预览图" tabindex="-1"><a class="header-anchor" href="#上预览图"><span>上预览图</span></a></h3>
-<p><img src="@source/../assets/image.png" alt="示例图片"></p>
 <h3 id="目录机构" tabindex="-1"><a class="header-anchor" href="#目录机构"><span>目录机构</span></a></h3>
 <div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text" data-title="text"><pre v-pre><code><span class="line"> ├── src/</span>
 <span class="line"> │   ├── dist/</span>

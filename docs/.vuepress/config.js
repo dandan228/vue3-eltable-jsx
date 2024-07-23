@@ -81,4 +81,7 @@ export default defineUserConfig({
       plugins: [vueJsx()],
     },
   }),
+  themeConfig: {
+    home: '/guide/use/'
+  }
 })
