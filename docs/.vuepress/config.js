@@ -22,6 +22,10 @@ export default defineUserConfig({
       {
         text: '组件',
         link: '/components/README.md'
+      },
+      {
+        text: 'github',
+        link: 'https://github.com/dandan228/vue3-eltable-jsx'
       }
     ],
     sidebar: {
@@ -63,6 +67,18 @@ export default defineUserConfig({
         {
           text: 'Tooltip',
           link: 'Tooltip/README.md',
+        },
+        {
+          text: 'Tooltip',
+          link: 'Tooltip/README.md',
+        },
+        {
+          text: 'formColumns 属性',
+          link: 'formColumns/README.md',
+        },
+        {
+          text: 'columns 属性',
+          link: 'columns/README.md',
         },
       ],
     },
