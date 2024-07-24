@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../node_modules/el-table-jsx/index.js"],
-  "sourcesContent": ["export * from './components/Form/Form.jsx';\r\nexport * from './components/Table/Table.jsx';\r\nexport * from './components/Paginate/Paginate.jsx';\r\nexport * from './components/Dialog/Dialog.jsx';\r\nexport { default as MTable } from './components/MTable/MTable.jsx';\r\n"],
-  "mappings": ";;;AAAA,cAAc;AACd,cAAc;AACd,cAAc;AACd,cAAc;AACd,SAAoB,WAAXA,gBAAyB;",
-  "names": ["default"]
-}

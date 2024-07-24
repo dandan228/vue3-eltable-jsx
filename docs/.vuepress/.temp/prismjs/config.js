@@ -1,2 +1,0 @@
-import "C:/Users/User/Desktop/table-jsx/vue3-eltable-jsx/node_modules/@vuepress/highlighter-helper/lib/client/styles/base.css"
-import "C:/Users/User/Desktop/table-jsx/vue3-eltable-jsx/node_modules/@vuepress/plugin-prismjs/lib/client/styles/nord.css"
