@@ -10,7 +10,6 @@ export default defineUserConfig({
   lang: 'en-US',
 
   title: 'el-table-jsx文档',
-  description: 'My first VuePress Site',
 
   theme: defaultTheme({
     logo: 'https://vuejs.press/images/hero.png',
@@ -26,6 +25,10 @@ export default defineUserConfig({
       {
         text: 'github',
         link: 'https://github.com/dandan228/vue3-eltable-jsx'
+      },
+      {
+        text: 'npm',
+        link: 'https://www.npmjs.com/package/el-table-jsx'
       }
     ],
     sidebar: {

@@ -23,3 +23,7 @@ package-lock.json
 *.njsproj
 *.sln
 *.sw?
+
+
+**/.cache/
+**/.temp/
