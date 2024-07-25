@@ -165,8 +165,8 @@ export default defineComponent({
       console.log("sort", sort);
     };
 
-    const rowItemEvent = (row) => {
-      console.log("rowItemEvent--", row);
+    const rowItemEvent = (row, curVal) => {
+      console.log("rowItemEvent--", row, curVal);
     };
 
     const radioChange = (e) => {

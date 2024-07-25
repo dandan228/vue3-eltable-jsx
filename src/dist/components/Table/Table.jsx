@@ -11,8 +11,8 @@ export const Table = (props, { slots, emit }) => {
     emit("sortChange", sort);
   };
 
-  const rowItemEvent = (row) => {
-    emit("rowItemEvent", row);
+  const rowItemEvent = (row, curVal) => {
+    emit("rowItemEvent", row, curVal);
   };
 
   const renderColumnContent = (scope, col, colIdx) => {
@@ -54,7 +54,7 @@ export const Table = (props, { slots, emit }) => {
       <div
         onClick={() => {
           if (col.color) {
-            rowItemEvent(scope.row);
+            rowItemEvent(scope.row, col);
           }
         }}
         style={{ color: col.color, cursor: col.color ? "pointer" : "default" }}

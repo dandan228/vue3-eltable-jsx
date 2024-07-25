@@ -182,8 +182,8 @@ export default defineComponent({
     const switchChange = (bln, row) => {
       emit("switchChange", bln, row);
     };
-    const rowItemEvent = (row) => {
-      emit("rowItemEvent", row);
+    const rowItemEvent = (row, curVal) => {
+      emit("rowItemEvent", row, curVal);
     };
     const radioChange = (sour, e) => {
       emit("radioChange", sour, e);
