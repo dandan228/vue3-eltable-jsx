@@ -201,6 +201,7 @@ export const Form = defineComponent({
       const selectField = (
         <ElSelect
           v-model={state.modelForm[s.prop]}
+          multiple={s.multiple}
           style={{ width: s.width ? `${s.width}px` : "240px" }}
         >
           {isArrayProperty(s, "option") &&

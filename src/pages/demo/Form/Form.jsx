@@ -9,8 +9,18 @@ export default defineComponent({
           {
             prop: "date",
             label: "input",
-            filterType: "input",
+            filterType: "select",
             type: 'textarea',
+            option: [
+              {
+                value: 1,
+                label: 1
+              },
+              {
+                value: 2,
+                label: 2
+              }
+            ]
           },
           {
             filterType: "btn",
