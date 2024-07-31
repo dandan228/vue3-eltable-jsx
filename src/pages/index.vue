@@ -49,6 +49,9 @@ const fetchTableData = async (params) => {
   axiox.post("/api/getList", params).then((res) => {
     const { data } = res;
     state.tableData = data.data.list;
+    state.tableData.forEach(item => {
+          item.name = `昵称: ${item.name}\n用户名: ${item.name}`
+        })
     state.pageInfo.total = data.data.total;
   });
 };
@@ -125,3 +128,8 @@ const tableInput = (val, row) => {
 
 const tableBlur = (val, row) => {};
 </script>
+<style>
+.el-table .cell {
+  white-space: pre-line;
+}
+</style>
