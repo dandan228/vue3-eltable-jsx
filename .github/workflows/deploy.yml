@@ -30,8 +30,8 @@ jobs:
       run: |
         cd docs/.vuepress/dist
         # Configure Git user info
-        git config user.name "const"
-        git config user.email "constconst51@gmail.com"
+        git config --local user.name "const"
+        git config --local user.email "constconst51@gmail.com"
         # Initialize Git and push changes
         git init
         git add -A
