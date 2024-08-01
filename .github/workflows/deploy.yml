@@ -40,6 +40,7 @@ jobs:
         
         # Initialize Git repository and configure Git user info locally
         git init
+        git checkout -b main || echo "Branch main already exists"
         git config user.name "const"
         git config user.email "constconst51@gmail.com"
 
