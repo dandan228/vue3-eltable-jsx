@@ -30,23 +30,19 @@ jobs:
       run: |
         cd docs/.vuepress/dist
         
-        # Debug Git configuration
-        echo "Current Git configuration:"
-        git config --list
-        
-        # Configure Git user info globally before initializing the repository
+        # 配置 Git 用户信息
         git config --global user.name "const"
         git config --global user.email "constconst51@gmail.com"
-        
-        # Initialize Git repository and configure Git user info locally
-        git init
-        git checkout -b main || echo "Branch main already exists"
-        git config user.name "const"
-        git config user.email "constconst51@gmail.com"
 
-        # Add and commit changes
+        # 初始化 Git 仓库
+        git init
+        
+        # 添加所有更改并提交
         git add -A
         git commit -m 'Deploy to GitHub Pages' || echo "No changes to commit"
 
-        # Push to the GitHub Pages branch
-        git push -f https://github.com/dandan228/vue3-eltable-jsx.git main:gh-pages
+        # 设置远程仓库 URL（包括 token）
+        git remote add origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/dandan228/vue3-eltable-jsx.git
+
+        # 强制推送到 GitHub Pages 分支
+        git push -f origin master:gh-pages
