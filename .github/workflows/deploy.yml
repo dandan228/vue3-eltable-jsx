@@ -29,6 +29,10 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         cd docs/.vuepress/dist
+        # Configure Git user info
+        git config user.name "const"
+        git config user.email "constconst51@gmail.com"
+        # Initialize Git and push changes
         git init
         git add -A
         git commit -m 'Deploy to GitHub Pages'
