@@ -30,10 +30,6 @@ jobs:
       run: |
         cd docs/.vuepress/dist
         
-        # 配置 Git 用户信息
-        git config --global user.name "const"
-        git config --global user.email "constconst51@gmail.com"
-
         # 初始化 Git 仓库
         git init
         
