@@ -36,4 +36,4 @@ jobs:
         git init
         git add -A
         git commit -m 'Deploy to GitHub Pages'
-        git push -f https://github.com/dandan228/vue3-eltable-jsx.git master:gh-pages
+        git push -f https://github.com/dandan228/vue3-eltable-jsx.git main:gh-pages
