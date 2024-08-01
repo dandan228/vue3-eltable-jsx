@@ -1,0 +1,35 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # 或者你的源分支名称
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14'  # 或者你的 Node.js 版本
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build static files
+      run: npm run docs:build
+
+    - name: Deploy to GitHub Pages
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        cd docs/.vuepress/dist
+        git init
+        git add -A
+        git commit -m 'Deploy to GitHub Pages'
+        git push -f https://github.com/dandan228/vue3-eltable-jsx.git master:gh-pages
