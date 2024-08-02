@@ -27,3 +27,6 @@ package-lock.json
 
 **/.cache/
 **/.temp/
+
+# Documentation build output
+docs/.vuepress/dist
