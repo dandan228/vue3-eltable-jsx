@@ -99,6 +99,9 @@ export default defineComponent({
 | onResetSearch | 重置搜索 | Formb 表单默认值 |
 | onRadioChange | 单选框 | e |
 | inputBtnSearch | input 右边插槽按钮事件 | sour, val, modelForm |
+| imgSuccess | 文件上传成功时的钩子 | 接口返回的值 |
+| imgRemove | 文件列表移除文件时的钩子 |  |
+| inputBtnSearch | input 右边插槽按钮事件 |  |
 | resetModelForm | 使用 ref 来调用子组件的 resetModelForm 方法`FormRef.value.resetModelForm()`，以达到清空数据的效果 | |
 
 ## 属性

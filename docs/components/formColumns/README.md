@@ -18,6 +18,11 @@
 | disabled | 是否禁用 | boolean |
 | size | 输入框尺寸，只在 type 不为 'textarea' 时有效 | enum |
 | placeholder | 输入框占位文本 | string |
+| actionUrl | 当filterType: "upload", upload上传地址 | string |
+| listType | 当filterType: 文件列表的类型 | string |
+| limit | 当filterType: "upload", 允许上传文件的最大数量 | number | 1
+| fileList | 当filterType: "upload", 默认上传文件 | array |
+| headers | 当filterType: "upload", 设置上传的请求头部 | object |
 
 **formColumns 属性示例**
 

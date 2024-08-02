@@ -11,6 +11,7 @@ import {
   ElIcon,
   ElRadioGroup,
   ElRadio,
+  ElDialog,
 } from "element-plus";
 import { Plus } from "@element-plus/icons-vue";
 import { defineComponent, reactive, ref } from "vue";
@@ -32,10 +33,6 @@ export const Form = defineComponent({
     labelWidth: {
       type: Number,
       default: 0,
-    },
-    actionUrl: {
-      type: String,
-      default: "",
     },
     labelPosition: {
       type: String,
@@ -75,14 +72,7 @@ export const Form = defineComponent({
     },
   },
   setup(props, { emit, expose }) {
-    const {
-      formColumns,
-      inline,
-      labelPosition,
-      labelWidth,
-      actionUrl,
-      shortcuts,
-    } = props;
+    const { formColumns, inline, labelPosition, labelWidth, shortcuts } = props;
 
     const initForm = formColumns.reduce((acc, item) => {
       if (item.prop) {
@@ -112,18 +102,35 @@ export const Form = defineComponent({
       emit("resetSearch", state.modelForm);
     };
 
-    const onSuccess = (e) => emit("onSuccess", e);
-
     const radioChange = (sour, e) => {
       emit("radioChange", sour, e);
     };
 
     const inputBtnSearch = (sour, val, modelForm) => {
-      emit('inputBtnSearch', sour, val, modelForm)
-    }
+      emit("inputBtnSearch", sour, val, modelForm);
+    };
 
     const resetModelForm = () => {
       state.modelForm = {};
+    };
+
+    const stateUpload = reactive({
+      imgDialogVisible: false,
+      curPic: "",
+    });
+
+    const imgSuccess = (res) => {
+      console.log("imgSuccess", res);
+      emit("imgSuccess", res);
+    };
+
+    const imgPreview = (uploadFile) => {
+      stateUpload.curPic = uploadFile.url;
+      stateUpload.imgDialogVisible = true;
+    };
+
+    const imgRemove = (uploadFile, uploadFiles) => {
+      emit("imgRemove", uploadFile, uploadFiles);
     };
 
     expose({ resetModelForm });
@@ -214,19 +221,43 @@ export const Form = defineComponent({
       const switchField = <ElSwitch v-model={state.modelForm[s.prop]} />;
 
       const uploadField = (
-        <ElUpload
-          className="avatar-uploader"
-          action={actionUrl}
-          onSuccess={onSuccess}
-        >
-          <ElIcon>
-            <Plus />
-          </ElIcon>
-        </ElUpload>
+        <div>
+          <ElUpload
+            className={`avatar-uploader ${
+              s?.fileList?.length === s.limit ? "noBlock" : ""
+            }`}
+            action={s.actionUrl}
+            listType={s.listType || "picture-card"}
+            limit={s.limit || 1}
+            fileList={s.fileList}
+            headers={s.headers}
+            onSuccess={imgSuccess}
+            onPreview={imgPreview}
+            onRemove={imgRemove}
+          >
+            <ElIcon>
+              <Plus />
+            </ElIcon>
+          </ElUpload>
+          <ElDialog
+            modelValue={stateUpload.imgDialogVisible}
+            width={s.imgDialogWidth || 400}
+            height={400}
+            modal-append-to-body={false}
+            onClose={() => (stateUpload.imgDialogVisible = false)}
+          >
+            <img src={stateUpload.curPic} alt="Image Preview" />
+          </ElDialog>
+        </div>
       );
 
       const radioField = (
-        <ElRadioGroup v-model={state.modelForm[s.prop]} onChange={(e)=>{radioChange(s, e)}}>
+        <ElRadioGroup
+          v-model={state.modelForm[s.prop]}
+          onChange={(e) => {
+            radioChange(s, e);
+          }}
+        >
           {s.radioArr?.map((r) => (
             <ElRadio value={r.value} size={r.size} key={r.value}>
               {r.label}
@@ -283,7 +314,9 @@ export const Form = defineComponent({
         label-position={labelPosition}
         label-width={labelWidth}
       >
-        {formColumns.map((s, index) => renderFormItem(s, index, state.modelForm))}
+        {formColumns.map((s, index) =>
+          renderFormItem(s, index, state.modelForm)
+        )}
       </ElForm>
     );
   },

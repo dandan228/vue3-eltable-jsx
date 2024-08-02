@@ -10,8 +10,12 @@ const formColumns = [
   {
     prop: "date",
     label: "input",
-    filterType: "input",
-    type: "textarea",
+    filterType: "upload",
+    actionUrl: "",
+    limit: 2,
+    fileList: [
+      { url: "https://p.bzpicx.com/sports-fund/KYC_2024072716251913.jpg" },
+    ],
   },
   {
     filterType: "btn",
