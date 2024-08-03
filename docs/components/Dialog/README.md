@@ -2,6 +2,8 @@
 
 > 注意：第二次打不开，需要手动添加事件（@closeDialog="state.passDialogVisible = false"）
 
+> 当关闭弹框，需要清空Form表单值时，绑定ref，调用组件内部的回调方法resetModelForm即可清空
+
 <DialogDemo />
 
 ```js
@@ -11,9 +13,14 @@
       :dialogVisible="state.dialogVisible"
       title="对话框"
       width="500"
-      @close="state.dialogVisible = false"
+      @close="closeDialog"
     >
-      <Form :labelWidth="80" :formColumns="state.formColumns" :inline="false" />
+      <Form
+        ref="refForm"
+        :labelWidth="80"
+        :formColumns="state.formColumns"
+        :inline="false"
+      />
     </Dialog>
     <el-button @click="state.dialogVisible = true">打开对话框</el-button>
   </div>
@@ -21,7 +28,9 @@
 
 <script setup>
 import { Dialog, Form } from "../../../src/dist/index";
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
+
+const refForm = ref(null);
 
 const state = reactive({
   dialogVisible: false,
@@ -42,7 +51,7 @@ const state = reactive({
       filterType: "select",
       defaultVal: 0,
       width: "140",
-      options: [
+      option: [
         { label: "全部", value: 0 },
         { label: "通过", value: 1 },
       ],
@@ -56,7 +65,15 @@ const state = reactive({
     },
   ],
 });
+
+const closeDialog = () => {
+  state.dialogVisible = false
+  if (refForm.value) {
+    refForm.value.resetModelForm();
+  }
+};
 </script>
+
 
 ```
 
