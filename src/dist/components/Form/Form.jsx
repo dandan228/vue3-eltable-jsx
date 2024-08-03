@@ -74,14 +74,24 @@ export const Form = defineComponent({
   setup(props, { emit, expose }) {
     const { formColumns, inline, labelPosition, labelWidth, shortcuts } = props;
 
+    // 合并对象，优先使用第二个对象
+    const mergeObjects = (obj1, obj2) => {
+      const result = { ...obj1 };
+      for (const key in obj2) {
+        if (obj2[key] !== "" && obj2[key] !== undefined) {
+          result[key] = obj2[key];
+        }
+      }
+      return result;
+    };
+
     let initForm = {};
 
     const state = reactive({
       modelForm: {},
     });
 
-    // 需要监听formColumns是否改变，当改变了需要重新赋值
-    watchEffect(() => {
+    const updateModelForm = (lastModelForm) => {
       initForm = formColumns.reduce((acc, item) => {
         if (item.prop) {
           // 当 item.defaultVal 为 number 0 时，不给赋值，所以加个判断
@@ -90,7 +100,12 @@ export const Form = defineComponent({
         return acc;
       }, {});
 
-      state.modelForm = { ...initForm };
+      state.modelForm = mergeObjects(lastModelForm, initForm);
+    };
+
+    // 需要监听formColumns是否改变，当改变了需要重新赋值
+    watchEffect(() => {
+      updateModelForm(state.modelForm);
     });
 
     const formEvent = (btnInfo, formEl) => {
