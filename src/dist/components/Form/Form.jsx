@@ -120,7 +120,6 @@ export const Form = defineComponent({
     });
 
     const imgSuccess = (res) => {
-      console.log("imgSuccess", res);
       emit("imgSuccess", res);
     };
 
@@ -224,13 +223,13 @@ export const Form = defineComponent({
         <div>
           <ElUpload
             className={`avatar-uploader ${
-              s?.fileList?.length === s.limit ? "noBlock" : ""
+              s?.fileList?.length === s?.limit ? "noBlock" : ""
             }`}
-            action={s.actionUrl}
-            listType={s.listType || "picture-card"}
-            limit={s.limit || 1}
-            fileList={s.fileList}
-            headers={s.headers}
+            action={s?.actionUrl}
+            listType={s?.listType || "picture-card"}
+            limit={s?.limit || 1}
+            fileList={s?.fileList}
+            headers={s?.headers}
             onSuccess={imgSuccess}
             onPreview={imgPreview}
             onRemove={imgRemove}
@@ -240,13 +239,13 @@ export const Form = defineComponent({
             </ElIcon>
           </ElUpload>
           <ElDialog
-            modelValue={stateUpload.imgDialogVisible}
-            width={s.imgDialogWidth || 400}
+            modelValue={stateUpload?.imgDialogVisible}
+            width={s?.imgDialogWidth || 400}
             height={400}
             modal-append-to-body={false}
             onClose={() => (stateUpload.imgDialogVisible = false)}
           >
-            <img src={stateUpload.curPic} alt="Image Preview" />
+            <img src={stateUpload?.curPic} alt="Image Preview" />
           </ElDialog>
         </div>
       );
