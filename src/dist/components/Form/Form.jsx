@@ -14,7 +14,7 @@ import {
   ElDialog,
 } from "element-plus";
 import { Plus } from "@element-plus/icons-vue";
-import { defineComponent, reactive, ref } from "vue";
+import { defineComponent, reactive, ref, watchEffect } from "vue";
 import { isArrayProperty } from "../../utils/judgeType";
 import "./Form.css";
 
@@ -74,15 +74,24 @@ export const Form = defineComponent({
   setup(props, { emit, expose }) {
     const { formColumns, inline, labelPosition, labelWidth, shortcuts } = props;
 
-    const initForm = formColumns.reduce((acc, item) => {
-      if (item.prop) {
-        // 当 item.defaultVal 为 number 0 时，不给赋值，所以加个判断
-        acc[item.prop] = item.defaultVal !== undefined ? item.defaultVal : "";
-      }
-      return acc;
-    }, {});
+    let initForm = {};
 
-    const state = reactive({ modelForm: initForm });
+    const state = reactive({
+      modelForm: {},
+    });
+
+    // 需要监听formColumns是否改变，当改变了需要重新赋值
+    watchEffect(() => {
+      initForm = formColumns.reduce((acc, item) => {
+        if (item.prop) {
+          // 当 item.defaultVal 为 number 0 时，不给赋值，所以加个判断
+          acc[item.prop] = item.defaultVal !== undefined ? item.defaultVal : "";
+        }
+        return acc;
+      }, {});
+
+      state.modelForm = { ...initForm };
+    });
 
     const formEvent = (btnInfo, formEl) => {
       if (!formEl) return;
