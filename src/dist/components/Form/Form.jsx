@@ -74,6 +74,12 @@ export const Form = defineComponent({
   setup(props, { emit, expose }) {
     const { formColumns, inline, labelPosition, labelWidth, shortcuts } = props;
 
+    let initForm = {};
+
+    const state = reactive({
+      modelForm: {},
+    });
+
     // 合并对象，优先使用第二个对象
     const mergeObjects = (obj1, obj2) => {
       const result = { ...obj1 };
@@ -84,12 +90,6 @@ export const Form = defineComponent({
       }
       return result;
     };
-
-    let initForm = {};
-
-    const state = reactive({
-      modelForm: {},
-    });
 
     const updateModelForm = (lastModelForm) => {
       initForm = formColumns.reduce((acc, item) => {
@@ -247,7 +247,7 @@ export const Form = defineComponent({
         <div>
           <ElUpload
             className={`avatar-uploader ${
-              s?.fileList?.length === s?.limit ? "noBlock" : ""
+              s?.fileList?.length === s?.limit && s.limit ? "noBlock" : ""
             }`}
             action={s?.actionUrl}
             listType={s?.listType || "picture-card"}
