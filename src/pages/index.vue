@@ -1,10 +1,18 @@
 <template>
   <div>
     <Dialog
+      :width="500"
       :dialogVisible="state.dialogVisible"
-      @closeDialog="state.dialogVisible = false"
+      :title="state.isAdd ? '新增' : '编辑'"
+      @closeDialog="closeDialog"
     >
-      <Form></Form>
+      <Form
+        ref="refForm"
+        :formColumns="state.dialogColumns"
+        :inline="false"
+        @imgSuccess="imgSuccess"
+        @formEvent="diaFormEvent"
+      />
     </Dialog>
     <MTable
       :columns="columns"
@@ -20,72 +28,80 @@
       @resetSearch="resetSearch"
       @tableInput="tableInput"
       @tableBlur="tableBlur"
+      @switchChange="switchChange"
     />
   </div>
 </template>
-<script>
-name: "Index";
-</script>
+
 <script setup>
-import { reactive } from "vue";
+import { ref, reactive, onMounted, h } from "vue";
 import { MTable, Dialog, Form } from "../dist/index.js";
-import { columns, formColumns, btnByStateMap } from "./config.js";
-import axiox from "axios";
+import {
+  columns,
+  formColumns,
+  btnByStateMap,
+  dialogColumns,
+} from "./config.js";
+import { ElMessageBox } from "element-plus";
+import axios from "axios";
+
+const refForm = ref(null);
 
 const state = reactive({
-  tableData: [],
+  // 0=>显示所有; 1=>通过; 2=>取消; 3=>禁用  tableData: [],
   total: 0,
   pageInfo: {
     total: 0,
     pageSize: 5,
     pageNum: 1,
   },
-  // 保存当前筛选参数
   lastFilter: {},
   dialogVisible: false,
+  dialogColumns,
+  isAdd: true,
 });
 
-const fetchTableData = async (params) => {
-  axiox.post("/api/getList", params).then((res) => {
-    const { data } = res;
-    state.tableData = data.data.list;
-    state.tableData.forEach(item => {
-          item.name = `昵称: ${item.name}\n用户名: ${item.name}`
-        })
-    state.pageInfo.total = data.data.total;
-  });
-};
+onMounted(() => {
+  getList({});
+});
 
-// 初始化数据
-fetchTableData({});
-
-const updateTableData = () => {
-  fetchTableData({
+const getList = async (params) => {
+  const _params = {
     pageNum: state.pageInfo.pageNum,
     pageSize: state.pageInfo.pageSize,
     ...state.lastFilter,
-  });
+    ...params,
+  };
+  try {
+    const { data } = await axios.post("/api/getList", _params);
+    state.tableData = data.data.list.map((item) => ({
+      ...item,
+      name: `昵称: ${item.name}\n用户名: ${item.name}`,
+    }));
+    state.pageInfo.total = data.data.total;
+
+    console.log('state.tableData', JSON.stringify(state.tableData));
+  } catch (error) {
+    console.error("Error fetching list:", error);
+  }
 };
 
 const formEvent = (e) => {
   // form=>操作栏form, btnInfo=》操作栏按钮信息
   const { form, btnInfo } = e;
-  // console.log("form", form);
-  // console.log("btnInfo", btnInfo);
-
-  const eventsMap = {
+  const actions = {
     0: () => {
-      // 保存当前筛选参数
       state.lastFilter = form;
-      state.pageInfo.pageNum = 1;
-      updateTableData();
+      getList({ ...form, pageNum: 1 });
     },
     1: () => {
+      state.isAdd = true;
       state.dialogVisible = true;
+      state.dialogColumns.forEach((item) => (item.defaultVal = null));
+      state.dialogColumns[2].fileList = [];
     },
   };
-
-  eventsMap[btnInfo.btnId]();
+  actions[btnInfo.btnId]?.();
 };
 
 const tableBtnEvent = (e) => {
@@ -94,40 +110,86 @@ const tableBtnEvent = (e) => {
   // $index=>table栏，当前行下标
   // row=>table栏，当前行数据
   const {
-    btnIdx,
-    colIdx,
+    btn,
     scope: { $index, row },
   } = e;
-  console.log("tableBtnEvent", e);
+  const actions = {
+    0: () => rowDetails(btn, row),
+    1: () => {
+      state.isAdd = false;
+      dialogFormDefaultValByRow(row);
+      state.dialogVisible = true;
+    },
+    2: () => {},
+    3: () => rowDetails(btn, row),
+  };
+  actions[btn.btnId]?.();
 };
 
-const pageSizeEvent = (pageSize) => {
-  console.log("pageSizeEvent", pageSize);
-  // pageSize=>页容量
-  state.pageInfo.pageSize = pageSize;
-  updateTableData();
+const dialogFormDefaultValByRow = (row) => {
+  state.dialogColumns.forEach((item) => {
+    if (item.prop && row.hasOwnProperty(item.prop)) {
+      item.defaultVal = row[item.prop];
+    }
+  });
+  state.dialogColumns[2].fileList = [{ url: row.imageUrl }];
 };
-const pageEvent = (pageNum) => {
-  console.log("pageEvent", pageNum);
-  // pageSize=>当前页
-  state.pageInfo.pageNum = pageNum;
-  updateTableData();
-};
+
+const pageSizeEvent = (pageSize) => getList({ pageSize });
+
+const pageEvent = (pageNum) => getList({ pageNum });
 
 const resetSearch = (resetForm) => {
-  state.pageInfo.pageNum = 1; // 重置页码为1
-  state.pageInfo.pageSize = 5; // 重置页容量为5
-  state.lastFilter = resetForm;
-  updateTableData();
+  state.lastFilter = {};
+  getList({ pageNum: 1, pageSize: 5, ...resetForm });
 };
 
-const tableInput = (val, row) => {
-  // val=>当前值
-  // row=>当前这一行数据
-};
+const tableInput = (val, row) => {};
 
 const tableBlur = (val, row) => {};
+
+const imgSuccess = (res) => {
+  // res=>接口返回的数据
+  const defaultRes = {
+    name: "图片",
+    url: "https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100",
+  };
+  state.dialogColumns[2].fileList.push(defaultRes);
+};
+
+const diaFormEvent = (e) => {
+  const { btnInfo } = e;
+  if (refForm.value) refForm.value.resetModelForm();
+  const actions = {
+    0: () => (state.dialogVisible = false),
+    1: () => (state.dialogVisible = false),
+  };
+  actions[btnInfo.btnId]?.();
+};
+
+const switchChange = (bln, row) => rowDetails(bln, row);
+
+const rowDetails = (btnOrBln, row) => {
+  const isBln = typeof btnOrBln === "boolean";
+  ElMessageBox({
+    title: isBln ? "switch" : btnOrBln.label,
+    message: h("p", null, [
+      h("span", null, isBln ? "当前值是：" : "当前按钮下标是："),
+      h("span", { style: "color: teal" }, isBln ? btnOrBln : btnOrBln.btnId),
+      h("br"),
+      h("span", null, "当前row是："),
+      h("i", { style: "color: teal" }, JSON.stringify(row)),
+    ]),
+  });
+};
+
+const closeDialog = () => {
+  state.dialogVisible = false;
+  state.dialogColumns[2].fileList = [];
+  if (refForm.value) refForm.value.resetModelForm();
+};
 </script>
+
 <style>
 .el-table .cell {
   white-space: pre-line;

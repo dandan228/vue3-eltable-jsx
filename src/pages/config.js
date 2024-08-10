@@ -38,7 +38,7 @@ export const formColumns = [
         btnArr: [
             { btnId: 0, label: "查询", color: "primary" },
             { btnId: 1, label: "新增", color: "success" },
-            { btnId: 2, label: "重置", color: "warning", disabled: true },
+            { btnId: 2, label: "重置", color: "warning" },
         ],
     },
 ];
@@ -58,12 +58,14 @@ export const dialogColumns = [
             required: true,
             message: 'domain can not be null',
             trigger: 'blur',
-        }
+        },
     },
     {
         prop: "pic",
         label: "上传图片",
         filterType: "upload",
+        limit: 1,
+        actionUrl: ''
     },
     {
         prop: "radio",
@@ -167,20 +169,20 @@ export const columns = [
 export const btnByStateMap = {
     0: [
         { btnId: 0, label: "通过", color: "primary" },
-        { btnId: 1, label: "取消", color: "danger" },
-        { btnId: 2, label: "禁用", color: "danger", disabled: true },
-        { btnId: 3, btnId: 3, label: "编辑", color: "success" },
+        { btnId: 1, label: "编辑", color: "success" },
+        { btnId: 2, label: "禁用", color: "warning", disabled: true },
+        { btnId: 3, btnId: 3, label: "取消", color: "danger" },
     ],
     1: [
         { btnId: 0, label: "通过", color: "primary" },
-        { btnId: 3, label: "编辑", color: "success" },
+        { btnId: 1, label: "编辑", color: "success" },
     ],
     2: [
-        { btnId: 1, label: "取消", color: "danger" },
-        { btnId: 3, label: "编辑", color: "success" },
+        { btnId: 3, label: "取消", color: "danger" },
+        { btnId: 1, label: "编辑", color: "success" },
     ],
     3: [
-        { btnId: 2, label: "禁用", color: "danger", disabled: true },
-        { btnId: 3, label: "编辑", color: "success" },
+        { btnId: 1, label: "编辑", color: "success" },
+        { btnId: 2, label: "禁用", color: "warning", disabled: true },
     ],
 };

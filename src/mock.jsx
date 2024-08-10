@@ -15,8 +15,8 @@ Mock.mock("/api/getList", "post", (options) => {
       {
         date:
           params.date && params.date.length >= 2
-            ? `${params.date[0]} ${params.date[1]}`
-            : '@date("yyyy-MM-dd")',
+            ? [`${params.date[0]}`, `${params.date[1]}`]
+            : ['2024-05-02', '2024-05-03'],
         name: params.name || "@name", // 使用传递的 name 参数，如果没有传递则生成随机名称
         state: params.state !== undefined ? params.state : "@integer(0, 3)", // 根据传递的 state 参数进行过滤，否则生成随机状态值
         btn: "按钮@natural(1, 4)",
