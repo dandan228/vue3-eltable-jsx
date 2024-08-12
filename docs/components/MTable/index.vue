@@ -157,11 +157,20 @@ const imgSuccess = (res) => {
 };
 
 const diaFormEvent = (e) => {
-  const { btnInfo } = e;
+  const { btnInfo, formEl } = e;
   if (refForm.value) refForm.value.resetModelForm();
   const actions = {
     0: () => (state.dialogVisible = false),
-    1: () => (state.dialogVisible = false),
+    1: () => {
+      if (!formEl) return;
+      formEl.value.validate((valid) => {
+        if (valid) {
+          state.dialogVisible = false;
+        } else {
+          console.log("error submit!");
+        }
+      });
+    },
   };
   actions[btnInfo.btnId]?.();
 };
