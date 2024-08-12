@@ -109,16 +109,7 @@ export const Form = defineComponent({
     });
 
     const formEvent = (btnInfo, formEl) => {
-      if (!formEl) return;
-      formEl.value.validate((valid) => {
-        if (valid) {
-          console.log("submit!");
-        } else {
-          console.log("error submit!");
-        }
-      });
-
-      emit("formEvent", { form: state.modelForm, btnInfo });
+      emit("formEvent", { form: state.modelForm, btnInfo, formEl });
     };
 
     const resetSearch = () => {
@@ -137,8 +128,8 @@ export const Form = defineComponent({
     const resetModelForm = () => {
       state.modelForm = {};
       // 清空表单校验及初始值
-      formRef.value.clearValidate()
-      formRef.value.resetFields()
+      // formRef.value.clearValidate()
+      formRef.value.resetFields();
     };
 
     const stateUpload = reactive({
