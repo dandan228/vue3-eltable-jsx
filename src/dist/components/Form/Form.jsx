@@ -136,6 +136,9 @@ export const Form = defineComponent({
 
     const resetModelForm = () => {
       state.modelForm = {};
+      // 清空表单校验及初始值
+      formRef.value.clearValidate()
+      formRef.value.resetFields()
     };
 
     const stateUpload = reactive({
