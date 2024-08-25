@@ -56,7 +56,7 @@ export const dialogColumns = [
         appendIcon: shallowRef(Search),
         rules: {
             required: true,
-            message: 'domain can not be null',
+            message: 'name can not be null',
             trigger: 'blur',
         },
     },
