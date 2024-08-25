@@ -1,7 +1,7 @@
 import { ElTable, ElTableColumn } from "element-plus";
 
 export const Table = (props, { slots, emit }) => {
-  const { data, columns, tableMultiple, defaultSort, border=false } = props;
+  const { data, columns, tableMultiple, defaultSort, border=false, tableIndex=false } = props;
 
   const selectCheckbox = (row) => {
     emit("selectCheckbox", row);
@@ -74,6 +74,7 @@ export const Table = (props, { slots, emit }) => {
         onSortChange={sortChange} // 绑定排序变化事件
       >
         {tableMultiple && <ElTableColumn type="selection" width="55" />}
+        {tableIndex && <ElTableColumn type="index" width="55" label='序号' />}
         {columns.map((col, colIdx) => (
           <ElTableColumn
             key={col.prop}

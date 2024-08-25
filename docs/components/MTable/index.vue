@@ -20,6 +20,7 @@
       :tableData="state.tableData"
       :pageInfo="state.pageInfo"
       :btnByStateMap="btnByStateMap"
+      :tableIndex="true"
       btnByStateMapAt="state"
       @formEvent="formEvent"
       @tableBtnEvent="tableBtnEvent"

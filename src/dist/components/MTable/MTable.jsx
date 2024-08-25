@@ -35,6 +35,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    tableIndex: {
+      type: Boolean,
+      default: false,
+    },
     border: {
       type: Boolean,
       default: false,
@@ -87,6 +91,7 @@ export default defineComponent({
       btnByStateMap,
       btnByStateMapAt,
       tableMultiple,
+      tableIndex,
       defaultSort,
       shortcuts,
       border,
@@ -254,6 +259,7 @@ export default defineComponent({
             data={state.tableData}
             columns={columns}
             tableMultiple={tableMultiple}
+            tableIndex={tableIndex}
             defaultSort={defaultSort}
             border={border}
           >

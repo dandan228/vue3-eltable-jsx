@@ -123,3 +123,4 @@ export default defineComponent({
 | prependTxt | 当 filterType='input'时，开启 input 前面 txt 插槽 | | string |
 | appendIcon | 当 filterType='input'时，开启 input 后面 icon 插槽 | | boolean |
 | appendTxt | 当 filterType='input'时，开启 input 后面 txt 插槽 | | string |
+| tableIndex       | 设置 tableIndex 属性为 true 即可显示从 1 开始的索引号| false | boolean  |

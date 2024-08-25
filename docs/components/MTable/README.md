@@ -502,3 +502,4 @@ export const _tableData = [
 | defaultSort     | 表头默认排序(是个对象)                                                              | {}                                               | object  |
 | pageInfo        | 分页信息                                                                            |                                                  | object  |
 | shortcuts       | 设置快捷选项，需要传入数组对象                                                      | 不传默认展示 last week, last month, last 3 month | object  |
+| tableIndex       | 设置 tableIndex 属性为 true 即可显示从 1 开始的索引号           | false | boolean  |
