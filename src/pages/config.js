@@ -14,6 +14,8 @@ export const formColumns = [
         prop: "date",
         label: "Date",
         filterType: "date",
+        dateType: 'datetimerange',
+        dateFormat: 'YYYY-MM-DD HH:mm:ss',
     },
     {
         prop: "name",

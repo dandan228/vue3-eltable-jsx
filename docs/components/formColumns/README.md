@@ -15,7 +15,7 @@
 | appendIcon | 当 filterType='input'时，开启 input 后面 icon 插槽 | `element-plus/icons-vue`组件 | import { `Search` } from "@element-plus/icons-vue"; appendIcon: shallowRef(`Search`)
 | appendTxt | 当 filterType='input'时，开启 input 后面 txt 插槽 | string | appendTxt: '查询'
 | rules | 表单验证规则 | object | rules: {required: true,message: 'msg',trigger: 'blur'}
-| type | 类型 | string 等 <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types">原生 input 类型</a> | type='textarea'
+| type | 当`filterType: "input"` | string 等 <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types">原生 input 类型</a> | type='textarea'
 | disabled | 是否禁用 | boolean | disabled: true
 | size | 输入框尺寸，只在 type 不为 'textarea' 时有效 | enum | size: "large"
 | placeholder | 输入框占位文本 | string |
@@ -24,3 +24,5 @@
 | limit | 当`filterType: "upload"`, 允许上传文件的最大数量 | number | limit: 1 | 1
 | fileList | 当`filterType: "upload"`, 默认上传文件 | array | [{name: 'name.jpeg',url: 'url'}]
 | headers | 当`filterType: "upload"`, 设置上传的请求头部 | object |
+| dateType | 当`filterType: "date"`, 显示类型 | string  | dateType='daterange'| datetimerange |
+| dateFormat | 当`filterType: "date"`, 显示在输入框中的格式及value | string  | dateType='daterange'| datetimerange |

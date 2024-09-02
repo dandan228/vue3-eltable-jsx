@@ -178,7 +178,7 @@ export const Form = defineComponent({
       }
     };
 
-    const renderFormItem = (s, index, modelForm) => {
+    const renderFormItem = (s, index, modelForm, formRef) => {
       const inputField = (
         <ElInput
           v-model={state.modelForm[s.prop]}
@@ -211,14 +211,14 @@ export const Form = defineComponent({
       const dateField = (
         <ElDatePicker
           v-model={state.modelForm[s.prop]}
-          type="daterange"
+          type={s.dateType || 'datetimerange'}
           unlink-panels
           range-separator="To"
           start-placeholder="Start date"
           end-placeholder="End date"
           shortcuts={shortcuts}
-          format="YYYY/MM/DD"
-          value-format="YYYY-MM-DD"
+          format={s.dateFormat || "YYYY-MM-DD HH:mm:ss" }
+          value-format={s.dateFormat || "YYYY-MM-DD HH:mm:ss" }
         />
       );
 
@@ -332,7 +332,7 @@ export const Form = defineComponent({
         label-width={labelWidth}
       >
         {formColumns.map((s, index) =>
-          renderFormItem(s, index, state.modelForm)
+          renderFormItem(s, index, state.modelForm, formRef)
         )}
       </ElForm>
     );
