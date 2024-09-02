@@ -65,7 +65,6 @@ const refForm = ref(null);
 const state = reactive({
   // 0=>显示所有; 1=>通过; 2=>取消; 3=>禁用
   tableData: [],
-  total: 0,
   pageInfo: {
     total: 0,
     pageSize: 5,
@@ -174,7 +173,6 @@ const imgSuccess = (res) => {
 
 const diaFormEvent = (e) => {
   const { btnInfo, formEl } = e;
-  if (refForm.value) refForm.value.resetModelForm();
   const actions = {
     0: () => (state.dialogVisible = false),
     1: () => {

@@ -16,7 +16,7 @@
     "@element-plus/icons-vue": "^2.3.1",
     "@vitejs/plugin-vue-jsx": "^4.0.0",
     "axios": "^1.7.2",
-    "el-table-jsx": "^0.3.8",
+    "el-table-jsx": "^0.7.3",
     "element-plus": "^2.7.6",
     "vue": "^3.2.20",
     "vuepress-plugin-md-enhance": "^2.0.0-rc.52"
