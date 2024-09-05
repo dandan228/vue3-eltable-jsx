@@ -26,3 +26,4 @@
 | headers | 当`filterType: "upload"`, 设置上传的请求头部 | object |
 | dateType | 当`filterType: "date"`, 显示类型 | string  | dateType='daterange'| datetimerange |
 | dateFormat | 当`filterType: "date"`, 显示在输入框中的格式及value | string  | dateType='daterange'| datetimerange |
+| vShow | 是否显示 | Boolean  | vShow: false| true |

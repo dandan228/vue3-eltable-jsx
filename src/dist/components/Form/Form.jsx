@@ -322,6 +322,7 @@ export const Form = defineComponent({
           key={index}
           rules={s.rules}
           prop={s.prop}
+          v-show={s.vShow !== false}
         >
           {fieldTypeMap[s.filterType]}
         </ElFormItem>

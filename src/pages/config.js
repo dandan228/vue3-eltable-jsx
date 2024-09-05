@@ -50,6 +50,7 @@ export const dialogColumns = [
         prop: "date",
         label: "Date",
         filterType: "date",
+        vShow: true
     },
     {
         prop: "name",
