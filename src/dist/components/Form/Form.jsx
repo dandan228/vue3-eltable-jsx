@@ -316,17 +316,16 @@ export const Form = defineComponent({
         btn: buttonField,
       };
 
-      return (
+      return s.vIf !== false ? (
         <ElFormItem
           label={s.filterType === "btn" ? "" : s.label}
           key={index}
           rules={s.rules}
           prop={s.prop}
-          v-show={s.vShow !== false}
         >
           {fieldTypeMap[s.filterType]}
         </ElFormItem>
-      );
+      ) : null;
     };
 
     const formRef = ref(null);

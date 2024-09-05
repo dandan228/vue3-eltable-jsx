@@ -50,7 +50,6 @@ export const dialogColumns = [
         prop: "date",
         label: "Date",
         filterType: "date",
-        vShow: true
     },
     {
         prop: "name",
@@ -62,6 +61,7 @@ export const dialogColumns = [
             message: 'name can not be null',
             trigger: 'blur',
         },
+        vIf: true
     },
     {
         prop: "pic",
