@@ -216,9 +216,7 @@ const closeDialog = () => {
 .el-table .cell {
   white-space: pre-line;
 }
-
 </style>
-
 ```
 
 @tab config.js
@@ -470,7 +468,6 @@ export const _tableData = [
 | ----------------- | ------------------------------------------------------------------------------------------------- | ----------------------------- |
 | onFormEvent       | Form 表单事件                                                                                     | e: {form, btnInfo}            |
 | onResetSearch     | 重置搜索                                                                                          | Formb 表单默认值              |
-| onRadioChange     | 单选框                                                                                            | e                             |
 | inputBtnSearch    | input 右边插槽按钮事件                                                                            | val                           |
 | resetModelForm    | 使用 ref 来调用子组件的 resetModelForm 方法`FormRef.value.resetModelForm()`，以达到清空数据的效果 |                               |
 | onTableBtnEvent   | 操作栏按钮事件                                                                                    | e: {btn, colIdx, $index, row} |
@@ -479,7 +476,8 @@ export const _tableData = [
 | onSelectionChange | table 多选事件                                                                                    | row                           |
 | onSortChange      | table 表头排序事件                                                                                | sort                          |
 | rowItemEvent      | table 里的 a 标签                                                                                 | row                           |
-| onRadioChange     | 单选框                                                                                            | e                             |
+| onRadioChange     | 单选框                                                                                            | sour, e                         |
+| onInputChange     | input事件                                                                                            | sour, e                         |
 | inputBtnSearch    | input 右边插槽按钮事件                                                                            | val                           |
 | onPageSizeEvent   | 页容量事件                                                                                        | pageSize                      |
 | onPageEvent       | 当前页事件                                                                                        | pageNum                       |
@@ -500,4 +498,4 @@ export const _tableData = [
 | defaultSort     | 表头默认排序(是个对象)                                                              | {}                                               | object  |
 | pageInfo        | 分页信息                                                                            |                                                  | object  |
 | shortcuts       | 设置快捷选项，需要传入数组对象                                                      | 不传默认展示 last week, last month, last 3 month | object  |
-| tableIndex       | 设置 tableIndex 属性为 true 即可显示从 1 开始的索引号           | false | boolean  |
+| tableIndex      | 设置 tableIndex 属性为 true 即可显示从 1 开始的索引号                               | false                                            | boolean |

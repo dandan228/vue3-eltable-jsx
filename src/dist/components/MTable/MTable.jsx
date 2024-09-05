@@ -196,6 +196,9 @@ export default defineComponent({
     const inputBtnSearch = (sour, val, modelForm) => {
       emit("inputBtnSearch", sour, val, modelForm);
     };
+    const inputChange = (sour, e) => {
+      emit("inputChange",  sour, e);
+    };
 
     // 渲染输入框插槽
     const renderInputSlot = (scope, col, colIdx) => {
@@ -249,6 +252,7 @@ export default defineComponent({
           onResetSearch={resetSearch}
           onRadioChange={radioChange}
           onInputBtnSearch={inputBtnSearch}
+          onInputChange={inputChange}
         />
         {/* 渲染表格组件 */}
         {columns.length > 0 ? (

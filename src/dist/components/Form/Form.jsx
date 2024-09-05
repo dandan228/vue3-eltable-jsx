@@ -121,6 +121,10 @@ export const Form = defineComponent({
       emit("radioChange", sour, e);
     };
 
+    const inputChange = (sour, e) => {
+      emit("inputChange",sour, e);
+    }
+
     const inputBtnSearch = (sour, val, modelForm) => {
       emit("inputBtnSearch", sour, val, modelForm);
     };
@@ -227,6 +231,9 @@ export const Form = defineComponent({
           v-model={state.modelForm[s.prop]}
           multiple={s.multiple}
           style={{ width: s.width ? `${s.width}px` : "240px" }}
+          onChange={(e) => {
+            inputChange(s, e);
+          }}
         >
           {isArrayProperty(s, "option") &&
             s.option.map((opt) => (

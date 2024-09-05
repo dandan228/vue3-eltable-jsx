@@ -12,6 +12,7 @@
         :inline="false"
         @imgSuccess="imgSuccess"
         @formEvent="diaFormEvent"
+        @inputChange="inputChange"
       />
     </Dialog>
     <MTable
@@ -195,6 +196,8 @@ const closeDialog = () => {
   // 清空默认值及及必填提示
   if (refForm.value) refForm.value.resetModelForm();
 };
+
+const inputChange = (sour, e) => {}
 </script>
 
 <style>
