@@ -4,28 +4,31 @@ import { desInfo } from "./config.js";
 
 export default defineComponent({
   setup(props, { emit }) {
+    const state = reactive({
+      data: {},
+      key: 1,
+      desInfo: {}
+    })
+
+    onMounted(() => {
+      state.data = {tip: 666}
+      state.desInfo = desInfo(state.data)
+      state.key = 2
+    })
+
     const desRightClick = (item) => {
       console.log("desRightClick", item);
     };
 
-    const state = reactive({
-      data: {},
-      key: 1
-    })
-
-    onMounted(() => {
-      setTimeout(() => {
-        state.data = {tip: 666}
-        state.key = 2
-      }, 1000);
-    })
+    const selectChange = (sour, val) => {};
 
     return () => (
       <Descriptions
-        desInfo={desInfo(state.data)}
+        desInfo={state.desInfo}
         column={4}
         key={state.key}
         onDesRightClick={desRightClick}
+        onInputChange={selectChange}
       ></Descriptions>
     );
   },
