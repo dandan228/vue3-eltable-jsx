@@ -111,7 +111,6 @@ const formEvent = (e) => {
     1: () => {
       state.isAdd = true;
       state.dialogVisible = true;
-      state.dialogColumns.forEach((item) => (item.defaultVal = null));
       state.dialogColumns[2].fileList = [];
     },
   };
@@ -208,6 +207,7 @@ const rowDetails = (btnOrBln, row) => {
 const closeDialog = () => {
   state.dialogVisible = false;
   state.dialogColumns[2].fileList = [];
+  state.dialogColumns.forEach((item) => (item.defaultVal = null));
   if (refForm.value) refForm.value.resetModelForm();
 };
 </script>

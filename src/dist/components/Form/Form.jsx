@@ -141,8 +141,8 @@ export const Form = defineComponent({
       curPic: "",
     });
 
-    const imgSuccess = (res) => {
-      emit("imgSuccess", res);
+    const imgSuccess = (res, sour) => {
+      emit("imgSuccess", res, sour);
     };
 
     const imgPreview = (uploadFile) => {
@@ -255,7 +255,7 @@ export const Form = defineComponent({
             limit={s?.limit || 1}
             fileList={s?.fileList}
             headers={s?.headers}
-            onSuccess={imgSuccess}
+            onSuccess={(e)=>imgSuccess(e, s)}
             onPreview={imgPreview}
             onRemove={imgRemove}
           >
