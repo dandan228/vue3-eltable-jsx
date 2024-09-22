@@ -194,6 +194,9 @@ export const Form = defineComponent({
           type={s.type}
           size={s.size}
           rows={s.rows}
+          maxlength={s.maxlength}
+          minlength={s.minlength}
+          show-word-limit={s.showWordLimit}
           placeholder={s.placeholder}
           v-slots={{
             prepend: inputSlot(

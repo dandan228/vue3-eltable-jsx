@@ -27,3 +27,6 @@
 | dateType | 当`filterType: "date"`, 显示类型 | string  | dateType='daterange'| datetimerange |
 | dateFormat | 当`filterType: "date"`, 显示在输入框中的格式及value | string  | dateType='daterange'| datetimerange |
 | vIf | 是否显示 | Boolean  | vIf: false| true |
+| maxlength | 同原生 maxlength 属性 | string/number  | maxlength: 10|  |
+| minlength | 原生属性，最小输入长度 | string/number  | minlength: 1|  |
+| showWordLimit | 是否显示统计字数, 只在 type 为 'text' 或 'textarea' 的时候生效 | Boolean  | showWordLimit: false| false |
