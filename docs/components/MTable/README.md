@@ -480,7 +480,11 @@ export const _tableData = [
 | onInputChange     | input事件                                                                                            | sour, e                         |
 | inputBtnSearch    | input 右边插槽按钮事件                                                                            | val                           |
 | onPageSizeEvent   | 页容量事件                                                                                        | pageSize                      |
-| onPageEvent       | 当前页事件                                                                                        | pageNum                       |
+| onPageEvent       | 当前页事件                                                                                        | 
+pageNum                       |
+| imgSuccess | 文件上传成功时的钩子 | 接口返回的值(res), sour |
+| imgRemove | 文件列表移除文件时的钩子 | uploadFile, uploadFiles, sour |
+| imgPreview | 文件列表移除文件时的钩子 | uploadFile |
 
 ## 属性
 

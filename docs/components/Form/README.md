@@ -101,7 +101,8 @@ export default defineComponent({
 | onInputChange | 单选框 | sour, e |
 | inputBtnSearch | input 右边插槽按钮事件 | sour, val, modelForm |
 | imgSuccess | 文件上传成功时的钩子 | 接口返回的值(res), sour |
-| imgRemove | 文件列表移除文件时的钩子 |  |
+| imgRemove | 文件列表移除文件时的钩子 | uploadFile, uploadFiles, sour |
+| imgPreview | 文件列表移除文件时的钩子 | uploadFile |
 | inputBtnSearch | input 右边插槽按钮事件 |  |
 | resetModelForm | 使用 ref 来调用子组件的 resetModelForm 方法`FormRef.value.resetModelForm()`，以达到清空数据的效果 | |
 

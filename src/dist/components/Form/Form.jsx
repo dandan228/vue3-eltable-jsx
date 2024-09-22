@@ -150,9 +150,13 @@ export const Form = defineComponent({
       stateUpload.imgDialogVisible = true;
     };
 
-    const imgRemove = (uploadFile, uploadFiles) => {
-      emit("imgRemove", uploadFile, uploadFiles);
+    const imgRemove = (uploadFile, uploadFiles, sour) => {
+      emit("imgRemove", uploadFile, uploadFiles, sour);
     };
+
+    const beforeUpload = (rawFile, sour) => {
+      emit("beforeUpload", rawFile, sour);
+    }
 
     expose({ resetModelForm });
 
@@ -256,8 +260,9 @@ export const Form = defineComponent({
             fileList={s?.fileList}
             headers={s?.headers}
             onSuccess={(e)=>imgSuccess(e, s)}
-            onPreview={imgPreview}
-            onRemove={imgRemove}
+            onPreview={(uploadFile)=>imgPreview(uploadFile, s)}
+            beforeUpload={(rawFile)=>beforeUpload(rawFile, s)}
+            onRemove={(uploadFile, uploadFiles)=>imgRemove(uploadFile, uploadFiles, s)}
           >
             <ElIcon>
               <Plus />

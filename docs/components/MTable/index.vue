@@ -11,6 +11,7 @@
         :formColumns="state.dialogColumns"
         :inline="false"
         @imgSuccess="imgSuccess"
+        @beforeUpload="beforeUpload"
         @formEvent="diaFormEvent"
       />
     </Dialog>
@@ -196,6 +197,19 @@ const closeDialog = () => {
   // 清空默认值及及必填提示
   if (refForm.value) refForm.value.resetModelForm();
 };
+
+const beforeUpload = (rawFile, sour) => {
+  if (rawFile.size / 1024 / 1024 > 1) {
+    ElMessageBox({
+      title: "upload",
+      message: h("p", null, [
+        h("span", "当前图片大小不能超过："),
+        h("span", { style: "color: teal" }, '1mb'),
+      ]),
+    });
+    return false
+  }
+}
 </script>
 
 <style>
