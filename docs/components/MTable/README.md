@@ -485,6 +485,7 @@ pageNum                       |
 | imgSuccess | 文件上传成功时的钩子 | 接口返回的值(res), sour |
 | imgRemove | 文件列表移除文件时的钩子 | uploadFile, uploadFiles, sour |
 | imgPreview | 文件列表移除文件时的钩子 | uploadFile |
+| beforeUpload | 上传文件之前的钩子，参数为上传的文件， 若返回false或者返回 Promise 且被 reject，则停止上传。 | rawFile, sour |
 
 ## 属性
 

@@ -103,6 +103,7 @@ export default defineComponent({
 | imgSuccess | 文件上传成功时的钩子 | 接口返回的值(res), sour |
 | imgRemove | 文件列表移除文件时的钩子 | uploadFile, uploadFiles, sour |
 | imgPreview | 文件列表移除文件时的钩子 | uploadFile |
+| beforeUpload | 上传文件之前的钩子，参数为上传的文件， 若返回false或者返回 Promise 且被 reject，则停止上传。 | rawFile, sour |
 | inputBtnSearch | input 右边插槽按钮事件 |  |
 | resetModelForm | 使用 ref 来调用子组件的 resetModelForm 方法`FormRef.value.resetModelForm()`，以达到清空数据的效果 | |
 
