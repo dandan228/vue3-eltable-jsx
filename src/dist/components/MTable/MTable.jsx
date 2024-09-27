@@ -193,6 +193,9 @@ export default defineComponent({
     const radioChange = (sour, e) => {
       emit("radioChange", sour, e);
     };
+    const checkboxChange = (sour, e) => {
+      emit("checkboxChange", sour, e);
+    };
     const inputBtnSearch = (sour, val, modelForm) => {
       emit("inputBtnSearch", sour, val, modelForm);
     };
@@ -251,6 +254,7 @@ export default defineComponent({
           onFormEvent={formEvent}
           onResetSearch={resetSearch}
           onRadioChange={radioChange}
+          onCheckboxChange={checkboxChange}
           onInputBtnSearch={inputBtnSearch}
           onInputChange={inputChange}
         />

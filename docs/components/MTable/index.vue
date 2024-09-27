@@ -32,6 +32,7 @@
       @tableInput="tableInput"
       @tableBlur="tableBlur"
       @switchChange="switchChange"
+      @checkboxChange="checkboxChange"
     />
   </div>
 </template>
@@ -214,6 +215,9 @@ const beforeUpload = (rawFile, sour) => {
     });
     return false
   }
+}
+
+const checkboxChange = (s, e) => {
 }
 </script>
 

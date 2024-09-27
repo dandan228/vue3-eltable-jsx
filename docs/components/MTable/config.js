@@ -75,6 +75,24 @@ export const dialogColumns = [
         ],
     },
     {
+        prop: "checkbox",
+        label: "多选框",
+        filterType: "checkbox",
+        defaultVal: [0],
+        checkboxArr: [
+            {
+                value: 0,
+                label: "多选框1",
+                size: "large",
+            },
+            {
+                value: 1,
+                label: "多选框2",
+                size: "small",
+            },
+        ],
+    },
+    {
         prop: "state",
         label: "状态",
         filterType: "select",
