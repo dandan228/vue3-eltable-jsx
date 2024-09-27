@@ -26,6 +26,7 @@
         :formColumns="state.dialogColumns"
         :inline="false"
         @imgSuccess="imgSuccess"
+        @imgRemove="imgRemove"
         @formEvent="diaFormEvent"
       />
     </Dialog>
@@ -169,6 +170,10 @@ const imgSuccess = (res) => {
   };
   state.dialogColumns[2].fileList.push(defaultRes);
 };
+
+const imgRemove = (uploadFile, uploadFiles) => {
+  state.changeDialogColumns[2].fileList = uploadFiles
+}
 
 const diaFormEvent = (e) => {
   const { btnInfo, formEl } = e;
