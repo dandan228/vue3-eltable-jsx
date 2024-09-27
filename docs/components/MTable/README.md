@@ -482,6 +482,7 @@ export const _tableData = [
 | onSortChange      | table 表头排序事件                                                                                | sort                          |
 | rowItemEvent      | table 里的 a 标签                                                                                 | row                           |
 | onRadioChange     | 单选框                                                                                            | sour, e                         |
+| onCheckboxChange     | 多选框                                                                                            | sour, e                         |
 | onInputChange     | input事件                                                                                            | sour, e                         |
 | inputBtnSearch    | input 右边插槽按钮事件                                                                            | val                           |
 | onPageSizeEvent   | 页容量事件                                                                                        | pageSize                      |
