@@ -98,6 +98,7 @@ export default defineComponent({
 | onFormEvent | Form 表单事件 | e: {form, btnInfo} |
 | onResetSearch | 重置搜索 | Formb 表单默认值 |
 | onRadioChange | 单选框 | sour, e |
+| onCheckboxChange | 多选框 | sour, e |
 | onInputChange | 单选框 | sour, e |
 | inputBtnSearch | input 右边插槽按钮事件 | sour, val, modelForm |
 | imgSuccess | 文件上传成功时的钩子 | 接口返回的值(res), sour |

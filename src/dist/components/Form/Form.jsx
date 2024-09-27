@@ -12,6 +12,8 @@ import {
   ElRadioGroup,
   ElRadio,
   ElDialog,
+  ElCheckboxGroup,
+  ElCheckbox,
 } from "element-plus";
 import { Plus } from "@element-plus/icons-vue";
 import { defineComponent, reactive, ref, watchEffect } from "vue";
@@ -119,6 +121,9 @@ export const Form = defineComponent({
 
     const radioChange = (sour, e) => {
       emit("radioChange", sour, e);
+    };
+    const checkboxChange = (sour, e) => {
+      emit("checkboxChange", sour, e);
     };
 
     const inputChange = (sour, e) => {
@@ -298,6 +303,22 @@ export const Form = defineComponent({
         </ElRadioGroup>
       );
 
+
+      const checkboxField = (
+        <ElCheckboxGroup
+          v-model={state.modelForm[s.prop]}
+          onChange={(e) => {
+            checkboxChange(s, e);
+          }}
+        >
+          {s.checkboxArr?.map((r) => (
+            <ElCheckbox value={r.value} size={r.size} key={r.value} disabled={r.disabled}>
+              {r.label}
+            </ElCheckbox>
+          ))}
+        </ElCheckboxGroup>
+      );
+
       const buttonField = s.btnArr
         ? s.btnArr.map((btn, btnIdx) => (
             <ElButton
@@ -321,6 +342,7 @@ export const Form = defineComponent({
         switch: switchField,
         upload: uploadField,
         radio: radioField,
+        checkbox: checkboxField,
         btn: buttonField,
       };
 
