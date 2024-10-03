@@ -235,6 +235,7 @@ export const Form = defineComponent({
           shortcuts={shortcuts}
           format={s.dateFormat || "YYYY-MM-DD HH:mm:ss" }
           value-format={s.dateFormat || "YYYY-MM-DD HH:mm:ss" }
+          default-time={s.defaultTime || [new Date(2000, 1, 1, 0, 0, 0), new Date(2000, 2, 1, 23, 59, 59)]}
         />
       );
 

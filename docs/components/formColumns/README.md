@@ -26,6 +26,7 @@
 | headers | 当`filterType: "upload"`, 设置上传的请求头部 | object |
 | dateType | 当`filterType: "date"`, 显示类型 | string  | dateType='daterange'| datetimerange |
 | dateFormat | 当`filterType: "date"`, 显示在输入框中的格式及value | string  | dateType='daterange'| datetimerange |
+| defaultTime | 当`filterType: "date"`, 选择日期后的默认时间值。 如未指定则默认时间值为 00:00:00 | Date / [Date, Date]  | |  |
 | vIf | 是否显示 | Boolean  | vIf: false| true |
 | maxlength | 同原生 maxlength 属性 | string/number  | maxlength: 10|  |
 | minlength | 原生属性，最小输入长度 | string/number  | minlength: 1|  |
