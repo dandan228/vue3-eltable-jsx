@@ -172,11 +172,11 @@ export default defineComponent({
       ));
     };
 
-    const onInput = (val, row) => {
-      emit("tableInput", val, row, colIdx);
+    const onInput = (val, row, prop) => {
+      emit("tableInput", val, row, prop);
     };
-    const onBlur = (val, row) => {
-      emit("tableBlur", val, row, colIdx);
+    const onBlur = (val, row, prop) => {
+      emit("tableBlur", val, row, prop);
     };
     const selectCheckbox = (row) => {
       emit("selectCheckbox", row);
@@ -209,10 +209,10 @@ export default defineComponent({
         <ElInput
           v-model={scope.row[col.prop]}
           onInput={(val) => {
-            onInput(val, scope.row, colIdx);
+            onInput(val, scope.row, col.prop);
           }}
           onBlur={(val) => {
-            onBlur(val, scope.row, colIdx);
+            onBlur(val, scope.row, col.prop);
           }}
         ></ElInput>
       );
