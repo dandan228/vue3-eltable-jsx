@@ -244,6 +244,7 @@ export const Form = defineComponent({
           v-model={state.modelForm[s.prop]}
           multiple={s.multiple}
           style={{ width: s.width ? `${s.width}px` : "240px" }}
+          placeholder={s.placeholder}
           onChange={(e) => {
             inputChange(s, e);
           }}
