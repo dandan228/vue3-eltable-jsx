@@ -165,7 +165,7 @@ export default defineComponent({
         <ElButton
           type={btn.color}
           disabled={btn.disabled}
-          vHasPermi={btn.vHasPermi?vHasPermi:''}
+          v-hasPermi={btn.vHasPermi?btn.vHasPermi:''}
           onClick={() => tableBtnEvent(scope, colIdx, btn)}
         >
           {btn.label}
