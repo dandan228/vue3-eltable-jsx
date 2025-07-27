@@ -1,5 +1,6 @@
 import { Search } from "@element-plus/icons-vue";
 import { shallowRef } from "vue"
+import dayjs from 'dayjs'
 
 export const tableData = [
     // 0=>显示所有; 1=>通过; 2=>取消; 3=>禁用
@@ -9,6 +10,14 @@ export const tableData = [
     { date: "da2te1", name: "Jan23e", state: 3, btn: "按钮4" },
 ];
 
+function getLastMonthSameDayOrEnd() {
+    const today = dayjs();
+    const lastMonth = today.subtract(1, 'month');
+    const daysInLastMonth = lastMonth.daysInMonth();
+    const targetDay = Math.min(today.date(), daysInLastMonth);
+    return lastMonth.date(targetDay).startOf('day');
+}
+
 export const formColumns = [
     {
         prop: "date",
@@ -16,6 +25,15 @@ export const formColumns = [
         filterType: "date",
         dateType: 'datetimerange',
         dateFormat: 'YYYY-MM-DD HH:mm:ss',
+        defaultVal: [
+            getLastMonthSameDayOrEnd().format('YYYY-MM-DD HH:mm:ss'),
+            dayjs().endOf('day').format('YYYY-MM-DD HH:mm:ss')
+        ],
+        disabledDate: (time) => {
+            const start = getLastMonthSameDayOrEnd();
+            const end = dayjs().endOf('day');
+            return dayjs(time).isBefore(start) || dayjs(time).isAfter(end);
+        },
     },
     {
         prop: "name",

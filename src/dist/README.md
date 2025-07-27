@@ -173,3 +173,8 @@ export default function directive(app) {
 
 最后再main.js引入
 ```
+
+## 更新包命令
+```js
+npm publish --access public
+```
